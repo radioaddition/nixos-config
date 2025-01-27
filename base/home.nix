@@ -25,6 +25,7 @@
     enable = true;
     userName = "RadioAddition";
     userEmail = "radioaddition@pm.me";
+    extraConfig.init.defaultBranch = "main";
   };
 
   nix.settings = {
