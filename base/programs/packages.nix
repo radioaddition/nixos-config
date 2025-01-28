@@ -6,6 +6,8 @@ in
 
   environment.systemPackages = with pkgs; [
 
+    age
+    alejandra
     atuin
     bat
     bat-extras.batman
@@ -13,14 +15,16 @@ in
     btrfs-progs
     busybox
     curl
+    deadnix
     exfatprogs
     eza
     fastfetch
+    fish
     fractal
-    menu.fuiska
     fzf
     gcc
     gettext
+    git
     git-repo
     glas
     gleam
@@ -36,21 +40,25 @@ in
     lsof
     magic-wormhole-rs
     mcron
+    menu.fuiska
+    menu.rbld
+    menu.unify
     miracode
     monocraft
     mpv
+    neovim
+    nh
     nixd
     perl
     python3
     qemu
     qemu_kvm
-    menu.rbld
     redis
     ripgrep
     rsync
     sbctl
+    statix
     topgrade
-    menu.unify
     up
     usbtop
     wget
