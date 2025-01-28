@@ -63,10 +63,7 @@
     lanzaboote,
     hjem,
     ...
-  } @ inputs:
-  let
-    inherit (nixpkgs.lib) nixosSystem;
-  in {
+  } @ inputs: {
     formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
 
     devShells.x86_64-linux.default = nixpkgs.legacyPackages.x86_64-linux.mkShellNoCC {
