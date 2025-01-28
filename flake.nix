@@ -19,11 +19,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.llakaLib.follows = "llakaLib";
     };
-    wrapper-manager = {
-      url = "github:viperML/wrapper-manager";
+    nixnvim = {
+      url = "github:nixneovim/nixneovim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     disko = {
       url = "github:nix-community/disko/latest";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -54,16 +53,18 @@
     };
   };
 
-  outputs = inputs @ {
+  outputs = {
+    self,
     nixpkgs,
     nixos-hardware,
+    nix-flatpak,
     home-manager,
     disko,
     lanzaboote,
-    nix-flatpak,
     hjem,
     ...
-  }: let
+  } @ inputs:
+  let
     inherit (nixpkgs.lib) nixosSystem;
   in {
     formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
@@ -97,7 +98,7 @@
     nixosConfigurations = {
       framework = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = {inherit inputs;};
+        specialArgs = { inherit inputs; };
         modules = [
           ./base/programs/flatpak.nix
           #./base/gaming.nix # Disable unless I'm using it (currently broken)
@@ -113,17 +114,17 @@
           ./init/disko.nix
           ./init/filesystem.nix
           nixos-hardware.nixosModules.framework-13-7040-amd
-          disko.nixosModules.disko
-          hjem.nixosModules.hjem
-          home-manager.nixosModules.home-manager
-          lanzaboote.nixosModules.lanzaboote
-          nix-flatpak.nixosModules.nix-flatpak
+          inputs.disko.nixosModules.disko
+          inputs.hjem.nixosModules.hjem
+          inputs.home-manager.nixosModules.home-manager
+          inputs.lanzaboote.nixosModules.lanzaboote
+          inputs.nix-flatpak.nixosModules.nix-flatpak
 
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.backupFileExtension = "bak";
-            home-manager.users.radioaddition.imports = [
+            hm.imports = [
               ./base/home.nix
               ./hosts/framework/home.nix
             ];
@@ -135,7 +136,7 @@
         system = "x86_64-linux";
         specialArgs = {inherit inputs;};
         modules = [
-          disko.nixosModules.disko
+          inputs.disko.nixosModules.disko
           ./base/users.nix
           ./hosts/installer/configuration.nix
           ./hosts/installer/hardware-configuration.nix
@@ -172,7 +173,7 @@
         extraSpecialArgs = {inherit inputs;};
         pkgs = nixpkgs.legacyPackages."x86_64-linux";
         modules = [
-          nix-flatpak.homeManagerModules.nix-flatpak
+          inputs.nix-flatpak.homeManagerModules.nix-flatpak
           ./hosts/framework/home.nix
           ./base/home.nix
         ];

@@ -1,7 +1,19 @@
-{ config, pkgs, inputs, lib, ... }: {
+{ config, pkgs, inputs, lib, ... }:
+let
+  unstable = import inputs.unstable { system = "${pkgs.system}"; config.allowUnfree = true; };
+in
+{
+  # Compatability with my existing configuration
+  disabledModules = [
+    "config/pulseaudio.nix"
+    "programs/steam.nix"
+  ];
   imports = [
+    "${inputs.unstable}/nixos/modules/services/audio/pulseaudio.nix"
+    "${inputs.unstable}/nixos/modules/programs/steam.nix"
     inputs.jovian-nixos.nixosModules.default
   ];
+  networking.networkmanager.enable = lib.mkForce true;
   ## Steam
   programs.steam = {
     enable = true;
@@ -13,10 +25,7 @@
     remotePlay.openFirewall = true;
     gamescopeSession.enable = true;
     extest.enable = true;
-    package = pkgs.steam.override {
-      withPrimus = true;
-      withJava = true;
-    };
+    package = unstable.steam;
   };
   programs.gamescope.enable = true;
   programs.java.enable = true; 
@@ -30,7 +39,7 @@
   jovian = {
     steam = {
       enable = true;
-      autoStart = true;
+      #autoStart = true;
       desktopSession = "gdm";
       updater.splash = "jovian";
       user = "radioaddition";
