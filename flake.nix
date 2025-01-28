@@ -19,6 +19,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.llakaLib.follows = "llakaLib";
     };
+    wrapper-manager = {
+      url = "github:viperML/wrapper-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     disko = {
       url = "github:nix-community/disko/latest";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -94,11 +99,11 @@
         system = "x86_64-linux";
         specialArgs = {inherit inputs;};
         modules = [
-          ./base/flatpak.nix
-          #./base/gaming.nix # Disable unless I'm using it
-          ./base/gnome.nix
+          ./base/programs/flatpak.nix
+          #./base/gaming.nix # Disable unless I'm using it (currently broken)
+          ./base/DEs/gnome.nix
           ./base/networking.nix
-          ./base/packages.nix
+          ./base/programs/packages.nix
           ./base/security.nix
           ./base/shells/fish.nix
           ./base/system.nix
