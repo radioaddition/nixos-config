@@ -36,6 +36,7 @@ in {
     hyfetch
     iosevka
     just
+    lazygit
     libvirt
     lsof
     magic-wormhole-rs
