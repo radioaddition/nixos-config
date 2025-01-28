@@ -6,15 +6,9 @@
   lib,
   ...
 }:
-#let
-#  unstable = inputs.unstable.legacyPackages."${pkgs.system}";
-#
-#  #unstable = import inputs.unstable {
-#  #  system = "${pkgs.system}";
-#  #  config.allowUnfree = true;
-#  #};
-#in
 {
+  # Disable the hardened kernel for optimizations
+  boot.kernelPackages = lib.mkForce pkgs.linuxKernel.packages.linux_zen;
   # Compatability with my existing configuration
   disabledModules = [
     "config/pulseaudio.nix"
