@@ -3,8 +3,8 @@
 
   inputs = {
     # Base inputs
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
-    oldstable.url = "github:NixOS/nixpkgs/nixos-24.05"; # Needed for nix-on-droid
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    oldstable.url = "github:nixos/nixpkgs/nixos-24.05"; # Needed for nix-on-droid
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # Extra inputs
@@ -94,10 +94,13 @@
     nixosConfigurations = {
       framework = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = {inherit inputs;};
+        specialArgs = {
+	  inherit inputs;
+	  unstable = import inputs.unstable { system = "x86_64-linux"; config.allowUnfree = true; };
+	};
         modules = [
           ./base/programs/flatpak.nix
-          #./base/gaming.nix # Disable unless I'm using it (currently broken)
+          #./base/gaming.nix # Disable unless I'm using it
           ./base/DEs/gnome.nix
           ./base/networking.nix
           ./base/programs/packages.nix

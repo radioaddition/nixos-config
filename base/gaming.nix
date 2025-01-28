@@ -2,14 +2,19 @@
   config,
   pkgs,
   inputs,
+  unstable,
   lib,
   ...
-}: let
-  unstable = import inputs.unstable {
-    system = "${pkgs.system}";
-    config.allowUnfree = true;
-  };
-in {
+}:
+#let
+#  unstable = inputs.unstable.legacyPackages."${pkgs.system}";
+#
+#  #unstable = import inputs.unstable {
+#  #  system = "${pkgs.system}";
+#  #  config.allowUnfree = true;
+#  #};
+#in
+{
   # Compatability with my existing configuration
   disabledModules = [
     "config/pulseaudio.nix"
