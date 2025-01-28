@@ -58,6 +58,7 @@ in {
     rsync
     sbctl
     statix
+    tealdeer
     topgrade
     up
     usbtop
