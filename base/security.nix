@@ -81,8 +81,6 @@
   services.dbus.implementation = "broker";
 
   # copied and modified from hardened.nix profile
-  boot.kernelPackages = pkgs.linuxPackages_hardened;
-
   environment.memoryAllocator.provider = "graphene-hardened";
   # Use the options if the graphene hardened_malloc is too strict
   #environment.memoryAllocator.provider = "scudo";
@@ -106,18 +104,46 @@
   };
 
   boot = {
+    # Pin kernel version
+    kernelPackages = pkgs.linuxPackagesFor (pkgs.linuxKernel.kernels.linux_6_13.override {
+        argsOverride = rec {
+          src = pkgs.fetchurl {
+                url = "mirror://kernel/linux/kernel/v${lib.versions.major version}.x/linux-${version}.tar.xz";
+                sha256 = "0ibayrvrnw2lw7si78vdqnr20mm1d3z0g6a0ykndvgn5vdax5x9a";
+          };
+          version = "6.13.0";
+          modDirVersion = "6.13.0";
+        };
+      });
+
+    # Define kernel paramaters
     kernelParams = [
-      # Don't merge slabs
       "slab_nomerge"
-
-      # Overwrite free'd pages
       "page_poison=1"
-
-      # Enable page allocator randomization
       "page_alloc.shuffle=1"
-
-      # Disable debugfs
       "debugfs=off"
+      "init_on_alloc=1"
+      "init_on_free=1"
+      "slab_nomerge"
+      "page_alloc.shuffle=1"
+      "randomize_kstack_offset=on"
+      "vsyscall=none"
+      "lockdown=confidentiality"
+      "random.trust_cpu=off"
+      "random.trust_bootloader=off"
+      "iommu=force"
+      "intel_iommu=on"
+      "amd_iommu=force_isolation"
+      "iommu.passthrough=0"
+      "iommu.strict=1"
+      "pti=on"
+      "module.sig_enforce=1"
+      "mitigations=auto,nosmt"
+      "spectre_v2=on"
+      "spec_store_bypass_disable=on"
+      "l1d_flush=on"
+      "l1tf=full,force"
+      "kvm-intel.vmentry_l1d_flush=always"
     ];
 
     blacklistedKernelModules = [
