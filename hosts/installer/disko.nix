@@ -9,36 +9,36 @@
           partitions = {
             ESP = {
               name = "ESP";
-	      size = "2G";
+              size = "2G";
               type = "EF00";
               content = {
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
-                mountOptions = [ "umask=0077" ];
+                mountOptions = ["umask=0077"];
               };
             };
             root = {
               size = "100%";
               content = {
                 type = "btrfs";
-                extraArgs = [ "-f" ]; # Override existing partition
-		subvolumes = {
-		  "root" = {
-		    mountpoint = "/";
-		    mountOptions = [
-		      "relatime"
-		      "compress=zstd"
-		    ];
-		  };
-		  "nix" = {
-		    mountpoint = "/nix";
-		    mountOptions = [
-		      "relatime"
-		      "compress=zstd"
-		    ];
-		  };
-		};
+                extraArgs = ["-f"]; # Override existing partition
+                subvolumes = {
+                  "root" = {
+                    mountpoint = "/";
+                    mountOptions = [
+                      "relatime"
+                      "compress=zstd"
+                    ];
+                  };
+                  "nix" = {
+                    mountpoint = "/nix";
+                    mountOptions = [
+                      "relatime"
+                      "compress=zstd"
+                    ];
+                  };
+                };
               };
             };
           };

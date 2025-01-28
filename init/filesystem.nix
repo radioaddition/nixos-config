@@ -1,8 +1,7 @@
-{ lib, config, pkgs, ... }: {
-
+{lib, ...}: {
   boot.initrd.luks.devices."crypted" = {
     device = "/dev/disk/by-partlabel/disk-main-luks";
-    crypttabExtraOpts = [ "tpm2-device=auto" "tpm2-measure-pcr=yes" ];
+    crypttabExtraOpts = ["tpm2-device=auto" "tpm2-measure-pcr=yes"];
   };
 
   fileSystems."/" = {
@@ -47,7 +46,13 @@
       "nosuid"
     ];
   };
-  swapDevices = [{ device = lib.mkForce "/swap/swapfile"; label = "swap"; size = 32768; }];
+  swapDevices = [
+    {
+      device = lib.mkForce "/swap/swapfile";
+      label = "swap";
+      size = 32768;
+    }
+  ];
 
   fileSystems."/boot" = {
     device = "/dev/disk/by-partlabel/disk-main-ESP";

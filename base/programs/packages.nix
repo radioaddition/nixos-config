@@ -1,11 +1,11 @@
-{ config, pkgs, inputs, lib, ... }:
-let
-  menu = inputs.menu.legacyPackages.${pkgs.system};
-in
 {
-
+  pkgs,
+  inputs,
+  ...
+}: let
+  menu = inputs.menu.legacyPackages.${pkgs.system};
+in {
   environment.systemPackages = with pkgs; [
-
     age
     alejandra
     atuin
@@ -66,11 +66,9 @@ in
     wlrctl
     yazi
     zoxide
-
   ];
 
   users.users.radioaddition.packages = with pkgs; [
-
     # Packages
     adwsteamgtk
     bottles
@@ -111,8 +109,7 @@ in
   ];
 
   # Ollama
-  disabledModules = 
-  [
+  disabledModules = [
     "services/misc/ollama.nix"
     "services/web-apps/nextjs-ollama-llm-ui.nix"
   ];
@@ -121,4 +118,3 @@ in
     "${inputs.unstable}/nixos/modules/services/web-apps/nextjs-ollama-llm-ui.nix"
   ];
 }
-

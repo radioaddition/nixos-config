@@ -1,10 +1,12 @@
 # Edit this configuration file to define what should be installed on
 # you system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, inputs, lib, ... }:
-
 {
+  config,
+  pkgs,
+  inputs,
+  ...
+}: {
   # System
   ### Set nix version to latest
   nix.package = pkgs.nixVersions.latest;
@@ -35,25 +37,25 @@
   ### Enable GnuPG
   services.pcscd.enable = true;
   programs.gnupg.agent = {
-   enable = true;
-   pinentryPackage = pkgs.pinentry-gnome3;
-   enableSSHSupport = true;
+    enable = true;
+    pinentryPackage = pkgs.pinentry-gnome3;
+    enableSSHSupport = true;
   };
 
   ### Yubikey Support
   security.pam.yubico = {
-   enable = true;
-   mode = "challenge-response";
-   id = [ "27725426" ];
+    enable = true;
+    mode = "challenge-response";
+    id = ["27725426"];
   };
   # Lock device upon removal
   #services.udev.extraRules = ''
-      #ACTION=="remove",\
-       #ENV{ID_BUS}=="usb",\
-       #ENV{ID_MODEL_ID}=="0407",\
-       #ENV{ID_VENDOR_ID}=="1050",\
-       #ENV{ID_VENDOR}=="Yubico",\
-       #RUN+="${pkgs.systemd}/bin/loginctl lock-sessions"
+  #ACTION=="remove",\
+  #ENV{ID_BUS}=="usb",\
+  #ENV{ID_MODEL_ID}=="0407",\
+  #ENV{ID_VENDOR_ID}=="1050",\
+  #ENV{ID_VENDOR}=="Yubico",\
+  #RUN+="${pkgs.systemd}/bin/loginctl lock-sessions"
   #'';
   ### Filesystem Encryption
   security.pam.enableEcryptfs = true;
@@ -64,20 +66,19 @@
   ## Bootloader
 
   boot = {
-
-  ### Boot animation
+    ### Boot animation
     plymouth = {
       enable = true;
       theme = "cuts_alt";
       themePackages = with pkgs; [
         # By default we would install all themes
         (adi1090x-plymouth-themes.override {
-          selected_themes = [ "cuts_alt" ];
+          selected_themes = ["cuts_alt"];
         })
       ];
     };
 
-  ### Enable silent boot
+    ### Enable silent boot
     consoleLogLevel = 0;
     initrd.verbose = false;
     kernelParams = [
@@ -90,20 +91,20 @@
       "udev.log_priority=3"
     ];
 
-  ### Misc bootloader config
+    ### Misc bootloader config
     loader = {
       timeout = 0;
       systemd-boot.enable = true;
-#      grub = {
-#	enable = true;
-#        efiSupport = true;
-#        device = "nodev";
-#        useOSProber = true;
-#        timeoutStyle = "menu";
-#      };
+      #      grub = {
+      #	enable = true;
+      #        efiSupport = true;
+      #        device = "nodev";
+      #        useOSProber = true;
+      #        timeoutStyle = "menu";
+      #      };
       efi.canTouchEfiVariables = true;
     };
-    kernelModules = [ "ecryptfs" ];
+    kernelModules = ["ecryptfs"];
     extraModprobeConfig = ''
       options snd-intel-dspcfg dsp_driver=1
     '';
@@ -133,14 +134,20 @@
   };
 
   ### Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 65530 51413 9052 9053 9080 53317 ];
-  networking.firewall.allowedUDPPorts = [ 65530 51413 9052 9053 9080 53317 ];
-  networking.firewall.allowedTCPPortRanges = [ 
-      { from = 1714; to = 1764; } # KDE Connect
-    ];  
-  networking.firewall.allowedUDPPortRanges = [ 
-      { from = 1714; to = 1764; } # KDE Connect
-    ];
+  networking.firewall.allowedTCPPorts = [65530 51413 9052 9053 9080 53317];
+  networking.firewall.allowedUDPPorts = [65530 51413 9052 9053 9080 53317];
+  networking.firewall.allowedTCPPortRanges = [
+    {
+      from = 1714;
+      to = 1764;
+    } # KDE Connect
+  ];
+  networking.firewall.allowedUDPPortRanges = [
+    {
+      from = 1714;
+      to = 1764;
+    } # KDE Connect
+  ];
   #' Or disable the firewall altogether.
   #' networking.firewall.enable = false;
 
@@ -165,20 +172,20 @@
 
   ## Steam
   programs.steam = {
-    extraCompatPackages = with pkgs; [ proton-ge-bin ];
+    extraCompatPackages = with pkgs; [proton-ge-bin];
     localNetworkGameTransfers.openFirewall = true;
     dedicatedServer.openFirewall = true;
     extest.enable = true;
     enable = true;
     #-package = pkgs.steam.override {
-      #-withPrimus = true;
-      #-extraPackages = pkgs: [ bumblebee glxinfo ];
-      #-withJava = true;
+    #-withPrimus = true;
+    #-extraPackages = pkgs: [ bumblebee glxinfo ];
+    #-withJava = true;
     #-};
   };
   programs.gamescope.enable = true;
   programs.steam.gamescopeSession.enable = true;
-  programs.java.enable = true; 
+  programs.java.enable = true;
   hardware.openrazer.enable = true;
 
   ## Display
@@ -232,7 +239,7 @@
   ## Enable ZSH
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
-  environment.shells = with pkgs; [ zsh ];
+  environment.shells = with pkgs; [zsh];
 
   ## Enable flake support
   nix = {
@@ -258,106 +265,107 @@
   users.users.radioaddition = {
     isNormalUser = true;
     description = "RadioAddition";
-    extraGroups = [ "adbusers" "docker" "kvm" "libvirt" "libvirtd" "lxd" "networkmanager" "openrazer" "wheel" ];
+    extraGroups = ["adbusers" "docker" "kvm" "libvirt" "libvirtd" "lxd" "networkmanager" "openrazer" "wheel"];
     hashedPassword = "$y$j9T$gMRIRcus7uO1X6zrPTfVn/$0iOFINi8HZPH5b0QpXXCQbanUwYe9lpzjD17NbitD39";
-    packages = (with pkgs; [
+    packages =
+      (with pkgs; [
+        # Packages
 
-      # Packages
-  
-      adwsteamgtk
-      atuin
-      bat
-      bat-extras.batman
-      bottles
-      boxbuddy
-      brave
-      btop
-      cartridges
-      collision
-      curl
-      direnv
-      discover-overlay
-      distrobox
-      docker-compose
-      eza
-      feather
-      firefox
-      fragments
-      freshfetch
-      gcc
-      gettext
-      gh
-      git
-      git-repo
-      github-desktop
-      glas
-      gleam
-      glib
-      gnome-extension-manager
-      gnome.dconf-editor
-      gnome.gnome-boxes
-      gnome.gnome-tweaks
-      gnome.polari
-      gnome.seahorse
-      gnumake
-      goofcord
-      gparted
-      guake
-      helvum
-      home-manager
-      hyfetch
-      impression
-      iosevka
-      jamesdsp
-      keepassxc
-      llama-cpp
-      localsend
-      lutris
-      magic-wormhole
-      meslo-lgs-nf
-      mindustry-wayland
-      monophony
-      mpv
-      neovim
-      neovim-gtk
-      nix-search-cli
-      nodePackages_latest.pnpm
-      nodejs-slim
-      onionshare-gui
-      openrazer-daemon
-      pavucontrol
-      perl
-      picard
-      pika-backup
-      pinentry-gnome3
-      pipx
-      pnpm-shell-completion
-      polychromatic
-      protonmail-bridge
-      protonmail-bridge-gui
-      protonplus
-      protonvpn-gui
-      ptyxis
-      python3
-      redis
-      ripgrep
-      sassc
-      shattered-pixel-dungeon
-      simplex-chat-desktop
-      topgrade
-      tor-browser
-      tuckr
-      usbtop
-      ventoy-full
-      wget
-      wl-clipboard
-      wlrctl
-      wormhole-william
-      xmrig-mo
-      zoxide
+        adwsteamgtk
+        atuin
+        bat
+        bat-extras.batman
+        bottles
+        boxbuddy
+        brave
+        btop
+        cartridges
+        collision
+        curl
+        direnv
+        discover-overlay
+        distrobox
+        docker-compose
+        eza
+        feather
+        firefox
+        fragments
+        freshfetch
+        gcc
+        gettext
+        gh
+        git
+        git-repo
+        github-desktop
+        glas
+        gleam
+        glib
+        gnome-extension-manager
+        gnome.dconf-editor
+        gnome.gnome-boxes
+        gnome.gnome-tweaks
+        gnome.polari
+        gnome.seahorse
+        gnumake
+        goofcord
+        gparted
+        guake
+        helvum
+        home-manager
+        hyfetch
+        impression
+        iosevka
+        jamesdsp
+        keepassxc
+        llama-cpp
+        localsend
+        lutris
+        magic-wormhole
+        meslo-lgs-nf
+        mindustry-wayland
+        monophony
+        mpv
+        neovim
+        neovim-gtk
+        nix-search-cli
+        nodePackages_latest.pnpm
+        nodejs-slim
+        onionshare-gui
+        openrazer-daemon
+        pavucontrol
+        perl
+        picard
+        pika-backup
+        pinentry-gnome3
+        pipx
+        pnpm-shell-completion
+        polychromatic
+        protonmail-bridge
+        protonmail-bridge-gui
+        protonplus
+        protonvpn-gui
+        ptyxis
+        python3
+        redis
+        ripgrep
+        sassc
+        shattered-pixel-dungeon
+        simplex-chat-desktop
+        topgrade
+        tor-browser
+        tuckr
+        usbtop
+        ventoy-full
+        wget
+        wl-clipboard
+        wlrctl
+        wormhole-william
+        xmrig-mo
+        zoxide
 
-    # Gnome Extensions
-    ]) ++ (with pkgs.gnomeExtensions; [
+        # Gnome Extensions
+      ])
+      ++ (with pkgs.gnomeExtensions; [
         alphabetical-app-grid
         appindicator
         blur-my-shell
@@ -392,19 +400,16 @@
     waydroid.enable = true;
     podman.enable = true;
   };
-  
+
   #' List packages installed in system profile. To search, run:
   #' $ nix search wget
 
-
   # Ollama
-  disabledModules = 
-  [
+  disabledModules = [
     "services/misc/ollama.nix"
     "services/web-apps/nextjs-ollama-llm-ui.nix"
   ];
-  imports = 
-  [
+  imports = [
     "${inputs.unstable}/nixos/modules/services/misc/ollama.nix"
     "${inputs.unstable}/nixos/modules/services/web-apps/nextjs-ollama-llm-ui.nix"
   ];
@@ -450,5 +455,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05"; # Did you read the comment?
-
 }

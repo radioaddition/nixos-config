@@ -1,10 +1,13 @@
 # Edit this configuration file to define what should be installed on
 # you system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, inputs, lib, ... }:
-
 {
+  config,
+  pkgs,
+  inputs,
+  lib,
+  ...
+}: {
   # System
 
   ## Security
@@ -33,42 +36,42 @@
   ### Enable GnuPG
   services.pcscd.enable = true;
   programs.gnupg.agent = {
-   enable = true;
-   pinentryPackage = pkgs.pinentry-gnome3;
-   enableSSHSupport = true;
+    enable = true;
+    pinentryPackage = pkgs.pinentry-gnome3;
+    enableSSHSupport = true;
   };
 
   ### Yubikey Support
   security.pam.yubico = {
-   enable = true;
-   mode = "challenge-response";
-   id = [ "27725426" ];
+    enable = true;
+    mode = "challenge-response";
+    id = ["27725426"];
   };
   # Lock device upon removal
   #services.udev.extraRules = ''
-      #ACTION=="remove",\
-       #ENV{ID_BUS}=="usb",\
-       #ENV{ID_MODEL_ID}=="0407",\
-       #ENV{ID_VENDOR_ID}=="1050",\
-       #ENV{ID_VENDOR}=="Yubico",\
-       #RUN+="${pkgs.systemd}/bin/loginctl lock-sessions"
+  #ACTION=="remove",\
+  #ENV{ID_BUS}=="usb",\
+  #ENV{ID_MODEL_ID}=="0407",\
+  #ENV{ID_VENDOR_ID}=="1050",\
+  #ENV{ID_VENDOR}=="Yubico",\
+  #RUN+="${pkgs.systemd}/bin/loginctl lock-sessions"
   #'';
 
   ### Firejail
   programs.firejail = {
     enable = true;
     wrappedBinaries = {
-    librewolf = {
-      executable = "${pkgs.librewolf}/bin/librewolf";
-      profile = "${pkgs.firejail}/etc/firejail/librewolf.profile";
-      extraArgs = [
-        # Required for U2F USB stick
-        "--ignore=private-dev"
-        # Enforce dark mode
-        "--env=GTK_THEME=Adwaita:dark"
-        # Enable system notifications
-        "--dbus-user.talk=org.freedesktop.Notifications"
-      ];
+      librewolf = {
+        executable = "${pkgs.librewolf}/bin/librewolf";
+        profile = "${pkgs.firejail}/etc/firejail/librewolf.profile";
+        extraArgs = [
+          # Required for U2F USB stick
+          "--ignore=private-dev"
+          # Enforce dark mode
+          "--env=GTK_THEME=Adwaita:dark"
+          # Enable system notifications
+          "--dbus-user.talk=org.freedesktop.Notifications"
+        ];
       };
     };
   };
@@ -76,32 +79,31 @@
   ## Misc
   hardware.enableAllFirmware = true;
   boot.extraModprobeConfig = ''
-  options snd-intel-dspcfg dsp_driver=1
-'';
+    options snd-intel-dspcfg dsp_driver=1
+  '';
 
   ## Bootloader
 
   boot = {
-
-  ### Secure boot configuration
+    ### Secure boot configuration
     lanzaboote = {
       enable = true;
       pkiBundle = "/etc/secureboot";
     };
 
-  ### Boot animation
+    ### Boot animation
     plymouth = {
       enable = true;
       theme = "cuts_alt";
       themePackages = with pkgs; [
         # By default we would install all themes
         (adi1090x-plymouth-themes.override {
-          selected_themes = [ "cuts_alt" ];
+          selected_themes = ["cuts_alt"];
         })
       ];
     };
 
-  ### Enable silent boot
+    ### Enable silent boot
     consoleLogLevel = 0;
     initrd.verbose = false;
     kernelParams = [
@@ -114,7 +116,7 @@
       "udev.log_priority=3"
     ];
 
-  ### Misc bootloader config
+    ### Misc bootloader config
     loader = {
       timeout = 0;
       systemd-boot.enable = lib.mkForce false;
@@ -147,14 +149,20 @@
   };
 
   ### Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 51413 9052 9053 9080 ];
-  networking.firewall.allowedUDPPorts = [ 65530 51413 9052 9053 9080 ];
-  networking.firewall.allowedTCPPortRanges = [ 
-      { from = 1714; to = 1764; } # KDE Connect
-    ];  
-  networking.firewall.allowedUDPPortRanges = [ 
-      { from = 1714; to = 1764; } # KDE Connect
-    ];
+  networking.firewall.allowedTCPPorts = [51413 9052 9053 9080];
+  networking.firewall.allowedUDPPorts = [65530 51413 9052 9053 9080];
+  networking.firewall.allowedTCPPortRanges = [
+    {
+      from = 1714;
+      to = 1764;
+    } # KDE Connect
+  ];
+  networking.firewall.allowedUDPPortRanges = [
+    {
+      from = 1714;
+      to = 1764;
+    } # KDE Connect
+  ];
   #' Or disable the firewall altogether.
   #' networking.firewall.enable = false;
 
@@ -179,20 +187,20 @@
 
   ## Steam
   programs.steam = {
-    extraCompatPackages = with pkgs; [ proton-ge-bin ];
+    extraCompatPackages = with pkgs; [proton-ge-bin];
     localNetworkGameTransfers.openFirewall = true;
     dedicatedServer.openFirewall = true;
     extest.enable = true;
     enable = true;
     #-package = pkgs.steam.override {
-      #-withPrimus = true;
-      #-extraPackages = pkgs: [ bumblebee glxinfo ];
-      #-withJava = true;
+    #-withPrimus = true;
+    #-extraPackages = pkgs: [ bumblebee glxinfo ];
+    #-withJava = true;
     #-};
   };
   programs.gamescope.enable = true;
   programs.steam.gamescopeSession.enable = true;
-  programs.java.enable = true; 
+  programs.java.enable = true;
   hardware.openrazer.enable = true;
 
   ## Display
@@ -246,7 +254,7 @@
   ## Enable ZSH
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
-  environment.shells = with pkgs; [ zsh ];
+  environment.shells = with pkgs; [zsh];
 
   ## Enable flake support
   nix = {
@@ -271,7 +279,7 @@
   users.users.radioaddition = {
     isNormalUser = true;
     description = "RadioAddition";
-    extraGroups = [ "adbusers" "docker" "kvm" "libvirt" "libvirtd" "lxd" "networkmanager" "openrazer" "wheel" ];
+    extraGroups = ["adbusers" "docker" "kvm" "libvirt" "libvirtd" "lxd" "networkmanager" "openrazer" "wheel"];
     hashedPassword = "$y$j9T$gMRIRcus7uO1X6zrPTfVn/$0iOFINi8HZPH5b0QpXXCQbanUwYe9lpzjD17NbitD39";
   };
   services.vsftpd.localUsers = true;
@@ -289,10 +297,9 @@
     waydroid.enable = true;
     podman.enable = true;
   };
-  
+
   #' List packages installed in system profile. To search, run:
   #' $ nix search wget
-
 
   environment.systemPackages = with pkgs; [
     busybox
@@ -308,7 +315,7 @@
     sbctl
     steamcmd
     steam-tui
-    ];
+  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -331,5 +338,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05"; # Did you read the comment?
-
 }

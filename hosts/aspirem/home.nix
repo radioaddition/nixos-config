@@ -1,12 +1,12 @@
-{ pkgs, config, libs, inputs, ... }:
-
 {
-  
+  pkgs,
+  config,
+  ...
+}: {
   # in case of git.sr.ht outage
   #manual.html.enable = false;
   #manual.manpages.enable = false;
   #manual.json.enable = false;
-
 
   imports = [
   ];
@@ -14,7 +14,7 @@
   home.username = "radioaddition";
   home.homeDirectory = "/home/radioaddition";
   nixpkgs.config.allowUnfree = true;
-  home.sessionPath = [ "$HOME/.local/bin" "/usr/local/bin" ];
+  home.sessionPath = ["$HOME/.local/bin" "/usr/local/bin"];
   home.sessionVariables = {
     EDITOR = "nvim";
     DBX_CONTAINER_MANAGER = "podman";
@@ -52,10 +52,13 @@
     zplug = {
       enable = true;
       plugins = [
-        { name = "zsh-users/zsh-autosuggestions"; }
-        { name = "zsh-users/zsh-syntax-highlighting"; }
-        { name = "jeffreytse/zsh-vi-mode"; }
-        { name = "romkatv/powerlevel10k"; tags = [ as:theme depth:1 ]; }
+        {name = "zsh-users/zsh-autosuggestions";}
+        {name = "zsh-users/zsh-syntax-highlighting";}
+        {name = "jeffreytse/zsh-vi-mode";}
+        {
+          name = "romkatv/powerlevel10k";
+          tags = [as:theme depth:1];
+        }
       ];
     };
     initExtraFirst = ''
@@ -67,112 +70,113 @@
       fi
     '';
     initExtra = ''
-. "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+      . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
 
-. ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
-      source "$HOME/NixOS-Config/.p10k.zsh"
-      eval "$(atuin init zsh)"
-'';
+      . ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme
+            source "$HOME/NixOS-Config/.p10k.zsh"
+            eval "$(atuin init zsh)"
+    '';
   };
 
   nix.settings = {
     auto-optimise-store = true;
-    experimental-features = [ "nix-command" "flakes" ];
+    experimental-features = ["nix-command" "flakes"];
   };
   nix.package = pkgs.nix;
-  home.packages = (with pkgs; [
+  home.packages =
+    (with pkgs; [
+      # Packages
 
-  # Packages
+      adwsteamgtk
+      atuin
+      bat
+      bottles
+      boxbuddy
+      btop
+      cartridges
+      collision
+      curl
+      direnv
+      distrobox
+      docker-compose
+      eza
+      feather
+      firefox
+      fragments
+      freshfetch
+      gcc
+      gettext
+      git
+      git-repo
+      github-desktop
+      glas
+      gleam
+      glib
+      gnome.dconf-editor
+      gnome-extension-manager
+      gnome.gnome-boxes
+      gnome.gnome-tweaks
+      gnome.polari
+      gnome.seahorse
+      gnumake
+      goofcord
+      gparted
+      gpu-screen-recorder
+      gpu-screen-recorder-gtk
+      gradience
+      guake
+      helvum
+      home-manager
+      hyfetch
+      impression
+      jamesdsp
+      keepassxc
+      kleopatra
+      librewolf
+      lutris
+      mindustry-wayland
+      monophony
+      mpv
+      neovim
+      neovim-gtk
+      nodePackages_latest.pnpm
+      nodejs-slim
+      onionshare-gui
+      openrazer-daemon
+      pavucontrol
+      perl
+      picard
+      pika-backup
+      pinentry-gnome3
+      pipx
+      pnpm-shell-completion
+      polychromatic
+      protonmail-bridge
+      protonmail-bridge-gui
+      protonplus
+      protonvpn-gui
+      ptyxis
+      python3
+      redis
+      shattered-pixel-dungeon
+      signald
+      signal-desktop
+      simplex-chat-desktop
+      tor-browser
+      tuckr
+      usbtop
+      ventoy-full
+      vscodium
+      wget
+      wl-clipboard
+      wlrctl
+      xmrig-mo
+      yubikey-touch-detector
+      yubioath-flutter
 
-    adwsteamgtk
-    atuin
-    bat
-    bottles
-    boxbuddy
-    btop
-    cartridges
-    collision
-    curl
-    direnv
-    distrobox
-    docker-compose
-    eza
-    feather
-    firefox
-    fragments
-    freshfetch
-    gcc
-    gettext
-    git
-    git-repo
-    github-desktop
-    glas
-    gleam
-    glib
-    gnome.dconf-editor
-    gnome-extension-manager
-    gnome.gnome-boxes
-    gnome.gnome-tweaks
-    gnome.polari
-    gnome.seahorse
-    gnumake
-    goofcord
-    gparted
-    gpu-screen-recorder
-    gpu-screen-recorder-gtk
-    gradience
-    guake
-    helvum
-    home-manager
-    hyfetch
-    impression
-    jamesdsp
-    keepassxc
-    kleopatra
-    librewolf
-    lutris
-    mindustry-wayland
-    monophony
-    mpv
-    neovim
-    neovim-gtk
-    nodePackages_latest.pnpm
-    nodejs-slim
-    onionshare-gui
-    openrazer-daemon
-    pavucontrol
-    perl
-    picard
-    pika-backup
-    pinentry-gnome3
-    pipx
-    pnpm-shell-completion
-    polychromatic
-    protonmail-bridge
-    protonmail-bridge-gui
-    protonplus
-    protonvpn-gui
-    ptyxis
-    python3
-    redis
-    shattered-pixel-dungeon
-    signald
-    signal-desktop
-    simplex-chat-desktop
-    tor-browser
-    tuckr
-    usbtop
-    ventoy-full
-    vscodium
-    wget
-    wl-clipboard
-    wlrctl
-    xmrig-mo
-    yubikey-touch-detector
-    yubioath-flutter
-
-  # Gnome Extensions
-  ]) ++ (with pkgs.gnomeExtensions; [
+      # Gnome Extensions
+    ])
+    ++ (with pkgs.gnomeExtensions; [
       alphabetical-app-grid
       appindicator
       blur-my-shell
@@ -191,7 +195,7 @@
       window-title-is-back
       xwayland-indicator
       zen
-      ]);
+    ]);
   #home.enableNixpkgsReleaseCheck = false; # If using a package from the unstable branch uncomment this
   home.stateVersion = "24.05";
 }

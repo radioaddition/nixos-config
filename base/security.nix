@@ -1,5 +1,10 @@
-{ config, pkgs, inputs, lib, lanzaboote, ... }: {
-
+{
+  config,
+  pkgs,
+  lib,
+  lanzaboote,
+  ...
+}: {
   # Required packages
   environment.systemPackages = with pkgs; [
     socat
@@ -17,22 +22,22 @@
   # Enable GnuPG
   services.pcscd.enable = true;
   programs.gnupg.agent = {
-   enable = true;
-   pinentryPackage = pkgs.pinentry-gnome3;
-   enableSSHSupport = true;
+    enable = true;
+    pinentryPackage = pkgs.pinentry-gnome3;
+    enableSSHSupport = true;
   };
 
   # Restrict Nix access
-#  nix.settings.allowed-users = [ "radioaddition" ];
+  #  nix.settings.allowed-users = [ "radioaddition" ];
 
   # Disable sudo in favor of run0
   # security.sudo.enable = false; # disabled while run0 is broken
 
   # Yubikey Pam login
   security.pam.yubico = {
-   enable = true;
-   mode = "challenge-response";
-   id = [ "27725426" ];
+    enable = true;
+    mode = "challenge-response";
+    id = ["27725426"];
   };
   # Lock device upon removal
   #services.udev.extraRules = ''
@@ -45,7 +50,7 @@
   #'';
 
   # USBGuard
-  users.users.radioaddition.packages = [ pkgs.usbguard-notifier ];
+  users.users.radioaddition.packages = [pkgs.usbguard-notifier];
   services.usbguard = {
     enable = true;
     presentControllerPolicy = "apply-policy";
@@ -74,7 +79,6 @@
 
   # Use dbus-broker instead of dbus
   services.dbus.implementation = "broker";
-
 
   # copied and modified from hardened.nix profile
   boot.kernelPackages = pkgs.linuxPackages_hardened;
@@ -201,10 +205,10 @@
       "ufs"
       "ufs"
       "zonefs"
-      
+
       # disable vivid
       "vivid"
-      
+
       # disable GNSS
       "gnss"
       "gnss-mtk"
@@ -212,14 +216,14 @@
       "gnss-sirf"
       "gnss-usb"
       "gnss-ubx"
-      
+
       # blacklist ath_pci
       "ath_pci"
-      
+
       # blacklist cdrom
       "cdrom"
       "sr_mod"
-      
+
       # blacklist framebuffer drivers
       # source, ubuntu: https://git.launchpad.net/ubuntu/+source/kmod/tree/debian/modprobe.d/blacklist-framebuffer.conf
       "cyber2000fb"

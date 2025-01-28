@@ -1,5 +1,4 @@
-{ lib, config, pkgs, ... }: {
-
+{...}: {
   fileSystems."/" = {
     device = "/dev/disk/by-partlabel/disk-main-root";
     neededForBoot = true;

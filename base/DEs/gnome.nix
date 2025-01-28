@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, lib, ... }: {
+{pkgs, ...}: {
   services.xserver.enable = true;
 
   ### Enable the GNOME Desktop Environment.
@@ -37,31 +37,30 @@
   };
 
   # GNOME Extensions
-  users.users.radioaddition.packages = (with pkgs.gnomeExtensions; [
-    alphabetical-app-grid
-    appindicator
-    blur-my-shell
-    caffeine
-    dash-to-dock
-    forge
-    gsconnect
-    logo-menu
-    quick-settings-audio-devices-renamer
-    reboottouefi
-    reorder-workspaces
-    search-light
-    systemd-manager
-    tailscale-qs
-    #valent
-    wifi-qrcode
-    wiggle
-    window-title-is-back
-    xwayland-indicator
-    zen
-
-  ]) ++ (with pkgs; [
-    pop-launcher
-
-  ]);
+  users.users.radioaddition.packages =
+    (with pkgs.gnomeExtensions; [
+      alphabetical-app-grid
+      appindicator
+      blur-my-shell
+      caffeine
+      dash-to-dock
+      forge
+      gsconnect
+      logo-menu
+      quick-settings-audio-devices-renamer
+      reboottouefi
+      reorder-workspaces
+      search-light
+      systemd-manager
+      tailscale-qs
+      #valent
+      wifi-qrcode
+      wiggle
+      window-title-is-back
+      xwayland-indicator
+      zen
+    ])
+    ++ (with pkgs; [
+      pop-launcher
+    ]);
 }
-

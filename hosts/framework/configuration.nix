@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, lib, ... }: {
+{lib, ...}: {
   # Define system hostname
   networking.hostName = "framework";
 

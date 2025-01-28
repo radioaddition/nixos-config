@@ -54,7 +54,6 @@
   };
 
   outputs = {
-    self,
     nixpkgs,
     nixos-hardware,
     nix-flatpak,
@@ -73,29 +72,29 @@
       NIX_CONFIG = "extra-experimental-features = nix-command flakes";
 
       packages = with nixpkgs.legacyPackages.x86_64-linux; [
-	age
+        age
         alejandra
         deadnix
-	fastfetch
+        fastfetch
         fish
-	fzf
+        fzf
         git
-	glow
-	gum
-	hyfetch
+        glow
+        gum
+        hyfetch
         just
         neovim
         nh
-	sbctl
+        sbctl
         statix
-	inputs.disko.packages.x86_64-linux.default
+        inputs.disko.packages.x86_64-linux.default
       ];
     };
 
     nixosConfigurations = {
       framework = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = { inherit inputs; };
+        specialArgs = {inherit inputs;};
         modules = [
           ./base/programs/flatpak.nix
           #./base/gaming.nix # Disable unless I'm using it (currently broken)

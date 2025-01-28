@@ -1,8 +1,15 @@
-{ config, pkgs, inputs, lib, ... }:
-let
-  unstable = import inputs.unstable { system = "${pkgs.system}"; config.allowUnfree = true; };
-in
 {
+  config,
+  pkgs,
+  inputs,
+  lib,
+  ...
+}: let
+  unstable = import inputs.unstable {
+    system = "${pkgs.system}";
+    config.allowUnfree = true;
+  };
+in {
   # Compatability with my existing configuration
   disabledModules = [
     "config/pulseaudio.nix"
@@ -28,7 +35,7 @@ in
     package = unstable.steam;
   };
   programs.gamescope.enable = true;
-  programs.java.enable = true; 
+  programs.java.enable = true;
   hardware.openrazer.enable = true;
   environment.systemPackages = with pkgs; [
     openrazer-daemon
@@ -50,4 +57,3 @@ in
     hardware.has.amd.gpu = true;
   };
 }
-

@@ -1,5 +1,9 @@
-{ config, pkgs, inputs, lib, ... }: {
-
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}: {
   environment.systemPackages = with pkgs; [
     btrfs-progs
     fish
@@ -22,7 +26,7 @@
   systemd.services = {
     create-swapfile = {
       serviceConfig.Type = "oneshot";
-      wantedBy = [ "swap-swapfile.swap" ];
+      wantedBy = ["swap-swapfile.swap"];
       script = ''
         ${pkgs.coreutils}/bin/truncate -s 0 /swap/swapfile
         ${pkgs.e2fsprogs}/bin/chattr +C /swap/swapfile
@@ -33,8 +37,7 @@
 
   # Bootloader
   boot = {
-
-  # Misc bootloader config
+    # Misc bootloader config
     loader.efi.canTouchEfiVariables = true;
     extraModprobeConfig = ''
       options snd-intel-dspcfg dsp_driver=1
@@ -89,4 +92,3 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.11"; # Did you read the comment?
 }
-

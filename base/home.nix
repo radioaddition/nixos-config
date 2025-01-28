@@ -1,12 +1,12 @@
-{ pkgs, config, lib, inputs, ... }:
-
 {
-  
+  pkgs,
+  lib,
+  ...
+}: {
   # in case of git.sr.ht outage
   #manual.html.enable = false;
   #manual.manpages.enable = false;
   #manual.json.enable = false;
-
 
   imports = [
   ];
@@ -17,9 +17,9 @@
 
   # Direnv
   programs.direnv = {
-      enable = true;
-      nix-direnv.enable = true;
-    };
+    enable = true;
+    nix-direnv.enable = true;
+  };
 
   programs.git = {
     enable = true;
@@ -29,7 +29,7 @@
   };
 
   nix.settings = {
-    experimental-features = [ "nix-command" "flakes" ];
+    experimental-features = ["nix-command" "flakes"];
     warn-dirty = false;
   };
   nix.package = lib.mkForce pkgs.nixVersions.stable;

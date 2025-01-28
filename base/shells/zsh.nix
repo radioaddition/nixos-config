@@ -1,10 +1,10 @@
-{ config, pkgs, inputs, lib, ... }: {
+{pkgs, ...}: {
   ## Enable ZSH
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
-  environment.shells = [ pkgs.zsh ];
+  environment.shells = [pkgs.zsh];
   hm = {
-    home.sessionPath = [ "$HOME/.local/bin" "$HOME/bin" "$HOME/.cargo/bin" "/home/linuxbrew/.linuxbrew/bin" "/home/linuxbrew/.linuxbrew/sbin" "/var/home/linuxbrew/.linuxbrew/Cellar/zplug/2.4.2/bin" "$HOME/.nix-profile/bin" ];
+    home.sessionPath = ["$HOME/.local/bin" "$HOME/bin" "$HOME/.cargo/bin" "/home/linuxbrew/.linuxbrew/bin" "/home/linuxbrew/.linuxbrew/sbin" "/var/home/linuxbrew/.linuxbrew/Cellar/zplug/2.4.2/bin" "$HOME/.nix-profile/bin"];
     programs.zsh = {
       enable = true;
       # Zprof will profile your zsh startup time
@@ -21,9 +21,9 @@
       zplug = {
         enable = true;
         plugins = [
-          { name = "zsh-users/zsh-autosuggestions"; }
-          { name = "zsh-users/zsh-syntax-highlighting"; }
-          { name = "jeffreytse/zsh-vi-mode"; }
+          {name = "zsh-users/zsh-autosuggestions";}
+          {name = "zsh-users/zsh-syntax-highlighting";}
+          {name = "jeffreytse/zsh-vi-mode";}
         ];
       };
       history = {
@@ -31,14 +31,14 @@
         extended = true;
       };
       initExtra = ''
-.   "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+        .   "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
 
-        eval "$(atuin init zsh)"
-        eval "$(direnv hook zsh)"
-        eval "$(starship init zsh)"
-        eval "$(chezmoi completion zsh)"
-        eval "$(just --completions zsh)"
-''  ;
+                eval "$(atuin init zsh)"
+                eval "$(direnv hook zsh)"
+                eval "$(starship init zsh)"
+                eval "$(chezmoi completion zsh)"
+                eval "$(just --completions zsh)"
+      '';
     };
     programs.zoxide.enable = true;
     programs.thefuck.enable = true;
@@ -46,14 +46,14 @@
       enable = true;
       # If I ever decide I don't like the default config
       #settings = {
-        # add_newline = false;
+      # add_newline = false;
 
-        # character = {
-        #   success_symbol = "[➜](bold green)";
-        #   error_symbol = "[➜](bold red)";
-        # };
+      # character = {
+      #   success_symbol = "[➜](bold green)";
+      #   error_symbol = "[➜](bold red)";
+      # };
 
-        # package.disabled = true;
+      # package.disabled = true;
       #};
     };
 

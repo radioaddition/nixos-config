@@ -1,5 +1,4 @@
-{ config, pkgs, inputs, lib, ... }: {
-
+{pkgs, ...}: {
   #' Configure network proxy if necessary
   #- networking.proxy.default = "http://user:password@proxy:port/";
   #- networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
@@ -23,9 +22,9 @@
     settings = {
       General = {
         EnableNetworkConfiguration = true;
-	AddressRandomization = "network";
-	AddressRandomizationRange = "full";
-	ManagementFrameProtection = "1";
+        AddressRandomization = "network";
+        AddressRandomizationRange = "full";
+        ManagementFrameProtection = "1";
       };
       Network = {
         NameResolvingService = "systemd";
@@ -56,7 +55,7 @@
     enable = true;
     dnssec = "true";
     dnsovertls = "true";
-    domains = [ "~." ];
+    domains = ["~."];
     #llmnr = "true";
     fallbackDns = [
       "2a07:e340::3"
@@ -91,11 +90,17 @@
       9080
       53317
     ];
-    allowedTCPPortRanges = [ 
-      { from = 1714; to = 1764; } # KDE Connect
-    ];  
-    allowedUDPPortRanges = [ 
-      { from = 1714; to = 1764; } # KDE Connect
+    allowedTCPPortRanges = [
+      {
+        from = 1714;
+        to = 1764;
+      } # KDE Connect
+    ];
+    allowedUDPPortRanges = [
+      {
+        from = 1714;
+        to = 1764;
+      } # KDE Connect
     ];
     trustedInterfaces = [
       "tailscale0"
@@ -105,6 +110,4 @@
   #' networking.firewall.enable = false;
 
   time.timeZone = "America/New_York";
-
 }
-

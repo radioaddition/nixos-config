@@ -1,5 +1,9 @@
-{ config, pkgs, inputs, lib, ... }: {
-
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}: {
   # Set nix version to latest
   nix.package = pkgs.nixVersions.latest;
 
@@ -34,9 +38,9 @@
   systemd.services = {
     create-swapfile = {
       serviceConfig.Type = "oneshot";
-      wantedBy = [ "swap-swapfile.swap" ];
-	# Replace first line in script with below when uutils builds successfully
-        #${pkgs.uutils-coreutils}/bin/truncate -s 0 /swap/swapfile
+      wantedBy = ["swap-swapfile.swap"];
+      # Replace first line in script with below when uutils builds successfully
+      #${pkgs.uutils-coreutils}/bin/truncate -s 0 /swap/swapfile
       script = ''
         ${pkgs.coreutils}/bin/truncate -s 0 /swap/swapfile
         ${pkgs.e2fsprogs}/bin/chattr +C /swap/swapfile
@@ -55,7 +59,7 @@
   environment.systemPackages = with pkgs; [
     git
     neovim
-    (pkgs.uutils-coreutils.override { prefix = ""; })
+    (pkgs.uutils-coreutils.override {prefix = "";})
   ];
 
   # command-not-found flake compatability
@@ -64,7 +68,6 @@
 
   # Bootloader
   boot = {
-
     # Boot animation
     plymouth = {
       enable = true;
@@ -72,11 +75,11 @@
       theme = "cuts_alt";
       themePackages = with pkgs; [
         adi1090x-plymouth-themes
-	nixos-bgrt-plymouth
+        nixos-bgrt-plymouth
       ];
     };
 
-  # Enable silent boot
+    # Enable silent boot
     consoleLogLevel = 0;
     initrd.verbose = false;
     kernelParams = [
@@ -89,7 +92,7 @@
       "udev.log_priority=3"
     ];
 
-  # Misc bootloader config
+    # Misc bootloader config
     loader = {
       timeout = 0;
       systemd-boot.enable = true;
@@ -117,7 +120,6 @@
       dockerCompat = true;
       defaultNetwork.settings.dns_enabled = true;
     };
-
   };
 
   # Select internationalisation properties.
