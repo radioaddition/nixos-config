@@ -54,6 +54,7 @@
   # Base system packages not included
   environment.systemPackages = with pkgs; [
     git
+    neovim
     (pkgs.uutils-coreutils.override { prefix = ""; })
   ];
 
