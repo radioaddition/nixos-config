@@ -3,10 +3,9 @@
   # Set nix version to latest
   nix.package = pkgs.nixVersions.latest;
 
-  # Let us use hm as shorthand for home-manager config
   imports = [
-    (lib.mkAliasOptionModule ["hm"] ["home-manager" "users" "radioaddition" ])
-    (lib.mkAliasOptionModule ["hj"] ["hjem" "users" "radioaddition" ])
+    ./aliases.nix
+    #./programs/neovim
   ];
 
   # Auto Updates
@@ -28,7 +27,7 @@
     enable = true;
     clean.enable = true;
     clean.extraArgs = "--keep 3";
-    flake = "/home/radioaddition/NixOS-Config/";
+    flake = "/home/radioaddition/nixos-config/";
   };
 
   # Swapfile oneshot service
@@ -55,7 +54,6 @@
   # Base system packages not included
   environment.systemPackages = with pkgs; [
     git
-    neovim
     (pkgs.uutils-coreutils.override { prefix = ""; })
   ];
 

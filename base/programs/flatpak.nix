@@ -1,4 +1,4 @@
-{ pkgs, lib, config, inputs, home-manager, nix-flatpak, ... }: {
+{ pkgs, lib, config, inputs, nix-flatpak, ... }: {
   services.flatpak = {
     enable = true;
     uninstallUnmanaged = true;
