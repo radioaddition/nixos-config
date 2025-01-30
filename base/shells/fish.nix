@@ -67,6 +67,7 @@
       set -Ux fish_pager_color_selected_prefix \x1d
 
       # shell inits
+      fish_vi_key_bindings
       function starship_transient_prompt_func
         starship module character
       end
