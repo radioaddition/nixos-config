@@ -36,8 +36,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     jovian-nixos = {
-      url = "github:Jovian-Experiments/Jovian-NixOS";
-      inputs.nixpkgs.follows = "unstable";
+      url = "github:jovian-experiments/jovian-nixos";
+      inputs.nixpkgs.follows = "jovian-unstable";
+    };
+    jovian-unstable = {
+      url = "github:nixos/nixpkgs/8f3e1f807051e32d8c95cd12b9b421623850a34d";
     };
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
@@ -97,12 +100,13 @@
         specialArgs = {
 	  inherit inputs;
 	  unstable = import inputs.unstable { system = "x86_64-linux"; config.allowUnfree = true; };
+	  gaming = import inputs.jovian-unstable { system = "x86_64-linux"; config.allowUnfree = true; };
 	};
         modules = [
-          ./base/programs/flatpak.nix
-          #./base/gaming.nix # Disable unless I'm using it
           ./base/DEs/gnome.nix
+          #./base/gaming.nix # Disable unless I'm using it
           ./base/networking.nix
+          ./base/programs/flatpak.nix
           ./base/programs/packages.nix
           ./base/security.nix
           ./base/shells/fish.nix
@@ -112,12 +116,12 @@
           ./hosts/framework/hardware-configuration.nix
           ./init/disko.nix
           ./init/filesystem.nix
+          disko.nixosModules.disko
+          hjem.nixosModules.hjem
+          home-manager.nixosModules.home-manager
+          lanzaboote.nixosModules.lanzaboote
+          nix-flatpak.nixosModules.nix-flatpak
           nixos-hardware.nixosModules.framework-13-7040-amd
-          inputs.disko.nixosModules.disko
-          inputs.hjem.nixosModules.hjem
-          inputs.home-manager.nixosModules.home-manager
-          inputs.lanzaboote.nixosModules.lanzaboote
-          inputs.nix-flatpak.nixosModules.nix-flatpak
 
           {
             home-manager.useGlobalPkgs = true;

@@ -2,21 +2,21 @@
   config,
   pkgs,
   inputs,
-  unstable,
+  gaming,
   lib,
   ...
 }:
 {
-  # Disable the hardened kernel for optimizations
-  boot.kernelPackages = lib.mkForce pkgs.linuxKernel.packages.linux_zen;
+  # Disable kernel hardening in gaming mode for performance
+  boot.kernelParams = lib.mkForce [];
   # Compatability with my existing configuration
   disabledModules = [
     "config/pulseaudio.nix"
-    "programs/steam.nix"
+    #"programs/steam.nix"
   ];
   imports = [
-    "${inputs.unstable}/nixos/modules/services/audio/pulseaudio.nix"
-    "${inputs.unstable}/nixos/modules/programs/steam.nix"
+    "${inputs.jovian-unstable}/nixos/modules/services/audio/pulseaudio.nix"
+    #"${inputs.jovian-unstable}/nixos/modules/programs/steam.nix"
     inputs.jovian-nixos.nixosModules.default
   ];
   networking.networkmanager.enable = lib.mkForce true;
@@ -31,7 +31,7 @@
     remotePlay.openFirewall = true;
     gamescopeSession.enable = true;
     extest.enable = true;
-    package = unstable.steam;
+    package = gaming.steam;
   };
   programs.gamescope.enable = true;
   programs.java.enable = true;
