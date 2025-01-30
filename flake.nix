@@ -6,6 +6,10 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     oldstable.url = "github:nixos/nixpkgs/nixos-24.05"; # Needed for nix-on-droid
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    lix= {
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.92.0.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Extra inputs
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
@@ -61,6 +65,7 @@
     nixos-hardware,
     nix-flatpak,
     home-manager,
+    lix,
     disko,
     lanzaboote,
     hjem,
@@ -120,6 +125,7 @@
           hjem.nixosModules.hjem
           home-manager.nixosModules.home-manager
           lanzaboote.nixosModules.lanzaboote
+          lix.nixosModules.default
           nix-flatpak.nixosModules.nix-flatpak
           nixos-hardware.nixosModules.framework-13-7040-amd
 
