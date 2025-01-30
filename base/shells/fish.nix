@@ -66,8 +66,14 @@
       set -Ux fish_pager_color_selected_description \x1d
       set -Ux fish_pager_color_selected_prefix \x1d
 
-      # shell inits
+      # VI mode
       fish_vi_key_bindings
+      set -Ux fish_cursor_default block
+      set -Ux fish_cursor_insert line
+      set -Ux fish_cursor_replace underscore
+      set -Ux fish_cursor_replace_one underscore
+      
+      # shell inits
       function starship_transient_prompt_func
         starship module character
       end
