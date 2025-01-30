@@ -2,6 +2,7 @@
   config,
   pkgs,
   inputs,
+  unstable,
   ...
 }: {
   # Set nix version to latest
@@ -48,6 +49,10 @@
       '';
     };
   };
+
+  # Set systemd version to the latest version
+  systemd.package = unstable.systemd;
+  boot.initrd.systemd.package = unstable.systemd;
 
   # System-wide environment variables
   environment.sessionVariables = {
