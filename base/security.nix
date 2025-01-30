@@ -112,7 +112,7 @@
 		sha256 = "sha256-553Mbrhmlca6v7B8KGGRK2NdUHXGzRzQVn0eoVX4DW4=";
           };
           version = "6.13";
-          modDirVersion = "6.13";
+          modDirVersion = "6.13.0";
         };
       });
 
