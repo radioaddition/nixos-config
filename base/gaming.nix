@@ -10,18 +10,23 @@
   # Compatability with my existing configuration
   disabledModules = [
     "config/pulseaudio.nix"
+    "hardware/openrazer.nix"
     #"programs/steam.nix"
   ];
   imports = [
     "${inputs.jovian-unstable}/nixos/modules/services/audio/pulseaudio.nix"
+    "${inputs.jovian-unstable}/nixos/modules/hardware/openrazer.nix"
     #"${inputs.jovian-unstable}/nixos/modules/programs/steam.nix"
     inputs.jovian-nixos.nixosModules.default
   ];
-  networking.networkmanager.enable = lib.mkForce true;
+  networking.networkmanager = lib.mkForce {
+    enable = true;
+    backend = "iwd";
+  };
   ## Steam
   programs.steam = {
     enable = true;
-    extraCompatPackages = with pkgs; [
+    extraCompatPackages = with gaming; [
       proton-ge-bin
     ];
     localNetworkGameTransfers.openFirewall = true;
@@ -31,10 +36,16 @@
     extest.enable = true;
     package = gaming.steam;
   };
-  programs.gamescope.enable = true;
-  programs.java.enable = true;
+  programs.gamescope = {
+    enable = true;
+    package = gaming.gamescope;
+  };
+  programs.java = {
+    enable = true;
+    package = gaming.jdk;
+  };
   hardware.openrazer.enable = true;
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = with gaming; [
     openrazer-daemon
     polychromatic
   ];
@@ -51,6 +62,7 @@
     devices.steamdeck.enable = false;
     decky-loader.enable = true;
     steamos.useSteamOSConfig = true;
+    steamos.enableMesaPatches = false;
     hardware.has.amd.gpu = true;
   };
 }
