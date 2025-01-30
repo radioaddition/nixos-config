@@ -109,7 +109,7 @@
         argsOverride = rec {
           src = pkgs.fetchurl {
                 url = "mirror://kernel/linux/kernel/v${lib.versions.major version}.x/linux-${version}.tar.xz";
-                sha256 = "0ibayrvrnw2lw7si78vdqnr20mm1d3z0g6a0ykndvgn5vdax5x9a";
+		sha256 = "sha256-553Mbrhmlca6v7B8KGGRK2NdUHXGzRzQVn0eoVX4DW4=";
           };
           version = "6.13";
           modDirVersion = "6.13";
