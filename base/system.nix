@@ -5,8 +5,8 @@
   unstable,
   ...
 }: {
-  # Set nix version to latest
-  nix.package = pkgs.nixVersions.latest;
+  # Set lix version to latest if required
+  #nix.package = unstable.lix;
 
   imports = [
     ./aliases.nix
