@@ -106,15 +106,15 @@
   boot = {
     # Pin kernel version
     kernelPackages = pkgs.linuxPackagesFor (pkgs.linuxKernel.kernels.linux_6_13.override {
-        argsOverride = rec {
-          src = pkgs.fetchurl {
-                url = "mirror://kernel/linux/kernel/v${lib.versions.major version}.x/linux-${version}.tar.xz";
-		sha256 = "sha256-553Mbrhmlca6v7B8KGGRK2NdUHXGzRzQVn0eoVX4DW4=";
-          };
-          version = "6.13";
-          modDirVersion = "6.13.0";
+      argsOverride = rec {
+        src = pkgs.fetchurl {
+          url = "mirror://kernel/linux/kernel/v${lib.versions.major version}.x/linux-${version}.tar.xz";
+          sha256 = "sha256-553Mbrhmlca6v7B8KGGRK2NdUHXGzRzQVn0eoVX4DW4=";
         };
-      });
+        version = "6.13";
+        modDirVersion = "6.13.0";
+      };
+    });
 
     # Define kernel paramaters
     kernelParams = [

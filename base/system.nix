@@ -2,7 +2,6 @@
   config,
   pkgs,
   inputs,
-  unstable,
   ...
 }: {
   # Set lix version to latest if required
@@ -54,7 +53,7 @@
   environment.sessionVariables = {
     EDITOR = "nvim";
     DBX_CONTAINER_MANAGER = "podman";
-    MANPAGER="nvim +Man!";
+    MANPAGER = "nvim +Man!";
   };
 
   # Base system packages not included

@@ -1,12 +1,10 @@
 {
-  config,
   pkgs,
   inputs,
   gaming,
   lib,
   ...
-}:
-{
+}: {
   # Disable kernel hardening in gaming mode for performance
   boot.kernelParams = lib.mkForce [];
   # Compatability with my existing configuration
