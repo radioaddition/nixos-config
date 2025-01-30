@@ -58,6 +58,7 @@
   environment.sessionVariables = {
     EDITOR = "nvim";
     DBX_CONTAINER_MANAGER = "podman";
+    MANPAGER="nvim +Man!";
   };
 
   # Base system packages not included
