@@ -21,7 +21,7 @@
   ];
   networking.networkmanager = lib.mkForce {
     enable = true;
-    backend = "iwd";
+    wifi.backend = "iwd";
   };
   ## Steam
   programs.steam = {
