@@ -57,10 +57,8 @@ alias fmt := format
 
 # Formats my spahetti code
 format:
-	#!/usr/bin/env bash
-	cd $HOME/nixos-config
 	deadnix --edit
-	nix fmt
+	nix fmt $HOME/nixos-config
 
 # Cleans out the nix store
 clean:
