@@ -1,7 +1,7 @@
 {lib, ...}: {
   boot.initrd.luks.devices."crypted" = {
     device = "/dev/disk/by-partlabel/disk-main-luks";
-    crypttabExtraOpts = ["tpm2-device=auto" "tpm2-measure-pcr=yes"];
+    crypttabExtraOpts = ["fido2-device=auto" "tpm2-device=auto" "tpm2-measure-pcr=yes"];
   };
 
   fileSystems."/" = {
