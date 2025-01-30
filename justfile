@@ -85,3 +85,4 @@ test:
 enroll-tpm:
 	-sudo systemd-cryptenroll /dev/disk/by-partlabel/disk-main-luks --wipe-slot=tpm2
 	sudo systemd-cryptenroll --tpm2-device=auto --tpm2-with-pin=yes --tpm2-pcrs="0+1+3+5+7+8+12+13+14+15:sha256=0000000000000000000000000000000000000000000000000000000000000000" /dev/disk/by-partlabel/disk-main-luks
+	tpm2_pcrreset
