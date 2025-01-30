@@ -83,5 +83,5 @@ test:
 
 # Useful for new installs or kernel changes
 enroll-tpm:
-	-sudo systemd-cryptenroll /dev/disk/by-partlabel/disk-main-luks --wipe-slot=1
-	sudo systemd-cryptenroll --tpm2-device=auto --tpm2-with-pin=yes --tpm2-pcrs="0+2+3+5+7+8+12+13+14+15:sha256=0000000000000000000000000000000000000000000000000000000000000000" /dev/disk/by-partlabel/disk-main-luks
+	-sudo systemd-cryptenroll /dev/disk/by-partlabel/disk-main-luks --wipe-slot=tpm2
+	sudo systemd-cryptenroll --tpm2-device=auto --tpm2-with-pin=yes --tpm2-pcrs="0+1+3+5+7+8+12+13+14+15:sha256=0000000000000000000000000000000000000000000000000000000000000000" /dev/disk/by-partlabel/disk-main-luks
