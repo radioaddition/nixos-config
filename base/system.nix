@@ -5,9 +5,10 @@
   ...
 }:
 {
-  # Set lix version to latest if required
-  #nix.package = unstable.lix;
 
+  age.identityPaths = [
+    ../key.age
+  ];
   imports = [
     ./aliases.nix
     #./programs/neovim
