@@ -18,7 +18,6 @@
     shellAbbrs = {
       clearls = "clear && eza -al -I .git";
       ls = "eza -al -I .git";
-      agenix = "agenix -i key.age";
       archive = "tar -czvf archive.tar.gz ";
       extract = "tar -xzvf ";
       clean = "nix-env --delete-generations old && nix-collect-garbage -d && nix profile wipe-history";

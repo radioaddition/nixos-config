@@ -1,5 +1,10 @@
 { lib, config, pkgs, ... }: {
   age.secrets.radicle.file = ./radicle.age;
+  environment.systemPackages = with pkgs; [
+    radicle-node
+    radicle-httpd
+    radicle-explorer
+  ];
   services.radicle = {
     enable = true;
     httpd.enable = true;

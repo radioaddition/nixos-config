@@ -7,7 +7,7 @@
 {
 
   age.identityPaths = [
-    ../key.age
+    ../../.keys
   ];
   imports = [
     ./aliases.nix
