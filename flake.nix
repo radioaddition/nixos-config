@@ -12,6 +12,10 @@
     };
 
     # Extra inputs
+    inputs.agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nix-flatpak.url = "github:gmodena/nix-flatpak";
     llakaLib = {
@@ -112,7 +116,7 @@
           };
           modules = [
             ./base/DEs/gnome.nix
-            #./base/gaming.nix # Disable unless I'm using it
+            ./base/gaming.nix # Disable unless I'm using it
             ./base/networking.nix
             ./base/programs/flatpak.nix
             ./base/programs/packages.nix

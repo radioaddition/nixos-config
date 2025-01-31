@@ -1,45 +1,33 @@
 {
   pkgs,
   inputs,
-  gaming,
+  unstable,
   lib,
   ...
 }:
 {
   # Disable kernel hardening in gaming mode for performance
   boot.kernelParams = lib.mkForce [ ];
-  # Compatability with my existing configuration
-  #disabledModules = [
-  #  "config/pulseaudio.nix"
-  #  "hardware/openrazer.nix"
-  #  #"programs/steam.nix"
-  #];
-  #imports = [
-  #  "${inputs.jovian-unstable}/nixos/modules/services/audio/pulseaudio.nix"
-  #  "${inputs.jovian-unstable}/nixos/modules/hardware/openrazer.nix"
-  #  #"${inputs.jovian-unstable}/nixos/modules/programs/steam.nix"
-  #  inputs.jovian-nixos.nixosModules.default
-  #];
   ## Steam
   programs.steam = {
     enable = true;
-    extraCompatPackages = with gaming; [ proton-ge-bin ];
+    extraCompatPackages = with unstable; [ proton-ge-bin ];
     localNetworkGameTransfers.openFirewall = true;
     dedicatedServer.openFirewall = true;
     remotePlay.openFirewall = true;
     gamescopeSession.enable = true;
-    package = gaming.steam;
+    package = unstable.steam;
   };
   programs.gamescope = {
     enable = true;
-    package = gaming.gamescope;
+    package = unstable.gamescope;
   };
   programs.java = {
     enable = true;
-    package = gaming.jdk;
+    package = unstable.jdk;
   };
   hardware.openrazer.enable = true;
-  environment.systemPackages = with gaming; [
+  environment.systemPackages = with unstable; [
     openrazer-daemon
     polychromatic
   ];
