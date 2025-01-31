@@ -45,18 +45,18 @@
   ];
 
   # Jovian
-  jovian = {
-    steam = {
-      enable = true;
-      #autoStart = true;
-      desktopSession = "gdm";
-      updater.splash = "jovian";
-      user = "radioaddition";
-    };
-    devices.steamdeck.enable = false;
-    decky-loader.enable = true;
-    steamos.useSteamOSConfig = true;
-    steamos.enableMesaPatches = false;
-    hardware.has.amd.gpu = true;
-  };
+  #jovian = {
+  #  steam = {
+  #    enable = true;
+  #    #autoStart = true;
+  #    desktopSession = "gdm";
+  #    updater.splash = "jovian";
+  #    user = "radioaddition";
+  #  };
+  #  devices.steamdeck.enable = false;
+  #  decky-loader.enable = true;
+  #  steamos.useSteamOSConfig = false;
+  #  #steamos.enableMesaPatches = false;
+  #  hardware.has.amd.gpu = true;
+  #};
 }
