@@ -117,7 +117,7 @@
           };
           modules = [
             ./base/DEs/gnome.nix
-            #./base/gaming.nix # Disable unless I'm using it
+            ./base/gaming.nix
             ./base/networking.nix
             ./base/programs/flatpak.nix
             ./base/programs/packages.nix
