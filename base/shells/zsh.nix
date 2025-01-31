@@ -1,10 +1,19 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   ## Enable ZSH
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
-  environment.shells = [pkgs.zsh];
+  environment.shells = [ pkgs.zsh ];
   hm = {
-    home.sessionPath = ["$HOME/.local/bin" "$HOME/bin" "$HOME/.cargo/bin" "/home/linuxbrew/.linuxbrew/bin" "/home/linuxbrew/.linuxbrew/sbin" "/var/home/linuxbrew/.linuxbrew/Cellar/zplug/2.4.2/bin" "$HOME/.nix-profile/bin"];
+    home.sessionPath = [
+      "$HOME/.local/bin"
+      "$HOME/bin"
+      "$HOME/.cargo/bin"
+      "/home/linuxbrew/.linuxbrew/bin"
+      "/home/linuxbrew/.linuxbrew/sbin"
+      "/var/home/linuxbrew/.linuxbrew/Cellar/zplug/2.4.2/bin"
+      "$HOME/.nix-profile/bin"
+    ];
     programs.zsh = {
       enable = true;
       # Zprof will profile your zsh startup time
@@ -21,9 +30,9 @@
       zplug = {
         enable = true;
         plugins = [
-          {name = "zsh-users/zsh-autosuggestions";}
-          {name = "zsh-users/zsh-syntax-highlighting";}
-          {name = "jeffreytse/zsh-vi-mode";}
+          { name = "zsh-users/zsh-autosuggestions"; }
+          { name = "zsh-users/zsh-syntax-highlighting"; }
+          { name = "jeffreytse/zsh-vi-mode"; }
         ];
       };
       history = {

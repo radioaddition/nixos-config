@@ -14,7 +14,7 @@
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
-                mountOptions = ["umask=0077"];
+                mountOptions = [ "umask=0077" ];
               };
             };
             luks = {
@@ -26,19 +26,31 @@
                 settings.allowDiscards = true;
                 content = {
                   type = "btrfs";
-                  extraArgs = ["-f"];
+                  extraArgs = [ "-f" ];
                   subvolumes = {
                     "root" = {
                       mountpoint = "/";
-                      mountOptions = ["compress=zstd" "relatime" "nosuid"];
+                      mountOptions = [
+                        "compress=zstd"
+                        "relatime"
+                        "nosuid"
+                      ];
                     };
                     "home" = {
                       mountpoint = "/home";
-                      mountOptions = ["compress=zstd" "relatime" "noexec" "nosuid"];
+                      mountOptions = [
+                        "compress=zstd"
+                        "relatime"
+                        "noexec"
+                        "nosuid"
+                      ];
                     };
                     "nix" = {
                       mountpoint = "/nix";
-                      mountOptions = ["compress=zstd" "relatime"];
+                      mountOptions = [
+                        "compress=zstd"
+                        "relatime"
+                      ];
                     };
                     "swap" = {
                       mountpoint = "/swap";

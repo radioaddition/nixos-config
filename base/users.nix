@@ -1,9 +1,21 @@
-{...}: {
+{ ... }:
+{
   users.mutableUsers = false;
   users.users.radioaddition = {
     isNormalUser = true;
     description = "RadioAddition";
-    extraGroups = ["adbusers" "docker" "kvm" "libvirt" "libvirtd" "lxd" "networkmanager" "openrazer" "wheel" "tss"];
+    extraGroups = [
+      "adbusers"
+      "docker"
+      "kvm"
+      "libvirt"
+      "libvirtd"
+      "lxd"
+      "networkmanager"
+      "openrazer"
+      "wheel"
+      "tss"
+    ];
     hashedPassword = "$y$j9T$F4h7o3ioLWalvZUhYzE8b.$2RrSEm8FmoZi3tS4EWGo2g0S0INy/oenfXqWn9yJqJA";
   };
   # Create a separate wheel user

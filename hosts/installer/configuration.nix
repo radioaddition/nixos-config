@@ -3,7 +3,8 @@
   pkgs,
   inputs,
   ...
-}: {
+}:
+{
   environment.systemPackages = with pkgs; [
     btrfs-progs
     fish
@@ -26,7 +27,7 @@
   systemd.services = {
     create-swapfile = {
       serviceConfig.Type = "oneshot";
-      wantedBy = ["swap-swapfile.swap"];
+      wantedBy = [ "swap-swapfile.swap" ];
       script = ''
         ${pkgs.coreutils}/bin/truncate -s 0 /swap/swapfile
         ${pkgs.e2fsprogs}/bin/chattr +C /swap/swapfile
@@ -47,7 +48,8 @@
   };
 
   # command-not-found flake compatability
-  environment.etc."programs.sqlite".source = inputs.programsdb.packages.${pkgs.system}.programs-sqlite;
+  environment.etc."programs.sqlite".source =
+    inputs.programsdb.packages.${pkgs.system}.programs-sqlite;
   programs.command-not-found.dbPath = "/etc/programs.sqlite";
 
   hardware.enableAllFirmware = true;

@@ -1,10 +1,8 @@
-{
-  pkgs,
-  inputs,
-  ...
-}: let
+{ pkgs, inputs, ... }:
+let
   menu = inputs.menu.legacyPackages.${pkgs.system};
-in {
+in
+{
   environment.systemPackages = with pkgs; [
     age
     alejandra
@@ -108,15 +106,5 @@ in {
     virt-manager
     virt-viewer
     wormhole-william
-  ];
-
-  # Ollama
-  disabledModules = [
-    "services/misc/ollama.nix"
-    "services/web-apps/nextjs-ollama-llm-ui.nix"
-  ];
-  imports = [
-    "${inputs.unstable}/nixos/modules/services/misc/ollama.nix"
-    "${inputs.unstable}/nixos/modules/services/web-apps/nextjs-ollama-llm-ui.nix"
   ];
 }

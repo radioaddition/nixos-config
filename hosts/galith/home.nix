@@ -1,20 +1,19 @@
+{ pkgs, config, ... }:
 {
-  pkgs,
-  config,
-  ...
-}: {
   # in case of git.sr.ht outage
   #manual.html.enable = false;
   #manual.manpages.enable = false;
   #manual.json.enable = false;
 
-  imports = [
-  ];
+  imports = [ ];
   #news.display = "silent";
   home.username = "radioaddition";
   home.homeDirectory = "/home/radioaddition";
   nixpkgs.config.allowUnfree = true;
-  home.sessionPath = ["$HOME/.local/bin" "/usr/local/bin"];
+  home.sessionPath = [
+    "$HOME/.local/bin"
+    "/usr/local/bin"
+  ];
   home.sessionVariables = {
     EDITOR = "nvim";
     DBX_CONTAINER_MANAGER = "podman";
@@ -52,12 +51,15 @@
     zplug = {
       enable = true;
       plugins = [
-        {name = "zsh-users/zsh-autosuggestions";}
-        {name = "zsh-users/zsh-syntax-highlighting";}
-        {name = "jeffreytse/zsh-vi-mode";}
+        { name = "zsh-users/zsh-autosuggestions"; }
+        { name = "zsh-users/zsh-syntax-highlighting"; }
+        { name = "jeffreytse/zsh-vi-mode"; }
         {
           name = "romkatv/powerlevel10k";
-          tags = [as:theme depth:1];
+          tags = [
+            "as:theme"
+            "depth:1"
+          ];
         }
       ];
     };
@@ -80,7 +82,10 @@
   };
 
   nix.settings = {
-    experimental-features = ["nix-command" "flakes"];
+    experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
     warn-dirty = false;
   };
   nix.package = pkgs.nixFlakes;

@@ -3,7 +3,8 @@
   pkgs,
   inputs,
   ...
-}: {
+}:
+{
   # Set lix version to latest if required
   #nix.package = unstable.lix;
 
@@ -38,7 +39,7 @@
   systemd.services = {
     create-swapfile = {
       serviceConfig.Type = "oneshot";
-      wantedBy = ["swap-swapfile.swap"];
+      wantedBy = [ "swap-swapfile.swap" ];
       # Replace first line in script with below when uutils builds successfully
       #${pkgs.uutils-coreutils}/bin/truncate -s 0 /swap/swapfile
       script = ''
@@ -60,11 +61,12 @@
   environment.systemPackages = with pkgs; [
     git
     neovim
-    (pkgs.uutils-coreutils.override {prefix = "";})
+    (pkgs.uutils-coreutils.override { prefix = ""; })
   ];
 
   # command-not-found flake compatability
-  environment.etc."programs.sqlite".source = inputs.programsdb.packages.${pkgs.system}.programs-sqlite;
+  environment.etc."programs.sqlite".source =
+    inputs.programsdb.packages.${pkgs.system}.programs-sqlite;
   programs.command-not-found.dbPath = "/etc/programs.sqlite";
 
   # Bootloader
@@ -162,9 +164,7 @@
 
   # Enable ADB/Fastboot
   programs.adb.enable = true;
-  services.udev.packages = [
-    pkgs.android-udev-rules
-  ];
+  services.udev.packages = [ pkgs.android-udev-rules ];
 
   # Replace coreutils with uutils-coreutils
 

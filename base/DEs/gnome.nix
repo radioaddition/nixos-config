@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   services.xserver.enable = true;
 
   ### Enable the GNOME Desktop Environment.
@@ -6,7 +7,7 @@
     displayManager.gdm.enable = true;
     desktopManager.gnome = {
       enable = true;
-      extraGSettingsOverridePackages = [pkgs.mutter];
+      extraGSettingsOverridePackages = [ pkgs.mutter ];
       extraGSettingsOverrides = ''
         [org.gnome.mutter]
         experimental-features=['variable-refresh-rate', 'scale-monitor-framebuffer']
@@ -60,7 +61,5 @@
       xwayland-indicator
       zen
     ])
-    ++ (with pkgs; [
-      pop-launcher
-    ]);
+    ++ (with pkgs; [ pop-launcher ]);
 }

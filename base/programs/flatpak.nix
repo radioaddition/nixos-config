@@ -1,4 +1,5 @@
-{config, ...}: {
+{ config, ... }:
+{
   services.flatpak = {
     enable = true;
     uninstallUnmanaged = true;

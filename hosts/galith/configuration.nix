@@ -6,7 +6,8 @@
   pkgs,
   inputs,
   ...
-}: {
+}:
+{
   # System
   ### Set nix version to latest
   nix.package = pkgs.nixVersions.latest;
@@ -46,7 +47,7 @@
   security.pam.yubico = {
     enable = true;
     mode = "challenge-response";
-    id = ["27725426"];
+    id = [ "27725426" ];
   };
   # Lock device upon removal
   #services.udev.extraRules = ''
@@ -73,7 +74,7 @@
       themePackages = with pkgs; [
         # By default we would install all themes
         (adi1090x-plymouth-themes.override {
-          selected_themes = ["cuts_alt"];
+          selected_themes = [ "cuts_alt" ];
         })
       ];
     };
@@ -104,7 +105,7 @@
       #      };
       efi.canTouchEfiVariables = true;
     };
-    kernelModules = ["ecryptfs"];
+    kernelModules = [ "ecryptfs" ];
     extraModprobeConfig = ''
       options snd-intel-dspcfg dsp_driver=1
     '';
@@ -134,19 +135,35 @@
   };
 
   ### Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [65530 51413 9052 9053 9080 53317];
-  networking.firewall.allowedUDPPorts = [65530 51413 9052 9053 9080 53317];
+  networking.firewall.allowedTCPPorts = [
+    65530
+    51413
+    9052
+    9053
+    9080
+    53317
+  ];
+  networking.firewall.allowedUDPPorts = [
+    65530
+    51413
+    9052
+    9053
+    9080
+    53317
+  ];
   networking.firewall.allowedTCPPortRanges = [
     {
       from = 1714;
       to = 1764;
-    } # KDE Connect
+    }
+    # KDE Connect
   ];
   networking.firewall.allowedUDPPortRanges = [
     {
       from = 1714;
       to = 1764;
-    } # KDE Connect
+    }
+    # KDE Connect
   ];
   #' Or disable the firewall altogether.
   #' networking.firewall.enable = false;
@@ -172,7 +189,7 @@
 
   ## Steam
   programs.steam = {
-    extraCompatPackages = with pkgs; [proton-ge-bin];
+    extraCompatPackages = with pkgs; [ proton-ge-bin ];
     localNetworkGameTransfers.openFirewall = true;
     dedicatedServer.openFirewall = true;
     extest.enable = true;
@@ -239,7 +256,7 @@
   ## Enable ZSH
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
-  environment.shells = with pkgs; [zsh];
+  environment.shells = with pkgs; [ zsh ];
 
   ## Enable flake support
   nix = {
@@ -256,16 +273,24 @@
 
   ## Enable ADB/Fastboot
   programs.adb.enable = true;
-  services.udev.packages = [
-    pkgs.android-udev-rules
-  ];
+  services.udev.packages = [ pkgs.android-udev-rules ];
 
   # User
   ## Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.radioaddition = {
     isNormalUser = true;
     description = "RadioAddition";
-    extraGroups = ["adbusers" "docker" "kvm" "libvirt" "libvirtd" "lxd" "networkmanager" "openrazer" "wheel"];
+    extraGroups = [
+      "adbusers"
+      "docker"
+      "kvm"
+      "libvirt"
+      "libvirtd"
+      "lxd"
+      "networkmanager"
+      "openrazer"
+      "wheel"
+    ];
     hashedPassword = "$y$j9T$gMRIRcus7uO1X6zrPTfVn/$0iOFINi8HZPH5b0QpXXCQbanUwYe9lpzjD17NbitD39";
     packages =
       (with pkgs; [

@@ -4,36 +4,30 @@
   gaming,
   lib,
   ...
-}: {
+}:
+{
   # Disable kernel hardening in gaming mode for performance
-  boot.kernelParams = lib.mkForce [];
+  boot.kernelParams = lib.mkForce [ ];
   # Compatability with my existing configuration
-  disabledModules = [
-    "config/pulseaudio.nix"
-    "hardware/openrazer.nix"
-    #"programs/steam.nix"
-  ];
-  imports = [
-    "${inputs.jovian-unstable}/nixos/modules/services/audio/pulseaudio.nix"
-    "${inputs.jovian-unstable}/nixos/modules/hardware/openrazer.nix"
-    #"${inputs.jovian-unstable}/nixos/modules/programs/steam.nix"
-    inputs.jovian-nixos.nixosModules.default
-  ];
-  networking.networkmanager = lib.mkForce {
-    enable = true;
-    wifi.backend = "iwd";
-  };
+  #disabledModules = [
+  #  "config/pulseaudio.nix"
+  #  "hardware/openrazer.nix"
+  #  #"programs/steam.nix"
+  #];
+  #imports = [
+  #  "${inputs.jovian-unstable}/nixos/modules/services/audio/pulseaudio.nix"
+  #  "${inputs.jovian-unstable}/nixos/modules/hardware/openrazer.nix"
+  #  #"${inputs.jovian-unstable}/nixos/modules/programs/steam.nix"
+  #  inputs.jovian-nixos.nixosModules.default
+  #];
   ## Steam
   programs.steam = {
     enable = true;
-    extraCompatPackages = with gaming; [
-      proton-ge-bin
-    ];
+    extraCompatPackages = with gaming; [ proton-ge-bin ];
     localNetworkGameTransfers.openFirewall = true;
     dedicatedServer.openFirewall = true;
     remotePlay.openFirewall = true;
     gamescopeSession.enable = true;
-    extest.enable = true;
     package = gaming.steam;
   };
   programs.gamescope = {

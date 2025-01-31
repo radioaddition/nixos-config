@@ -1,7 +1,8 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   ## Enable fish
   users.defaultUserShell = pkgs.fish;
-  environment.shells = [pkgs.fish];
+  environment.shells = [ pkgs.fish ];
   environment.systemPackages = with pkgs; [
     atuin
     babelfish
@@ -73,7 +74,7 @@
       set -Ux fish_cursor_insert line
       set -Ux fish_cursor_replace underscore
       set -Ux fish_cursor_replace_one underscore
-      
+
       # shell inits
       function starship_transient_prompt_func
         starship module character
@@ -94,7 +95,14 @@
   };
 
   hm = {
-    home.sessionPath = ["$HOME/.local/bin" "$HOME/bin" "$HOME/.cargo/bin" "/home/linuxbrew/.linuxbrew/bin" "/home/linuxbrew/.linuxbrew/sbin" "$HOME/.nix-profile/bin"];
+    home.sessionPath = [
+      "$HOME/.local/bin"
+      "$HOME/bin"
+      "$HOME/.cargo/bin"
+      "/home/linuxbrew/.linuxbrew/bin"
+      "/home/linuxbrew/.linuxbrew/sbin"
+      "$HOME/.nix-profile/bin"
+    ];
 
     # Atuin
     programs.atuin = {

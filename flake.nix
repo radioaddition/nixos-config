@@ -23,10 +23,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.llakaLib.follows = "llakaLib";
     };
-    nixnvim = {
-      url = "github:nixneovim/nixneovim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    treefmt.url = "github:numtide/treefmt-nix";
     disko = {
       url = "github:nix-community/disko/latest";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -60,169 +57,173 @@
     };
   };
 
-  outputs = {
-    nixpkgs,
-    nixos-hardware,
-    nix-flatpak,
-    home-manager,
-    lix,
-    disko,
-    lanzaboote,
-    hjem,
-    ...
-  } @ inputs: {
-    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.alejandra;
+  outputs =
+    {
+      disko,
+      hjem,
+      home-manager,
+      lanzaboote,
+      lix,
+      nix-flatpak,
+      nixos-hardware,
+      nixpkgs,
+      self,
+      systems,
+      treefmt,
+      ...
+    }@inputs:
+    let
+      eachSystem = f: nixpkgs.lib.genAttrs (import systems) (system: f nixpkgs.legacyPackages.${system});
+      treefmtEval = eachSystem (pkgs: treefmt.lib.evalModule pkgs ./treefmt.nix);
+    in
+    {
+      # Formatting
+      formatter = eachSystem (pkgs: treefmtEval.${pkgs.system}.config.build.wrapper);
+      checks = eachSystem (pkgs: {
+        formatting = treefmtEval.${pkgs.system}.config.build.check self;
+      });
 
-    devShells.x86_64-linux.default = nixpkgs.legacyPackages.x86_64-linux.mkShellNoCC {
-      name = "radioaddition";
-      meta.description = "devshell for managing this repo";
+      devShells.x86_64-linux.default = nixpkgs.legacyPackages.x86_64-linux.mkShellNoCC {
+        name = "radioaddition";
+        meta.description = "devshell for managing this repo";
 
-      NIX_CONFIG = "extra-experimental-features = nix-command flakes";
+        NIX_CONFIG = "extra-experimental-features = nix-command flakes";
 
-      packages = with nixpkgs.legacyPackages.x86_64-linux; [
-        age
-        alejandra
-        deadnix
-        fastfetch
-        fish
-        fzf
-        git
-        glow
-        gum
-        hyfetch
-        just
-        neovim
-        nh
-        sbctl
-        statix
-        inputs.disko.packages.x86_64-linux.default
-      ];
-    };
-
-    nixosConfigurations = {
-      framework = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {
-          inherit inputs;
-          unstable = import inputs.unstable {
-            system = "x86_64-linux";
-            config.allowUnfree = true;
-          };
-          gaming = import inputs.jovian-unstable {
-            system = "x86_64-linux";
-            config.allowUnfree = true;
-          };
-        };
-        modules = [
-          ./base/DEs/gnome.nix
-          #./base/gaming.nix # Disable unless I'm using it
-          ./base/networking.nix
-          ./base/programs/flatpak.nix
-          ./base/programs/packages.nix
-          ./base/security.nix
-          ./base/shells/fish.nix
-          ./base/system.nix
-          ./base/users.nix
-          ./hosts/framework/configuration.nix
-          ./hosts/framework/hardware-configuration.nix
-          ./init/disko.nix
-          ./init/filesystem.nix
-          disko.nixosModules.disko
-          hjem.nixosModules.hjem
-          home-manager.nixosModules.home-manager
-          lanzaboote.nixosModules.lanzaboote
-          lix.nixosModules.default
-          nix-flatpak.nixosModules.nix-flatpak
-          nixos-hardware.nixosModules.framework-13-7040-amd
-
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.backupFileExtension = "bak";
-            hm.imports = [
-              ./base/home.nix
-              ./hosts/framework/home.nix
-            ];
-          }
+        packages = with nixpkgs.legacyPackages.x86_64-linux; [
+          age
+          deadnix
+          fastfetch
+          fish
+          fzf
+          git
+          glow
+          gum
+          just
+          neovim
+          nh
+          sbctl
+          inputs.disko.packages.x86_64-linux.default
         ];
       };
 
-      installer = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {inherit inputs;};
-        modules = [
-          inputs.disko.nixosModules.disko
-          ./base/users.nix
-          ./hosts/installer/configuration.nix
-          ./hosts/installer/hardware-configuration.nix
-          ./init/disko.nix
-          ./init/filesystem.nix
-        ];
-      };
-
-      galith = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {inherit inputs;};
-        modules = [
-          ./hosts/galith/configuration.nix
-          ./hosts/galith/hardware-configuration.nix
-          #	  home-manager.nixosModules.home-manager {
-          #	    home-manager.useGlobalPkgs = true;
-          #	    home-manager.useUserPackages = true;
-          #	    home-manager.users.radioaddition = [ import ./hosts/galith/home.nix ];
-          #	  }
-        ];
-      };
-    };
-
-    homeConfigurations = {
-      "aspirem" = home-manager.lib.homeManagerConfiguration {
-        extraSpecialArgs = {inherit inputs;};
-        pkgs = nixpkgs.legacyPackages."x86_64-linux";
-        modules = [
-          ./hosts/aspirem/home.nix
-        ];
-      };
-
-      "framework" = home-manager.lib.homeManagerConfiguration {
-        extraSpecialArgs = {inherit inputs;};
-        pkgs = nixpkgs.legacyPackages."x86_64-linux";
-        modules = [
-          inputs.nix-flatpak.homeManagerModules.nix-flatpak
-          ./hosts/framework/home.nix
-          ./base/home.nix
-        ];
-      };
-      "oriole" = home-manager.lib.homeManagerConfiguration {
-        extraSpecialArgs = {inherit inputs;};
-        pkgs = nixpkgs.legacyPackages."aarch64-linux";
-        modules = [
-          ./base/home.nix
-          {
-            home = {
-              stateVersion = "24.05";
-              username = "nix-on-droid";
-              homeDirectory = "/data/data/com.termux.nix/files/home/";
+      nixosConfigurations = {
+        framework = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = {
+            inherit inputs;
+            unstable = import inputs.unstable {
+              system = "x86_64-linux";
+              config.allowUnfree = true;
             };
-          }
-        ];
+            gaming = import inputs.jovian-unstable {
+              system = "x86_64-linux";
+              config.allowUnfree = true;
+            };
+          };
+          modules = [
+            ./base/DEs/gnome.nix
+            ./base/gaming.nix # Disable unless I'm using it
+            ./base/networking.nix
+            ./base/programs/flatpak.nix
+            ./base/programs/packages.nix
+            ./base/security.nix
+            ./base/shells/fish.nix
+            ./base/system.nix
+            ./base/users.nix
+            ./hosts/framework/configuration.nix
+            ./hosts/framework/hardware-configuration.nix
+            ./init/disko.nix
+            ./init/filesystem.nix
+            disko.nixosModules.disko
+            hjem.nixosModules.hjem
+            home-manager.nixosModules.home-manager
+            lanzaboote.nixosModules.lanzaboote
+            lix.nixosModules.default
+            nix-flatpak.nixosModules.nix-flatpak
+            nixos-hardware.nixosModules.framework-13-7040-amd
+
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.backupFileExtension = "bak";
+              hm.imports = [
+                ./base/home.nix
+                ./hosts/framework/home.nix
+              ];
+            }
+          ];
+        };
+
+        installer = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
+          modules = [
+            inputs.disko.nixosModules.disko
+            ./base/users.nix
+            ./hosts/installer/configuration.nix
+            ./hosts/installer/hardware-configuration.nix
+            ./init/disko.nix
+            ./init/filesystem.nix
+          ];
+        };
+
+        galith = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
+          modules = [
+            ./hosts/galith/configuration.nix
+            ./hosts/galith/hardware-configuration.nix
+            #	  home-manager.nixosModules.home-manager {
+            #	    home-manager.useGlobalPkgs = true;
+            #	    home-manager.useUserPackages = true;
+            #	    home-manager.users.radioaddition = [ import ./hosts/galith/home.nix ];
+            #	  }
+          ];
+        };
       };
 
-      "galith" = home-manager.lib.homeManagerConfiguration {
-        extraSpecialArgs = {inherit inputs;};
-        pkgs = nixpkgs.legacyPackages."x86_64-linux";
-        modules = [
-          ./hosts/galith/home.nix
-        ];
-      };
+      homeConfigurations = {
+        "aspirem" = home-manager.lib.homeManagerConfiguration {
+          extraSpecialArgs = { inherit inputs; };
+          pkgs = nixpkgs.legacyPackages."x86_64-linux";
+          modules = [ ./hosts/aspirem/home.nix ];
+        };
 
-      "deck" = home-manager.lib.homeManagerConfiguration {
-        extraSpecialArgs = {inherit inputs;};
-        pkgs = nixpkgs.legacyPackages."x86_64-linux";
-        modules = [
-          ./hosts/deck/home.nix
-        ];
+        "framework" = home-manager.lib.homeManagerConfiguration {
+          extraSpecialArgs = { inherit inputs; };
+          pkgs = nixpkgs.legacyPackages."x86_64-linux";
+          modules = [
+            inputs.nix-flatpak.homeManagerModules.nix-flatpak
+            ./hosts/framework/home.nix
+            ./base/home.nix
+          ];
+        };
+        "oriole" = home-manager.lib.homeManagerConfiguration {
+          extraSpecialArgs = { inherit inputs; };
+          pkgs = nixpkgs.legacyPackages."aarch64-linux";
+          modules = [
+            ./base/home.nix
+            {
+              home = {
+                stateVersion = "24.05";
+                username = "nix-on-droid";
+                homeDirectory = "/data/data/com.termux.nix/files/home/";
+              };
+            }
+          ];
+        };
+
+        "galith" = home-manager.lib.homeManagerConfiguration {
+          extraSpecialArgs = { inherit inputs; };
+          pkgs = nixpkgs.legacyPackages."x86_64-linux";
+          modules = [ ./hosts/galith/home.nix ];
+        };
+
+        "deck" = home-manager.lib.homeManagerConfiguration {
+          extraSpecialArgs = { inherit inputs; };
+          pkgs = nixpkgs.legacyPackages."x86_64-linux";
+          modules = [ ./hosts/deck/home.nix ];
+        };
       };
     };
-  };
 }

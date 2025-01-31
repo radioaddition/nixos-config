@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   #' Configure network proxy if necessary
   #- networking.proxy.default = "http://user:password@proxy:port/";
   #- networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
@@ -55,7 +56,7 @@
     enable = true;
     dnssec = "true";
     dnsovertls = "true";
-    domains = ["~."];
+    domains = [ "~." ];
     #llmnr = "true";
     fallbackDns = [
       "2a07:e340::3"
@@ -94,17 +95,17 @@
       {
         from = 1714;
         to = 1764;
-      } # KDE Connect
+      }
+      # KDE Connect
     ];
     allowedUDPPortRanges = [
       {
         from = 1714;
         to = 1764;
-      } # KDE Connect
+      }
+      # KDE Connect
     ];
-    trustedInterfaces = [
-      "tailscale0"
-    ];
+    trustedInterfaces = [ "tailscale0" ];
   };
   #' Or disable the firewall altogether.
   #' networking.firewall.enable = false;
