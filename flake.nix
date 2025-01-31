@@ -29,6 +29,10 @@
       inputs.llakaLib.follows = "llakaLib";
     };
     treefmt.url = "github:numtide/treefmt-nix";
+    nvf = {
+      url = "github:notashelf/nvf";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     disko = {
       url = "github:nix-community/disko/latest";
       inputs.nixpkgs.follows = "nixpkgs";

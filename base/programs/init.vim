@@ -15,31 +15,30 @@ Plug 'tpope/vim-sensible'
 
 call plug#end()
 
-let @a='ddpkJJj0'
-let @b='f ��5a�kb
-␛o�kb�kb␛kddkPjjj'
-let @c='100@agg0i ␛x'
-let @d='gg0100@b��5��5��5��5��5��5��5��5��5��5��5��5��5��5��5��5��5��5��5��5��5��5��5��5��5��5��5��5��5��5��5��5��5��5��5��5��5��5��5��5��5��5��5��5��5��5��5��5��5dd'
 runtime! ftplugin/man.vim
-let g:adwaita_transparent = v:true
-silent! colorscheme adwaita
-set number
-set relativenumber
-set cursorline
-set lazyredraw
-set ignorecase smartcase
-set clipboard+=unnamedplus
-au InsertEnter * hi CursorLine gui=underline cterm=underline
-au InsertLeave * hi CursorLine gui=none cterm=none guibg=Grey20
-set linebreak
-set scrolloff=5
-nnoremap <CR> <cmd>FineCmdline<CR>
 lua << EOF
+vim.cmd([[let g:adwaita_transparent = v:true]])
+vim.cmd([[silent! colorscheme adwaita]])
+vim.opt.number = true
+vim.opt.relativenumber = true
+vim.opt.cursorline = true
+vim.opt.cursorcolumn = true
+vim.opt.lazyredraw = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.clipboard:append { 'unnamed', 'unnamedplus' }
+vim.opt.linebreak = true
+vim.opt.scrolloff = 5
+vim.cmd([[au InsertEnter * hi CursorLine gui=underline cterm=underline]])
+vim.cmd([[au InsertLeave * hi CursorLine gui=none cterm=none guibg=Grey20]])
+vim.cmd([[au InsertEnter * hi CursorColumn gui=none cterm=none guibg=transparent]])
+vim.cmd([[au InsertLeave * hi CursorColumn gui=none cterm=none guibg=Grey20]])
+vim.cmd([[nnoremap <CR> <cmd>FineCmdline<CR>]])
 vim.opt.showmode = false
 require('lualine').setup {
   options = {
     icons_enabled = true,
-    theme = 'auto',
+    theme = 'adwaita',
     component_separators = { left = '', right = ''},
     section_separators = { left = '', right = ''},
     disabled_filetypes = {

@@ -1,5 +1,3 @@
-{ pkgs, inputs, nixnvim, ... }: {
-  nixpkgs.overlays = [
-    nixnvim.overlays.default
-  ];
+{ pkgs, inputs, ... }: {
+  imports = [ inputs.nvf.nixosModules.default ];
 }
