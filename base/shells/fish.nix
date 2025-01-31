@@ -4,6 +4,7 @@
   environment.shells = [pkgs.fish];
   environment.systemPackages = with pkgs; [
     atuin
+    babelfish
     starship
     thefuck
     yazi
