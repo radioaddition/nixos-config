@@ -2,10 +2,14 @@
   config,
   pkgs,
   lib,
-  lanzaboote,
+  inputs,
   ...
 }:
 {
+  # Imports
+  imports = [
+    inputs.lanzaboote.nixosModules.lanzaboote
+  ];
   # Required packages
   environment.systemPackages = with pkgs; [
     socat

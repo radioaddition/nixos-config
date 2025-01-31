@@ -59,12 +59,9 @@
 
   outputs =
     {
-      disko,
       hjem,
       home-manager,
-      lanzaboote,
       lix,
-      nix-flatpak,
       nixos-hardware,
       nixpkgs,
       self,
@@ -122,7 +119,7 @@
           };
           modules = [
             ./base/DEs/gnome.nix
-            ./base/gaming.nix # Disable unless I'm using it
+            #./base/gaming.nix # Disable unless I'm using it
             ./base/networking.nix
             ./base/programs/flatpak.nix
             ./base/programs/packages.nix
@@ -134,12 +131,9 @@
             ./hosts/framework/hardware-configuration.nix
             ./init/disko.nix
             ./init/filesystem.nix
-            disko.nixosModules.disko
             hjem.nixosModules.hjem
             home-manager.nixosModules.home-manager
-            lanzaboote.nixosModules.lanzaboote
             lix.nixosModules.default
-            nix-flatpak.nixosModules.nix-flatpak
             nixos-hardware.nixosModules.framework-13-7040-amd
 
             {
