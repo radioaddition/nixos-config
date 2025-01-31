@@ -109,11 +109,6 @@
         appId = "com.usebottles.bottles";
         origin = "flathub";
       }
-      # Steam
-      {
-        appId = "com.valvesoftware.Steam";
-        origin = "flathub";
-      }
       # Steam Proton Manager
       {
         appId = "com.vysp3r.ProtonPlus";
