@@ -53,6 +53,7 @@
       url = "github:wamserma/flake-programs-sqlite";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    iwmenu.url = "github:e-tho/iwmenu";
   };
 
   outputs =
