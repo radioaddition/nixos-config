@@ -3,9 +3,6 @@ let
   menu = inputs.menu.legacyPackages.${pkgs.system};
 in
 {
-  imports = [
-    ./ollama.nix
-  ];
   environment.systemPackages = with pkgs; [
     age
     alejandra
