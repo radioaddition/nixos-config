@@ -36,13 +36,6 @@
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    jovian-nixos = {
-      url = "github:jovian-experiments/jovian-nixos";
-      inputs.nixpkgs.follows = "jovian-unstable";
-    };
-    jovian-unstable = {
-      url = "github:nixos/nixpkgs/8f3e1f807051e32d8c95cd12b9b421623850a34d";
-    };
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
       inputs.nixpkgs.follows = "nixpkgs";
