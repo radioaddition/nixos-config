@@ -84,6 +84,7 @@
       chezmoi completion fish | source
       just --completions fish | source
       nh completions --shell fish | source
+      thefuck --alias | source
 
       # Misc variables
       set -Ux HOSTNAME $(hostname)
