@@ -3,6 +3,9 @@ let
   menu = inputs.menu.legacyPackages.${pkgs.system};
 in
 {
+  imports = [
+    ./radicle
+  ];
   environment.systemPackages = with pkgs; [
     age
     alejandra
