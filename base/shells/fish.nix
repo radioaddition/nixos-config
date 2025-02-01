@@ -91,6 +91,7 @@
       # Misc variables
       set -Ux HOSTNAME $(hostname)
       set -Ux FLAKE $HOME/NixOS-Config
+      set -Ux MANPAGER 'nvim +Man!'
     '';
   };
 
