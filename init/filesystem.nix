@@ -16,7 +16,6 @@
     options = [
       "subvol=root"
       "compress=zstd"
-      "nosuid"
     ];
   };
 
@@ -28,7 +27,6 @@
       "subvol=home"
       "compress=zstd"
       "noexec"
-      "nosuid"
     ];
   };
 
