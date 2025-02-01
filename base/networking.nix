@@ -76,20 +76,22 @@
   # Open ports in the firewall.
   networking.firewall = {
     allowedTCPPorts = [
-      65530
+      25565
       51413
+      53317
+      65530
       9052
       9053
       9080
-      53317
     ];
     allowedUDPPorts = [
-      65530
+      25565
       51413
+      53317
+      65530
       9052
       9053
       9080
-      53317
     ];
     allowedTCPPortRanges = [
       {
