@@ -31,10 +31,7 @@
       enable = true;
       package = unstable.gamescope;
     };
-    #programs.java = {
-    #  enable = true;
-    #  package = unstable.jdk;
-    #};
+    programs.java.enable = true;
     environment.systemPackages = with unstable; [
       mangohud
     ];
