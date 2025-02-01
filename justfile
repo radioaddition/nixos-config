@@ -92,3 +92,7 @@ enroll-tpm:
 enroll-fido2:
     -sudo systemd-cryptenroll /dev/disk/by-partlabel/disk-main-luks --wipe-slot=fido2
     sudo systemd-cryptenroll --fido2-device=auto --fido2-with-client-pin=no --fido2-with-user-presence=yes /dev/disk/by-partlabel/disk-main-luks
+
+# Remove noexec from /home temporarily for steam
+game:
+	sudo mount -o remount,exec /home
