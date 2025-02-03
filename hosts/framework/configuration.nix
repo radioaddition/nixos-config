@@ -3,6 +3,9 @@
   # Define system hostname
   networking.hostName = "framework";
 
+  # Enable ROCM support
+  nixpkgs.config.rocmSupport = true;
+
   # Extend timeout of home-manager service so it doesn't fail
   systemd.services.home-manager-radioaddition.serviceConfig.TimeoutStartSec = lib.mkForce 600;
 
