@@ -15,8 +15,8 @@ Plug 'tpope/vim-sensible'
 
 call plug#end()
 
-runtime! ftplugin/man.vim
 lua << EOF
+vim.cmd([[runtime! ftplugin/man.vim]])
 vim.cmd([[let g:adwaita_transparent = v:true]])
 vim.cmd([[silent! colorscheme adwaita]])
 vim.opt.number = true
