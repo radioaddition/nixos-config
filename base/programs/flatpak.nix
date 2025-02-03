@@ -86,6 +86,10 @@
         appId = "chat.simplex.simplex";
         origin = "flathub";
       }
+      {
+        appId = "org.torproject.torbrowser-launcher";
+	origin = "flathub";
+      }
       # GPU Screen recorder
       {
         appId = "com.dec05eba.gpu_screen_recorder";

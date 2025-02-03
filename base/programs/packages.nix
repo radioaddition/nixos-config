@@ -105,7 +105,6 @@ in
     ptyxis
     seahorse
     shattered-pixel-dungeon
-    tor-browser
     ungoogled-chromium
     virt-manager
     virt-viewer
