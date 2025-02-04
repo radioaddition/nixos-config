@@ -5,10 +5,11 @@
     nixneovimplugins.url = "github:jooooscha/nixpkgs-vim-extra-plugins";
   };
 
-  outputs = {nixpkgs, nvf, nixneovimplugins, ...}: let
+  outputs = {nixpkgs, nvf, ...} @ inputs: let
     system = "x86_64-linux";
     pkgs = nixpkgs.legacyPackages.${system};
-    overlays = [ nixneovimplugins.overlays.default ];
+    inherit inputs;
+    nixpkgs.overlays = [ inputs.nixneovimplugins.overlays.default ];
     configModule = {
 
       config.vim = {
@@ -114,6 +115,5 @@
   in {
     packages.${system}.neovim = customNeovim.neovim;
     default = customNeovim.neovim;
-    inherit overlays;
   };
 }
