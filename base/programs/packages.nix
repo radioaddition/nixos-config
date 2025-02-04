@@ -36,6 +36,7 @@ in
     home-manager
     hyfetch
     inputs.agenix.packages.x86_64-linux.default
+    inputs.neovim.default
     iosevka
     just
     lazygit
@@ -49,7 +50,6 @@ in
     miracode
     monocraft
     mpv
-    neovim
     nh
     nixd
     perl
