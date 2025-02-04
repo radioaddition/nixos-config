@@ -2,7 +2,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nvf.url = "github:notashelf/nvf";
-    inputs.nixneovimplugins.url = "github:jooooscha/nixpkgs-vim-extra-plugins";
+    nixneovimplugins.url = "github:jooooscha/nixpkgs-vim-extra-plugins";
   };
 
   outputs = {nixpkgs, nvf, nixneovimplugins, ...}: let
@@ -18,7 +18,7 @@
         lsp = {
           enable = true;
         };
-	visuals.nvim-web.devicons.enable = true;
+	visuals.nvim-web-devicons.enable = true;
 
 	fzf-lua = {
 	  enable = true;
@@ -33,8 +33,9 @@
 	    format.type = "nixfmt";
 	    lsp = {
 	      enable = true;
-	      package = pkgs.nixd;
-	      server = "nixd";
+	      # Enable below when [458](https://github.com/NotAShelf/nvf/pull/458) gets merged
+	      #package = pkgs.nixd;
+	      #server = "nixd";
 	    };
 	    treesitter.enable = true;
 	  };
@@ -112,5 +113,7 @@
     };
   in {
     packages.${system}.neovim = customNeovim.neovim;
+    default = customNeovim.neovim;
+    inherit overlays;
   };
 }
