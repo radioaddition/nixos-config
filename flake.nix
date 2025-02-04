@@ -8,7 +8,7 @@
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     lix = {
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.92.0.tar.gz";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "unstable";
     };
 
     # Extra inputs
@@ -21,11 +21,11 @@
     nix-flatpak.url = "github:gmodena/nix-flatpak";
     llakaLib = {
       url = "github:/llakala/llakaLib";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "unstable";
     };
     menu = {
       url = "github:/llakala/menu";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "unstable";
       inputs.llakaLib.follows = "llakaLib";
     };
     treefmt.url = "github:numtide/treefmt-nix";
