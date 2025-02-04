@@ -63,6 +63,7 @@ in
     statix
     tealdeer
     topgrade
+    tuba
     up
     usbtop
     wget
