@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 {
   # Define system hostname
   networking.hostName = "framework";
@@ -10,13 +10,8 @@
   systemd.services.home-manager-radioaddition.serviceConfig.TimeoutStartSec = lib.mkForce 600;
 
   # Enable fingerprint reader support
-  services.fprintd = {
-    enable = true;
-    #tod = {
-    #  enable = true;
-    #  driver = pkgs.libfprint-2-tod1-goodix;
-    #};
-  };
+  services.fprintd.enable = true;
+
   # Improve sound quality
   hardware.framework.laptop13.audioEnhancement = {
     enable = true;
