@@ -1,4 +1,5 @@
-{ lib, config, pkgs, ... }: {
+{ config, pkgs, ... }:
+{
   age.secrets.radicle.file = ./radicle.age;
   environment.systemPackages = with pkgs; [
     radicle-node
@@ -17,14 +18,14 @@
         "z6MkrLMMsiPWUcNPHcRajuMi9mDfYckSoJyPwwnknocNYPm7@seed.radicle.garden:8776"
         "z6Mkmqogy2qEM2ummccUthFEaaHvyYmYBYh3dbe9W4ebScxo@ash.radicle.garden:8776"
       ];
-      web.pinned.repositories = [];
+      web.pinned.repositories = [ ];
       cli.hints = true;
       node = {
         alias = "radioaddition";
-        listen = [];
+        listen = [ ];
         peers.type = "dynamic";
-        connect = [];
-        externalAddresses = [];
+        connect = [ ];
+        externalAddresses = [ ];
         network = "main";
         log = "INFO";
         relay = "auto";
@@ -35,7 +36,7 @@
           fetchConcurrency = 1;
           maxOpenFiles = 4096;
           rate = {
-	    inbound = {
+            inbound = {
               fillRate = 5.0;
               capacity = 102;
             };

@@ -1,6 +1,4 @@
 {
-  pkgs,
-  inputs,
   unstable,
   lib,
   ...
@@ -15,7 +13,7 @@
       enable = true;
       enable32Bit = true;
     };
-    services.xserver.videoDrivers = ["amdgpu"];
+    services.xserver.videoDrivers = [ "amdgpu" ];
 
     ## Steam
     programs.steam = {

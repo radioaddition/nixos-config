@@ -95,4 +95,4 @@ enroll-fido2:
 
 # Remove noexec from /home temporarily for steam
 game:
-	@sudo mount -o remount,exec /home
+    @sudo mount -o remount,exec /home
