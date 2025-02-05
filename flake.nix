@@ -7,7 +7,7 @@
     oldstable.url = "github:nixos/nixpkgs/nixos-24.05"; # Needed for nix-on-droid
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     lix = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.92.0.tar.gz";
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/stable.tar.gz";
       inputs.nixpkgs.follows = "unstable";
     };
 
