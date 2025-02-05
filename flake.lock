@@ -465,12 +465,12 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-wZPAjoRnpdMr5sI/GC9i7vh31g7H+hvu13ldwbPNFCc=",
-        "path": "/nix/store/m4ayf94fh9bgddalyxxw7dq8nnbg147q-source/base/programs/neovim",
+        "narHash": "sha256-sMt860zfyN8fUuN/u+Rg8h3JKFrco0E3WMqkRL4S4UI=",
+        "path": "/nix/store/36gyynyvjhb8qs50ngl1855q7bagxk56-source/base/programs/neovim",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/m4ayf94fh9bgddalyxxw7dq8nnbg147q-source/base/programs/neovim",
+        "path": "/nix/store/36gyynyvjhb8qs50ngl1855q7bagxk56-source/base/programs/neovim",
         "type": "path"
       }
     },
