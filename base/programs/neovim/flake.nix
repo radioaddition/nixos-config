@@ -7,13 +7,16 @@
 
   outputs = {nixpkgs, nvf, ...} @ inputs: let
     system = "x86_64-linux";
-    pkgs = nixpkgs.legacyPackages.${system};
+    pkgs = inputs.nixpkgs.legacyPackages.${system};
+    nvp = inputs.nixneovimplugins.packages.${system};
+    #pkgs = import nixpkgs {
+    #  inherit system;
+    #  overlays = [ inputs.nixneovimplugins.overlays.default ];
+    #};
     inherit inputs;
-    nixpkgs.overlays = [ inputs.nixneovimplugins.overlays.default ];
     configModule = {
 
       config.vim = {
-        theme.enable = true;
         viAlias = true;
         vimAlias = true;
         lsp = {
@@ -30,7 +33,7 @@
 	  enableLSP = true;
 	  nix = {
 	    enable = true;
-	    format.enable = true;
+	    format.enable = false;
 	    format.type = "nixfmt";
 	    lsp = {
 	      enable = true;
@@ -42,29 +45,25 @@
 	  };
 	};
 
-	statusline.lualine = {
-	  enable = true;
-	  theme = "adwaita";
-	  # If theme option doesn't work
-	  #setupOpts = "require(\"lualine\").setup({options.theme = \"adwaita\"})";
-	};
+	statusline.lualine.enable = true;
 
-	extraPlugins = with pkgs.vimExtraPlugins; {
+	extraPlugins = {
 
-          sort.package = sort-nvim;
+          sort.package = nvp.sort-nvim;
 
 	  adwaita = {
-	    package = adwaita-nvim;
+	    package = nvp.adwaita-nvim;
 	    setup = ''
 	      vim.g.adwaita_transparent = true
               vim.cmd([[silent! colorscheme adwaita]])
             '';
 	  };
 
-	  nui.package = nui-nvim;
+	  nui.package = nvp.nui-nvim;
 
 	  just = {
-	    package = vim-just;
+	    package = nvp.tree-sitter-just;
+	    #package = nvp.just-nvim;
 	    #setup = ''
             #  require("nvim-treesitter.configs").setup({
             #    highlight = {
@@ -76,17 +75,18 @@
 	  };
 
 	  fine-cmdline = {
-	    package = fine-cmdline-nvim;
+	    package = nvp.fine-cmdline-nvim;
 	    setup = "vim.api.nvim_set_keymap('n', ':', '<cmd>FineCmdline<CR>', {noremap = true})"; # Map ":"
 	    #setup = "vim.api.nvim_set_keymap('n', '<CR>', '<cmd>FineCmdline<CR>', {noremap = true})"; # Map Enter
 	  };
 
-	  vim-easy-align.package = vim-easy-align;
+	  vim-easy-align.package = nvp.vim-easy-align;
 
 	};
 
-	luaConfigRC = ''
+	luaConfigPost = ''
           vim.opt.number = true
+          require("lualine").setup({options = {theme = "adwaita"}})
           vim.opt.relativenumber = true
           vim.opt.cursorline = true
           vim.opt.cursorcolumn = true
@@ -110,7 +110,7 @@
 
     customNeovim = nvf.lib.neovimConfiguration {
       inherit pkgs;
-      modules = [configModule];
+      modules = [ configModule ];
     };
   in {
     packages.${system}.neovim = customNeovim.neovim;
