@@ -466,11 +466,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-sMt860zfyN8fUuN/u+Rg8h3JKFrco0E3WMqkRL4S4UI=",
-        "path": "/nix/store/36gyynyvjhb8qs50ngl1855q7bagxk56-source/base/programs/neovim",
+        "path": "/nix/store/57ng70lsc3r6a7c8m690yfk17w62avdd-source/base/programs/neovim",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/36gyynyvjhb8qs50ngl1855q7bagxk56-source/base/programs/neovim",
+        "path": "/nix/store/57ng70lsc3r6a7c8m690yfk17w62avdd-source/base/programs/neovim",
         "type": "path"
       }
     },

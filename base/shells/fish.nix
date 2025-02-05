@@ -20,8 +20,6 @@
       ls = "eza -al -I .git";
       archive = "tar -czvf archive.tar.gz ";
       extract = "tar -xzvf ";
-      clean = "nix-env --delete-generations old && nix-collect-garbage -d && nix profile wipe-history";
-      cleanr = "run0 sh -c 'nix-env --delete-generations old && nix-collect-garbage -d && nix profile wipe-history'";
       so = "exec fish";
     };
 
