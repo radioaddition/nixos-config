@@ -86,7 +86,6 @@
             fine-cmdline = {
               package = nvp.fine-cmdline-nvim;
               setup = "vim.api.nvim_set_keymap('n', ':', '<cmd>FineCmdline<CR>', {noremap = true})"; # Map ":"
-              #setup = "vim.api.nvim_set_keymap('n', '<CR>', '<cmd>FineCmdline<CR>', {noremap = true})"; # Map Enter
             };
 
             vim-easy-align.package = nvp.vim-easy-align;

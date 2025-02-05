@@ -98,11 +98,11 @@
           git
           glow
           gum
+          inputs.disko.packages.x86_64-linux.default
+          inputs.neovim.packages.x86_64-linux.default
           just
-          neovim
           nh
           sbctl
-          inputs.disko.packages.x86_64-linux.default
         ];
       };
 
