@@ -36,7 +36,7 @@ in
     home-manager
     hyfetch
     inputs.agenix.packages.x86_64-linux.default
-    inputs.neovim.default
+    inputs.neovim.packages.x86_64-linux.default
     iosevka
     just
     lazygit
