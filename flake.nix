@@ -33,7 +33,7 @@
       url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    neovim.url = "./base/programs/neovim";
+    neovim.url = "https://codeberg.org/radioaddition/neovim/archive/main.tar.gz";
     disko = {
       url = "github:nix-community/disko/latest";
       inputs.nixpkgs.follows = "nixpkgs";
