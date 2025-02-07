@@ -300,11 +300,6 @@
         appId = "org.nickvision.tubeconverter";
         origin = "flathub";
       }
-      # Helvum
-      {
-        appId = "org.pipewire.Helvum";
-        origin = "flathub";
-      }
       # PrismLauncher, minecraft launcher
       {
         appId = "org.prismlauncher.PrismLauncher";
