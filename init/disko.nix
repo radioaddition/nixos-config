@@ -43,7 +43,6 @@
                       mountOptions = [
                         "compress=zstd"
                         "relatime"
-                        "noexec"
                         "nosuid"
                       ];
                     };
