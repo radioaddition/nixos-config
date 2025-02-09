@@ -33,7 +33,7 @@
   };
 
   # Restrict Nix access
-    nix.settings.allowed-users = [ "radioaddition" ];
+  nix.settings.allowed-users = [ "radioaddition" ];
 
   # Disable sudo in favor of run0
   # security.sudo.enable = false; # disabled while run0 is broken
