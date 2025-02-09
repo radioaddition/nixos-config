@@ -33,7 +33,7 @@
   };
 
   # Restrict Nix access
-  #  nix.settings.allowed-users = [ "radioaddition" ];
+    nix.settings.allowed-users = [ "radioaddition" ];
 
   # Disable sudo in favor of run0
   # security.sudo.enable = false; # disabled while run0 is broken
@@ -125,32 +125,30 @@
 
     # Define kernel paramaters
     kernelParams = [
-      "slab_nomerge"
-      "page_poison=1"
-      "page_alloc.shuffle=1"
+      "amd_iommu=force_isolation"
       "debugfs=off"
       "init_on_alloc=1"
       "init_on_free=1"
-      "slab_nomerge"
-      "page_alloc.shuffle=1"
-      "randomize_kstack_offset=on"
-      "vsyscall=none"
-      "lockdown=confidentiality"
-      "random.trust_cpu=off"
-      "random.trust_bootloader=off"
-      "iommu=force"
       "intel_iommu=on"
-      "amd_iommu=force_isolation"
       "iommu.passthrough=0"
       "iommu.strict=1"
-      "pti=on"
-      "module.sig_enforce=1"
-      "mitigations=auto,nosmt"
-      "spectre_v2=on"
-      "spec_store_bypass_disable=on"
+      "iommu=force"
+      "kvm-intel.vmentry_l1d_flush=always"
       "l1d_flush=on"
       "l1tf=full,force"
-      "kvm-intel.vmentry_l1d_flush=always"
+      "lockdown=confidentiality"
+      "mitigations=auto,nosmt"
+      "module.sig_enforce=1"
+      "page_alloc.shuffle=1"
+      "page_poison=1"
+      "pti=on"
+      "random.trust_bootloader=off"
+      "random.trust_cpu=off"
+      "randomize_kstack_offset=on"
+      "slab_nomerge"
+      "spec_store_bypass_disable=on"
+      "spectre_v2=on"
+      "vsyscall=none"
     ];
 
     blacklistedKernelModules = [
