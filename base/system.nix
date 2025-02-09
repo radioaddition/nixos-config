@@ -11,7 +11,6 @@
   ];
   imports = [
     ./aliases.nix
-    #./programs/neovim
     inputs.agenix.nixosModules.default
   ];
 
