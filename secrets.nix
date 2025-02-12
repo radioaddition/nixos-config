@@ -3,4 +3,5 @@ let
 in
 {
   "base/programs/radicle/radicle.age".publicKeys = [ system ];
+  "base/nextdns.nix.age".publicKeys = [ system ];
 }

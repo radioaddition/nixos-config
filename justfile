@@ -96,3 +96,7 @@ enroll-fido2:
 # Remove noexec from /home temporarily for steam
 game:
     @sudo mount -o remount,exec /home
+
+# Setup dev environment
+env:
+    @nix --extra-experimental-features "nix-command flakes" develop

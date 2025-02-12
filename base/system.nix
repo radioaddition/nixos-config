@@ -2,6 +2,7 @@
   config,
   pkgs,
   inputs,
+  lib,
   ...
 }:
 {
@@ -99,7 +100,7 @@
     # Misc bootloader config
     loader = {
       timeout = 0;
-      systemd-boot.enable = true;
+      systemd-boot.enable = if config.boot.lanzaboote.enable then false else true;
       efi.canTouchEfiVariables = true;
     };
     extraModprobeConfig = ''

@@ -1,5 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
+  # imports = [
+  #   config.age.secrets.nextdns.file
+  # ];
   #' Configure network proxy if necessary
   #- networking.proxy.default = "http://user:password@proxy:port/";
   #- networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
@@ -44,28 +47,13 @@
   systemd.network.enable = true;
 
   # systemd-resolved
-  networking.nameservers = [
-    "2a07:e340::3"
-    "2a07:e340::2"
-    "194.242.2.3"
-    "194.242.2.2"
-    "1.1.1.1"
-    "1.0.0.1"
-  ];
   services.resolved = {
     enable = true;
     dnssec = "true";
     dnsovertls = "true";
     domains = [ "~." ];
     #llmnr = "true";
-    fallbackDns = [
-      "2a07:e340::3"
-      "2a07:e340::2"
-      "194.242.2.3"
-      "194.242.2.2"
-      "1.1.1.1"
-      "1.0.0.1"
-    ];
+    fallbackDns = config.networking.nameservers;
   };
 
   # Tailscale
