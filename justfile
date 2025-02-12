@@ -43,7 +43,7 @@ install action argument:
     		git commit -m "add hardware-configuration.nix for {{ argument }}"
     		git push
     	fi
-    	sudo nixos-rebuild switch --flake ".#{{ argument }}"
+    	sudo nixos-rebuild boot --flake ".#{{ argument }}" --install-bootloader
     	home-manager switch --flake ".#{{ argument }}"
     else
     	nixos-generate-config --no-filesystems --root /tmp
