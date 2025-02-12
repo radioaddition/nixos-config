@@ -156,11 +156,20 @@
           specialArgs = { inherit inputs; };
           modules = [
             inputs.disko.nixosModules.disko
+            home-manager.nixosModules.home-manager
+            hjem.nixosModules.hjem
             ./base/users.nix
+            ./base/aliases.nix
             ./hosts/installer/configuration.nix
             ./hosts/installer/hardware-configuration.nix
             ./init/disko.nix
             ./init/filesystem.nix
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.backupFileExtension = "bak";
+              hm.imports = [ ./base/home.nix ];
+            }
           ];
         };
 
