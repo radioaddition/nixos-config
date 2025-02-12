@@ -66,10 +66,10 @@
   };
 
   # Enable secure boot
-  boot.lanzaboote = {
-    enable = true;
-    pkiBundle = "/etc/secureboot";
-  };
+  # boot.lanzaboote = {
+  #   enable = true;
+  #   pkiBundle = "/etc/secureboot";
+  # };
 
   # Enable tpm unlock
   # security.tpm2 = {
