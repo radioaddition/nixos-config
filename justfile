@@ -40,8 +40,8 @@ install action argument:
     	rm -rf /tmp/etc
     	if [ -d ".git" ]; then
     		git add ./hosts/{{ argument }}/hardware-configuration.nix
-    		git commit -m "add hardware-configuration.nix for {{ argument }}"
-    		git push
+    		git commit -m "add hardware-configuration.nix for {{ argument }}" || return 0
+    		git push || return 0
     	fi
     	sudo nixos-rebuild switch --flake ".#{{ argument }}"
     	home-manager switch --flake ".#{{ argument }}"
