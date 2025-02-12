@@ -22,6 +22,9 @@
     userName = "RadioAddition";
     userEmail = "radioaddition@pm.me";
     extraConfig.init.defaultBranch = "main";
+    aliases = {
+      ac = "!git add -A && git commit -m \"$(curl --silent --fail https://whatthecommit.com/index.txt\"";
+    };
   };
 
   nix.settings = {
