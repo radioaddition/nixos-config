@@ -1,8 +1,5 @@
 { pkgs, config, ... }:
 {
-  # imports = [
-  #   config.age.secrets.nextdns.file
-  # ];
   #' Configure network proxy if necessary
   #- networking.proxy.default = "http://user:password@proxy:port/";
   #- networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
@@ -12,7 +9,18 @@
 
   environment.systemPackages = with pkgs; [
     impala # a tui for iwd
+    nextdns # nextdns client
   ];
+
+  # NextDNS
+  services.nextdns = {
+    enable = true;
+    arguments = [
+      "-detect-captive-portals"
+      "-profile"
+      "cf76b1"
+    ];
+  };
 
   # CaptivePortal logins
   programs.captive-browser = {
@@ -31,7 +39,7 @@
         ManagementFrameProtection = "1";
       };
       Network = {
-        NameResolvingService = "systemd";
+        NameResolvingService = "resolvconf";
       };
       #Scan = {
       #  DisablePeriodicScan = true;
@@ -47,6 +55,12 @@
   systemd.network.enable = true;
 
   # systemd-resolved
+  networking.nameservers = [
+    "::1"
+    "127.0.0.1"
+    "194.242.2.9"
+    "1.1.1.1"
+  ];
   services.resolved = {
     enable = true;
     dnssec = "true";

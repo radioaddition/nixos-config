@@ -73,11 +73,10 @@ clean:
 setup:
     @ln -s "$PWD"/justfile "$HOME"/justfile
 
-secureboot-start:
+setup-secureboot keys:
     sudo sbctl create-keys
+    nh os boot . -H $(hostname)
     sudo sbctl verify
-
-secureboot-finish keys:
     sudo sbctl enroll-keys --{{ keys }}
 
 test:

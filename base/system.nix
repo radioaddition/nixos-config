@@ -8,7 +8,8 @@
 {
 
   age.identityPaths = [
-    ../key.age
+    "/home/radioaddition/.ssh/key.age"
+    "/home/radioaddition/.ssh/id_ed25519"
   ];
   imports = [
     ./aliases.nix

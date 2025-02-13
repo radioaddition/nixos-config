@@ -66,17 +66,17 @@
   };
 
   # Enable secure boot
-  # boot.lanzaboote = {
-  #   enable = true;
-  #   pkiBundle = "/etc/secureboot";
-  # };
+  boot.lanzaboote = {
+    enable = true;
+    pkiBundle = "/etc/secureboot";
+  };
 
   # Enable tpm unlock
-  # security.tpm2 = {
-  #   enable = true;
-  #   pkcs11.enable = true;
-  #   tctiEnvironment.enable = true;
-  # };
+  security.tpm2 = {
+    enable = true;
+    pkcs11.enable = true;
+    tctiEnvironment.enable = true;
+  };
 
   # Disable CUPS
   services.printing.enable = false;

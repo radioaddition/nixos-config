@@ -10,7 +10,7 @@
     enable = true;
     httpd.enable = true;
     node.openFirewall = true;
-    privateKeyFile = config.age.secrets.radicle.file;
+    privateKeyFile = config.age.secrets.radicle.path;
     publicKey = ./radicle.pub;
     settings = {
       publicExplorer = "https://app.radicle.xyz/nodes/$host/$rid$path";
