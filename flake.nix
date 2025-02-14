@@ -3,12 +3,12 @@
 
   inputs = {
     # Base inputs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    stable.url = "github:nixos/nixpkgs/nixos-24.11";
     oldstable.url = "github:nixos/nixpkgs/nixos-24.05"; # Needed for nix-on-droid
-    unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     lix = {
       url = "https://git.lix.systems/lix-project/nixos-module/archive/stable.tar.gz";
-      inputs.nixpkgs.follows = "unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Extra inputs
@@ -21,13 +21,19 @@
     nix-flatpak.url = "github:gmodena/nix-flatpak";
     llakaLib = {
       url = "github:/llakala/llakaLib";
-      inputs.nixpkgs.follows = "unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     menu = {
       url = "github:/llakala/menu";
-      inputs.nixpkgs.follows = "unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
       inputs.llakaLib.follows = "llakaLib";
     };
+    jovian-nixos = {
+      url = "github:jovian-experiments/jovian-nixos";
+      # inputs.nixpkgs.follows = "jovian-ref";
+    };
+    # In case normal unstable breaks
+    jovian-ref.url = "github:nixos/nixpkgs/8f3e1f807051e32d8c95cd12b9b421623850a34d";
     treefmt.url = "github:numtide/treefmt-nix";
     nvf = {
       url = "github:notashelf/nvf";
@@ -40,10 +46,10 @@
     };
     hjem = {
       url = "github:feel-co/hjem";
-      inputs.nixpkgs.follows = "unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     lanzaboote = {
@@ -111,11 +117,11 @@
           system = "x86_64-linux";
           specialArgs = {
             inherit inputs;
-            unstable = import inputs.unstable {
+            stable = import inputs.stable {
               system = "x86_64-linux";
               config.allowUnfree = true;
             };
-            gaming = import inputs.jovian-unstable {
+            gaming = import inputs.jovian-ref {
               system = "x86_64-linux";
               config.allowUnfree = true;
             };
