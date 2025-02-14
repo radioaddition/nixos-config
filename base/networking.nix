@@ -9,18 +9,7 @@
 
   environment.systemPackages = with pkgs; [
     impala # a tui for iwd
-    nextdns # nextdns client
   ];
-
-  # NextDNS
-  services.nextdns = {
-    enable = true;
-    arguments = [
-      "-detect-captive-portals"
-      "-profile"
-      "cf76b1"
-    ];
-  };
 
   # CaptivePortal logins
   programs.captive-browser = {
@@ -39,7 +28,7 @@
         ManagementFrameProtection = "1";
       };
       Network = {
-        NameResolvingService = "resolvconf";
+        NameResolvingService = "systemd";
       };
       #Scan = {
       #  DisablePeriodicScan = true;
@@ -56,10 +45,11 @@
 
   # systemd-resolved
   networking.nameservers = [
-    "::1"
-    "127.0.0.1"
-    "194.242.2.9"
-    "1.1.1.1"
+    "2a07:a8c0::#cf76b1.dns.nextdns.io"
+    "45.90.28.0#cf76b1.dns.nextdns.io"
+    "2a07:a8c1::#cf76b1.dns.nextdns.io"
+    "45.90.30.0#cf76b1.dns.nextdns.io"
+    "194.242.2.4"
   ];
   services.resolved = {
     enable = true;
@@ -67,7 +57,7 @@
     dnsovertls = "true";
     domains = [ "~." ];
     #llmnr = "true";
-    fallbackDns = config.networking.nameservers;
+    fallbackDns = (config.networking.nameservers ++ [ "1.1.1.1" ]);
   };
 
   # Tailscale
