@@ -94,7 +94,6 @@ in
     helvum
     impression
     jamesdsp
-    llama-cpp
     lutris
     mindustry-wayland
     onionshare-gui
