@@ -36,14 +36,18 @@
     jovian = {
       steam = {
         enable = true;
-        autoStart = true;
+        # autoStart = true;
         desktopSession = "gnome";
-        updater.splash = "jovian";
+        updater.splash = "vendor";
         user = "radioaddition";
       };
       devices.steamdeck.enable = false;
       decky-loader.enable = true;
-      steamos.useSteamOSConfig = true;
+      steamos = {
+        useSteamOSConfig = true;
+        enableZram = false;
+        enableProductSerialAccess = false;
+      };
       # steamos.enableMesaPatches = false;
       hardware.has.amd.gpu = true;
     };
