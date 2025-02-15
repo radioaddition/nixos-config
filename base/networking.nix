@@ -4,9 +4,6 @@
   #- networking.proxy.default = "http://user:password@proxy:port/";
   #- networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  # NetworkManager
-  networking.networkmanager.enable = false;
-
   environment.systemPackages = with pkgs; [
     impala # a tui for iwd
   ];
@@ -17,14 +14,23 @@
     interface = "wlan0";
   };
 
+  # NetworkManager
+  networking.networkmanager = {
+    enable = true;
+    wifi = {
+      backend = "iwd";
+      macAddress = "random";
+    };
+  };
+
   # iwd
   networking.wireless.iwd = {
     enable = true;
     settings = {
       General = {
         EnableNetworkConfiguration = true;
-        AddressRandomization = "network";
-        AddressRandomizationRange = "full";
+        # AddressRandomization = "network";
+        # AddressRandomizationRange = "full";
         ManagementFrameProtection = "1";
       };
       Network = {

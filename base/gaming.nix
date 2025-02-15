@@ -1,13 +1,17 @@
 {
   pkgs,
   lib,
+  inputs,
   ...
 }:
 {
   specialisation.gaming-mode.configuration = {
+    imports = [ inputs.jovian.nixosModules.jovian ];
     # Disable kernel hardening in gaming mode for performance
     boot.kernelParams = lib.mkForce [ ];
 
+    # Disable gdm so that jovian autostart will work
+    services.xserver.displayManager.gdm.enable = lib.mkForce false;
     # OpenGL
     hardware.graphics = {
       enable = true;
@@ -29,19 +33,19 @@
     environment.systemPackages = with pkgs; [
       mangohud
     ];
-    # jovian = {
-    #   steam = {
-    #     enable = true;
-    #     # autoStart = true;
-    #     desktopSession = "gdm";
-    #     updater.splash = "jovian";
-    #     user = "radioaddition";
-    #   };
-    #   devices.steamdeck.enable = false;
-    #   decky-loader.enable = true;
-    #   steamos.useSteamOSConfig = true;
-    #   # steamos.enableMesaPatches = false;
-    #   hardware.has.amd.gpu = true;
-    # };
+    jovian = {
+      steam = {
+        enable = true;
+        autoStart = true;
+        desktopSession = "gnome";
+        updater.splash = "jovian";
+        user = "radioaddition";
+      };
+      devices.steamdeck.enable = false;
+      decky-loader.enable = true;
+      steamos.useSteamOSConfig = true;
+      # steamos.enableMesaPatches = false;
+      hardware.has.amd.gpu = true;
+    };
   };
 }

@@ -28,7 +28,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.llakaLib.follows = "llakaLib";
     };
-    jovian-nixos = {
+    jovian = {
       url = "github:jovian-experiments/jovian-nixos";
       # inputs.nixpkgs.follows = "jovian-ref";
     };
