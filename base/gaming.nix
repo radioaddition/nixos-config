@@ -11,7 +11,7 @@
     boot.kernelParams = lib.mkForce [ ];
 
     # Disable gdm so that jovian autostart will work
-    services.xserver.displayManager.gdm.enable = lib.mkForce false;
+    # services.xserver.displayManager.gdm.enable = lib.mkForce false;
     # OpenGL
     hardware.graphics = {
       enable = true;
@@ -37,7 +37,7 @@
       steam = {
         enable = true;
         # autoStart = true;
-        desktopSession = "gnome";
+        # desktopSession = "gnome";
         updater.splash = "vendor";
         user = "radioaddition";
       };
