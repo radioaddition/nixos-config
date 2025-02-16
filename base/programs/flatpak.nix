@@ -145,11 +145,6 @@
         appId = "io.ente.auth";
         origin = "flathub";
       }
-      # Steam Adwaita Theme
-      {
-        appId = "io.github.Foldex.AdwSteamGtk";
-        origin = "flathub";
-      }
       # BoxBuddy, graphical distrobox manager
       {
         appId = "io.github.dvlv.boxbuddyrs";

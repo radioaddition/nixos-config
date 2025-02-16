@@ -75,7 +75,6 @@ in
 
   users.users.radioaddition.packages = with pkgs; [
     # Packages
-    adwsteamgtk
     bottles
     boxbuddy
     cartridges
