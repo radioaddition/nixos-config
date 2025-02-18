@@ -1,8 +1,11 @@
 { pkgs, ... }:
 {
   ## Enable fish
-  users.defaultUserShell = pkgs.fish;
-  environment.shells = [ pkgs.fish ];
+  users.defaultUserShell = pkgs.bash;
+  environment.shells = [
+    pkgs.bash
+    pkgs.fish
+  ];
   environment.systemPackages = with pkgs; [
     atuin
     babelfish
@@ -12,6 +15,12 @@
     zoxide
   ];
 
+  # Use bash as system shell, and only use fish in interactive sessions
+  programs.bash = {
+    shellInit = "if [ -z \"$BASH_EXECUTION_STRING\" ]; then exec fish; fi";
+  };
+
+  # Fish options
   programs.fish = {
     enable = true;
     useBabelfish = true;
