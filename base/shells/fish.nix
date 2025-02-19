@@ -17,7 +17,7 @@
 
   # Use bash as system shell, and only use fish in interactive sessions
   programs.bash = {
-    shellInit = "if [ -z \"$BASH_EXECUTION_STRING\" ]; then exec fish; fi";
+    interactiveShellInit = "exec fish";
   };
 
   # Fish options
