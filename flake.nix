@@ -35,10 +35,6 @@
     # In case normal unstable breaks
     jovian-ref.url = "github:nixos/nixpkgs/8f3e1f807051e32d8c95cd12b9b421623850a34d";
     treefmt.url = "github:numtide/treefmt-nix";
-    nvf = {
-      url = "github:notashelf/nvf";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     neovim.url = "https://codeberg.org/radioaddition/neovim/archive/main.tar.gz";
     disko = {
       url = "github:nix-community/disko/latest";
