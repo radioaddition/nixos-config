@@ -133,7 +133,7 @@
             ./base/programs/flatpak.nix
             ./base/programs/packages.nix
             ./base/security.nix
-            ./base/shells/fish.nix
+            ./base/shells/fish
             ./base/system.nix
             ./base/users.nix
             ./hosts/framework/configuration.nix
