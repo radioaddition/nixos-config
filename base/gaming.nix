@@ -5,6 +5,7 @@
   ...
 }:
 {
+  imports = [ inputs.jovian.nixosModules.jovian ];
   ## Steam
   programs.steam = {
     enable = true;
