@@ -1,6 +1,3 @@
-argument := `hostname`
-keys := "microsoft"
-
 _default:
     @echo Available commands:
     @echo just install ACTION ARGUMENT
@@ -12,22 +9,25 @@ _default:
     @echo "Then, if you copy this script to the root folder of your nix config directory, will finish the install for you, automatically"
     @echo "adding your auto-generated hardware config (excluding filesystem information since you should have that preconfigured anyways)"
     @echo ""
+    @echo ""
     @echo "just format"
     @echo format the code in this repo
+    @echo ""
     @echo ""
     @echo "just fmt"
     @echo alias for \"just format\"
     @echo ""
+    @echo ""
     @echo "just clean"
     @echo clean out your nix store
     @echo ""
-    @echo just secureboot-start
-    @echo "start the setup for secureboot (this requires a reboot in between so two scripts are required)"
     @echo ""
-    @echo just secureboot-finish KEYS
-    @echo "finish setting up secureboot, where KEYS is one of \"microsoft\" or \"tpm-eventlog\" ({{ keys }} is recommended and the default)"
+    @echo just setup-secureboot KEYS
+    @echo "set up secureboot, where KEYS is one of \"microsoft\" or \"tpm-eventlog\" ({{ keys }} is recommended and the default)"
+    @echo "Secureboot should be in setup mode in your uefi prior to running this and the configuration being switched to should have lanzaboote enabled"
 
 # just install ACTION ARGUMENT
+argument := `hostname`
 install action argument:
     #!/usr/bin/env bash
     set -euo pipefail
@@ -73,9 +73,10 @@ clean:
 setup:
     @ln -s "$PWD"/justfile "$HOME"/justfile
 
+keys := "microsoft"
 setup-secureboot keys:
     sudo sbctl create-keys
-    nh os boot . -H $(hostname)
+    nh os boot . -H $(hostname) -a
     sudo sbctl verify
     sudo sbctl enroll-keys --{{ keys }}
 
@@ -91,10 +92,6 @@ enroll-tpm:
 enroll-fido2:
     -sudo systemd-cryptenroll /dev/disk/by-partlabel/disk-main-luks --wipe-slot=fido2
     sudo systemd-cryptenroll --fido2-device=auto --fido2-with-client-pin=no --fido2-with-user-presence=yes /dev/disk/by-partlabel/disk-main-luks
-
-# Remove noexec from /home temporarily for steam
-game:
-    @sudo mount -o remount,exec /home
 
 # Setup dev environment
 env:
