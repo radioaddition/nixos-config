@@ -6,6 +6,7 @@
 }:
 {
   imports = [ inputs.jovian.nixosModules.jovian ];
+
   ## Steam
   programs.steam = {
     enable = true;
@@ -16,17 +17,19 @@
     gamescopeSession.enable = true;
   };
 
+  # Drivers and Stuff(TM)
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
   };
   services.xserver.videoDrivers = [ "amdgpu" ];
+  hardware.steam-hardware.enable = true;
 
   programs.gamescope.enable = true;
   programs.java.enable = true;
   environment.systemPackages = with pkgs; [
     mangohud
-    # protonplus
+    # protonplus # I only enable this if pkgs.proton-ge-bin doesn't work, which is usually easier as it auto updates
     adwsteamgtk
   ];
 
