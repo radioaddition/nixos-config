@@ -18,10 +18,6 @@ _default:
     @echo alias for \"just format\"
     @echo ""
     @echo ""
-    @echo "just clean"
-    @echo clean out your nix store
-    @echo ""
-    @echo ""
     @echo just setup-secureboot KEYS
     @echo "set up secureboot, where KEYS is one of \"microsoft\" or \"tpm-eventlog\" ({{ keys }} is recommended and the default)"
     @echo "Secureboot should be in setup mode in your uefi prior to running this and the configuration being switched to should have lanzaboote enabled"
@@ -61,12 +57,6 @@ alias fmt := format
 format:
     deadnix --edit
     nix fmt $HOME/nixos-config
-
-# Cleans out the nix store
-clean:
-    nix-collect-garbage -d
-    nix profile wipe-history
-    nh clean all
 
 # Sets up using these commands from the home directory
 [no-cd]
