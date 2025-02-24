@@ -49,8 +49,33 @@
 
   specialisation.gaming-mode.configuration = {
     imports = [ inputs.jovian.nixosModules.jovian ];
+
+    environment.memoryAllocator.provider = lib.mkForce "scudo";
+    environment.variables.SCUDO_OPTIONS = "ZeroContents=1";
+
     # Disable kernel hardening in gaming mode for performance
-    boot.kernelParams = lib.mkForce [ ];
+    boot.kernelParams = lib.mkForce [
+      "debugfs=off"
+      "init_on_alloc=1"
+      "iommu.passthrough=0"
+      "iommu.strict=1"
+      "iommu=force"
+      "kvm-intel.vmentry_l1d_flush=always"
+      "l1d_flush=on"
+      "lockdown=confidentiality"
+      "mitigations=auto,nosmt"
+      "module.sig_enforce=1"
+      "page_alloc.shuffle=1"
+      "page_poison=1"
+      "pti=auto"
+      "random.trust_bootloader=off"
+      "random.trust_cpu=off"
+      "randomize_kstack_offset=on"
+      "slab_nomerge"
+      "spec_store_bypass_disable=auto"
+      "spectre_v2=on"
+      "vsyscall=xonly"
+    ];
 
     # Disable gdm so that jovian autostart will work
     services.xserver.displayManager.gdm.enable = lib.mkForce false;

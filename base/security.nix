@@ -85,10 +85,7 @@
   services.dbus.implementation = "broker";
 
   # copied and modified from hardened.nix profile
-  environment.memoryAllocator.provider = "graphene-hardened";
-  # Use the options if the graphene hardened_malloc is too strict
-  #environment.memoryAllocator.provider = "scudo";
-  #environment.variables.SCUDO_OPTIONS = "ZeroContents=1";
+  environment.memoryAllocator.provider = "graphene-hardened-light";
 
   security = {
     sudo.execWheelOnly = true;
@@ -128,13 +125,11 @@
       "debugfs=off"
       "init_on_alloc=1"
       "init_on_free=1"
-      "intel_iommu=on"
       "iommu.passthrough=0"
       "iommu.strict=1"
       "iommu=force"
       "kvm-intel.vmentry_l1d_flush=always"
       "l1d_flush=on"
-      "l1tf=full,force"
       "lockdown=confidentiality"
       "mitigations=auto,nosmt"
       "module.sig_enforce=1"
@@ -145,7 +140,7 @@
       "random.trust_cpu=off"
       "randomize_kstack_offset=on"
       "slab_nomerge"
-      "spec_store_bypass_disable=on"
+      "spec_store_bypass_disable=auto"
       "spectre_v2=on"
       "vsyscall=none"
     ];
