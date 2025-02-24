@@ -450,11 +450,11 @@
         "treefmt": "treefmt"
       },
       "locked": {
-        "lastModified": 1739948216,
-        "narHash": "sha256-YXbMEqNVzj/lVm7ZLrOsVE0wniZD7jbK6H1aOvskP0g=",
-        "rev": "f8ff1fac0d0aa20c43eef2f5027b628138f78c81",
+        "lastModified": 1740358603,
+        "narHash": "sha256-HBC3udmMhIZ663khxMwP1i/RX5aS7hnmIXu+T+J+xHE=",
+        "rev": "e2733d9afa378744b4453eecd5f27b103a3e2c5a",
         "type": "tarball",
-        "url": "https://codeberg.org/api/v1/repos/RadioAddition/neovim/archive/f8ff1fac0d0aa20c43eef2f5027b628138f78c81.tar.gz?rev=f8ff1fac0d0aa20c43eef2f5027b628138f78c81"
+        "url": "https://codeberg.org/api/v1/repos/RadioAddition/neovim/archive/e2733d9afa378744b4453eecd5f27b103a3e2c5a.tar.gz?rev=e2733d9afa378744b4453eecd5f27b103a3e2c5a"
       },
       "original": {
         "type": "tarball",
