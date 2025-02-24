@@ -53,6 +53,10 @@
   specialisation.gaming-mode.configuration = {
     imports = [ inputs.jovian.nixosModules.jovian ];
 
+    # Disable usbguard in gaming mode for controllers
+    services.usbguard.enable = lib.mkForce false;
+
+    # Switch to a more perfomant secure memory allocator
     environment.memoryAllocator.provider = lib.mkForce "scudo";
     environment.variables.SCUDO_OPTIONS = "ZeroContents=1";
 
