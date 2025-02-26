@@ -105,7 +105,10 @@
       }
       # KDE Connect
     ];
-    trustedInterfaces = [ "tailscale0" ];
+    trustedInterfaces = [
+      "tailscale0"
+      "virbr0"
+    ];
   };
   #' Or disable the firewall altogether.
   #' networking.firewall.enable = false;
