@@ -6,6 +6,8 @@ in
   imports = [
     ./radicle
   ];
+
+  # System packages
   environment.systemPackages = with pkgs; [
     age
     alejandra
@@ -73,6 +75,7 @@ in
     zoxide
   ];
 
+  # User packages
   users.users.radioaddition.packages = with pkgs; [
     # Packages
     bottles
@@ -93,6 +96,7 @@ in
     helvum
     impression
     jamesdsp
+    lumafly
     lutris
     mindustry-wayland
     onionshare-gui
