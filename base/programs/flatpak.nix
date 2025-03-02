@@ -95,11 +95,6 @@
         appId = "com.dec05eba.gpu_screen_recorder";
         origin = "flathub";
       }
-      # Protontricks
-      {
-        appId = "com.github.Matoking.protontricks";
-        origin = "flathub";
-      }
       # Pods, a podman manager
       {
         appId = "com.github.marhkb.Pods";

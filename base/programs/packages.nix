@@ -104,6 +104,7 @@ in
     picard
     pika-backup
     polari
+    protontricks
     protonvpn-gui
     ptyxis
     seahorse
