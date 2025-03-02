@@ -10,7 +10,6 @@
   ## Steam
   programs.steam = {
     enable = true;
-    extraCompatPackages = with pkgs; [ proton-ge-bin ];
     localNetworkGameTransfers.openFirewall = true;
     dedicatedServer.openFirewall = true;
     remotePlay.openFirewall = true;
@@ -29,7 +28,7 @@
   programs.java.enable = true;
   environment.systemPackages = with pkgs; [
     mangohud
-    # protonplus # I only enable this if pkgs.proton-ge-bin doesn't work, which is usually easier as it auto updates
+    protonplus
     adwsteamgtk
   ];
 
