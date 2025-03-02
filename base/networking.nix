@@ -74,7 +74,7 @@
   # Open ports in the firewall.
   networking.firewall = {
     allowedTCPPorts = [
-      25565
+      25565 # minecraft
       51413
       53317
       65530
@@ -83,27 +83,28 @@
       9080
     ];
     allowedUDPPorts = [
-      25565
+      25565 # minecraft
       51413
       53317
       65530
       9052
       9053
       9080
+      11000 # nitrox
     ];
     allowedTCPPortRanges = [
+      # KDE Connect
       {
         from = 1714;
         to = 1764;
       }
-      # KDE Connect
     ];
     allowedUDPPortRanges = [
+      # KDE Connect
       {
         from = 1714;
         to = 1764;
       }
-      # KDE Connect
     ];
     trustedInterfaces = [
       "tailscale0"
