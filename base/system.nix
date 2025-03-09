@@ -62,9 +62,11 @@
 
   # Base system packages not included
   environment.systemPackages = with pkgs; [
+    (pkgs.uutils-coreutils.override { prefix = ""; })
+    exfat
+    exfatprogs
     git
     neovim
-    (pkgs.uutils-coreutils.override { prefix = ""; })
   ];
 
   # command-not-found flake compatability
