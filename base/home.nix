@@ -1,4 +1,14 @@
-{ pkgs, lib, ... }: { # in case of git.sr.ht outage manual.html.enable = false; manual.manpages.enable = false; manual.json.enable = false; imports = [ ]; news.display = "silent"; Commented out because this can occasionally be different (ie some of my hosts have multiple users, and some are on Fedora/RHEL based (which uses /var/home)) but I need to be reminded to set it per host home.username = "radioaddition"; home.homeDirectory = "/home/radioaddition";
+{ pkgs, lib, ... }: {
+  # in case of git.sr.ht outage
+  # manual.html.enable = false;
+  # manual.manpages.enable = false;
+  # manual.json.enable = false;
+  # imports = [ ];
+  # news.display = "silent";
+
+  # Commented out because this can occasionally be different (ie some of my hosts have multiple users, and some are on Fedora/RHEL based (which uses /var/home)) but I need to be reminded to set it per host
+  # home.username = "radioaddition";
+  # home.homeDirectory = "/home/radioaddition";
 
   # lorri
   services.lorri.enable = true;
