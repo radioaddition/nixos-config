@@ -30,7 +30,7 @@
       archive = "tar -czvf archive.tar.gz ";
       extract = "tar -xzvf ";
       so = "exec fish";
-      lanscan = "seq 254 | xargs -iIP -P255 ping -c1 192.168.2.IP | rg time= | arp -a";
+      lanscan = "seq 254 | xargs -i IP -P 255 ping -c 1 192.168.2.IP | rg time= | arp -a";
     };
 
     interactiveShellInit = ''
