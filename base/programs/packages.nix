@@ -1,6 +1,7 @@
 { pkgs, inputs, ... }:
 let
   menu = inputs.menu.legacyPackages.${pkgs.system};
+  stable = inputs.stable.legacyPackages.${pkgs.system};
 in
 {
   imports = [
@@ -95,7 +96,7 @@ in
     guake
     helvum
     impression
-    jamesdsp
+    stable.jamesdsp
     lumafly
     lutris
     mindustry-wayland
