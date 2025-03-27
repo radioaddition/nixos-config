@@ -9,7 +9,6 @@
       onCalendar = "hourly";
     };
     remotes = [
-      #{ name = "flathub-verified"; subset = "verified"; location = "https://flathub.org/repo/flathub.flatpakrepo"; }
       {
         name = "flathub";
         location = "https://flathub.org/repo/flathub.flatpakrepo";
@@ -66,6 +65,8 @@
         appId = "ch.protonmail.protonmail-bridge";
         origin = "flathub";
       }
+      # GoodCord
+      "io.github.milkshiift.GoofCord"
       # Warp, a wormhole client
       {
         appId = "app.drey.Warp";

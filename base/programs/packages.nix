@@ -91,7 +91,6 @@ in
     fragments
     gnome-extension-manager
     gnome-tweaks
-    goofcord
     gparted
     guake
     helvum
