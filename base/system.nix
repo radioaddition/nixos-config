@@ -169,7 +169,6 @@
 
   # Enable ADB/Fastboot
   programs.adb.enable = true;
-  services.udev.packages = [ pkgs.android-udev-rules ];
 
   # Replace coreutils with uutils-coreutils
 
