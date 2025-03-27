@@ -96,7 +96,7 @@ in
     guake
     helvum
     impression
-    stable.jamesdsp
+    jamesdsp
     lumafly
     lutris
     mindustry-wayland
