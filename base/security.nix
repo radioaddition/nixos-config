@@ -105,20 +105,6 @@
   };
 
   boot = {
-    # Pin kernel version
-    kernelPackages = pkgs.linuxPackagesFor (
-      pkgs.linuxKernel.kernels.linux_6_13.override {
-        argsOverride = rec {
-          src = pkgs.fetchurl {
-            url = "mirror://kernel/linux/kernel/v${lib.versions.major version}.x/linux-${version}.tar.xz";
-            sha256 = "sha256-uA4LyO+8MenOWoTRCE3Mz6QOAb6ozCWv0GZIuT1hM54=";
-          };
-          version = "6.13.4";
-          modDirVersion = "6.13.4";
-        };
-      }
-    );
-
     # Define kernel paramaters
     kernelParams = [
       "amd_iommu=force_isolation"
