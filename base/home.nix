@@ -21,6 +21,7 @@
     extraConfig = {
       init.defaultBranch = "main";
       sendemail = {
+        "confirm" = "auto";
         smtpserver = "127.0.0.1";
         smtpuser = "radioaddition@pm.me";
         smtpencryption = "tls";
