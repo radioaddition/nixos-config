@@ -15,9 +15,19 @@
 
   programs.git = {
     enable = true;
+    package = pkgs.gitFull;
     userName = "RadioAddition";
     userEmail = "radioaddition@pm.me";
-    extraConfig.init.defaultBranch = "main";
+    extraConfig = {
+      init.defaultBranch = "main";
+      sendemail = {
+        smtpserver = "127.0.0.1";
+        smtpuser = "radioaddition@pm.me";
+        smtpencryption = "tls";
+        smtpserverport = "1025";
+        smtpsslcertpath = "";
+      };
+    };
     aliases = {
       ac = "!git add -A && git commit -m \"$(curl --silent --fail https://whatthecommit.com/index.txt)\"";
     };
