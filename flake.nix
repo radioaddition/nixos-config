@@ -10,7 +10,7 @@
       url = "https://git.lix.systems/lix-project/nixos-module/archive/main.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    inputs.flake-compat = {
+    flake-compat = {
       url = "git+https://git.lix.systems/lix-project/flake-compat";
       # Optional, this repo's flake.nix just imports their default.nix, so this skips a step
       flake = false;
