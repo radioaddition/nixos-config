@@ -4,9 +4,9 @@
   #- networking.proxy.default = "http://user:password@proxy:port/";
   #- networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  environment.systemPackages = with pkgs; [
-    impala # a tui for iwd
-  ];
+  # environment.systemPackages = with pkgs; [
+  #   impala # a tui for iwd
+  # ];
 
   # CaptivePortal logins
   programs.captive-browser = {
@@ -18,30 +18,30 @@
   networking.networkmanager = {
     enable = true;
     wifi = {
-      backend = "iwd";
+      # backend = "iwd";
       macAddress = "random";
     };
   };
 
   # iwd
-  networking.wireless.iwd = {
-    enable = true;
-    settings = {
-      General = {
-        EnableNetworkConfiguration = true;
-        # AddressRandomization = "network";
-        # AddressRandomizationRange = "full";
-        ManagementFrameProtection = "1";
-      };
-      Network = {
-        NameResolvingService = "systemd";
-      };
-      #Scan = {
-      #  DisablePeriodicScan = true;
-      #  DisableRoamingScan = true;
-      #};
-    };
-  };
+  # networking.wireless.iwd = {
+  #   enable = true;
+  #   settings = {
+  #     General = {
+  #       EnableNetworkConfiguration = true;
+  #       # AddressRandomization = "network";
+  #       # AddressRandomizationRange = "full";
+  #       ManagementFrameProtection = "1";
+  #     };
+  #     Network = {
+  #       NameResolvingService = "systemd";
+  #     };
+  #     #Scan = {
+  #     #  DisablePeriodicScan = true;
+  #     #  DisableRoamingScan = true;
+  #     #};
+  #   };
+  # };
 
   # systemd-networkd
   boot.initrd.systemd.network.enable = true;
