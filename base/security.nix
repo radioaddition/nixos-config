@@ -89,6 +89,10 @@
   # copied and modified from hardened.nix profile
   environment.memoryAllocator.provider = "graphene-hardened-light";
 
+  # Use if the above causes issues
+  # environment.memoryAllocator.provider = "graphene-hardened-light";
+  # environment.variables.SCUDO_OPTIONS = "ZeroContents=1";
+
   security = {
     sudo.execWheelOnly = true;
 
