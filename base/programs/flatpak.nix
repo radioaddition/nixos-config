@@ -40,6 +40,11 @@
         appId = "org.gnome.seahorse.Application";
         origin = "flathub";
       }
+      # Zen Browser
+      {
+        appId = "app.zen_browser.zen";
+        origin = "flathub";
+      }
       #helvum
       {
         appId = "org.pipewire.Helvum";
