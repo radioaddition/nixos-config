@@ -73,6 +73,7 @@ in
     wl-clipboard
     wlrctl
     yazi
+    inputs.zen-browser.packages."${system}".default
     zoxide
   ];
 
