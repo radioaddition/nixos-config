@@ -3,9 +3,9 @@
   services.xserver.enable = true;
 
   ### Enable the GNOME Desktop Environment.
-  services.desktopManager = {
-    gdm.enable = true;
-    gnome = {
+  services = {
+    displayManager.gdm.enable = true;
+    desktopManager.gnome = {
       enable = true;
       extraGSettingsOverridePackages = [ pkgs.mutter ];
       extraGSettingsOverrides = ''
