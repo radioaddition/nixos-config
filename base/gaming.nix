@@ -84,7 +84,7 @@
     ];
 
     # Disable gdm so that jovian autostart will work
-    services.xserver.displayManager.gdm.enable = lib.mkForce false;
+    services.displayManager.gdm.enable = lib.mkForce false;
 
     jovian.steam = {
       autoStart = true;
