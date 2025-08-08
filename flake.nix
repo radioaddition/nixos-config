@@ -143,7 +143,7 @@
             ./init/filesystem.nix
             hjem.nixosModules.hjem
             home-manager.nixosModules.home-manager
-            lix.nixosModules.default
+            # lix.nixosModules.default
             nixos-hardware.nixosModules.framework-13-7040-amd
 
             {

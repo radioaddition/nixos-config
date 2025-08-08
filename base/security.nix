@@ -70,7 +70,7 @@
   # Enable secure boot
   boot.lanzaboote = {
     enable = true;
-    pkiBundle = "/etc/secureboot";
+    pkiBundle = "/var/lib/sbctl";
   };
 
   # Enable tpm unlock
