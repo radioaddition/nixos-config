@@ -10,7 +10,6 @@
     atuin
     babelfish
     starship
-    thefuck
     yazi
     zoxide
   ];
@@ -93,8 +92,7 @@
       direnv hook fish | source
       chezmoi completion fish | source
       just --completions fish | source
-      nh completions --shell fish | source
-      thefuck --alias | source
+      nh completions fish | source
 
       # Misc variables
       set -Ux HOSTNAME $(hostname)
