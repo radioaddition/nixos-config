@@ -48,13 +48,12 @@
       forge
       gsconnect
       logo-menu
+      pop-shell
       quick-settings-audio-devices-renamer
       reboottouefi
       reorder-workspaces
       search-light
-      systemd-manager
       tailscale-qs
-      #valent
       wifi-qrcode
       wiggle
       window-title-is-back
