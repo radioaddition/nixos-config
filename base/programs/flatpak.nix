@@ -121,9 +121,9 @@
         appId = "com.vysp3r.ProtonPlus";
         origin = "flathub";
       }
-      # Fragments, a GTK+ torrent client
+      # Varia, a GTK+ torrent client
       {
-        appId = "de.haeckerfelix.Fragments";
+        appId = "io.github.giantpinkrobots.varia";
         origin = "flathub";
       }
       # Snoop, search through file contents (rather than just names)
