@@ -18,7 +18,6 @@
 
   # Enable GNOME keyring as cosmic doesn't have one yet
   services.gnome.gnome-keyring.enable = true;
-  environment.systemPackages = [ pkgs.seahorse ];
 
   ### Configure keymap in X11
   services.xserver = {

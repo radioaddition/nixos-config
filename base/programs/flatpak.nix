@@ -20,39 +20,9 @@
         flatpakref = "https://sober.vinegarhq.org/sober.flatpakref";
         sha256 = "1pj8y1xhiwgbnhrr3yr3ybpfis9slrl73i0b1lc9q89vhip6ym2l";
       }
-      # Cartridges, gnome-styled version of lutris
-      {
-        appId = "page.kramo.Cartridges";
-        origin = "flathub";
-      }
-      # Collision, a hash checker
-      {
-        appId = "dev.geopjr.Collision";
-        origin = "flathub";
-      }
-      # IRC Client
-      {
-        appId = "org.gnome.Polari";
-        origin = "flathub";
-      }
-      # Gnome passwords, keys, gpg manager
-      {
-        appId = "org.gnome.seahorse.Application";
-        origin = "flathub";
-      }
-      #helvum
-      {
-        appId = "org.pipewire.Helvum";
-        origin = "flathub";
-      }
       # torrhunt
       {
         appId = "com.ktechpit.torrhunt";
-        origin = "flathub";
-      }
-      #lutris
-      {
-        appId = "net.lutris.Lutris";
         origin = "flathub";
       }
       #onionshare-gui
@@ -80,11 +50,6 @@
       # Fotema, a photo viewer
       {
         appId = "app.fotema.Fotema";
-        origin = "flathub";
-      }
-      # Dconf Editor
-      {
-        appId = "ca.desrt.dconf-editor";
         origin = "flathub";
       }
       # SimpleX Chat
@@ -121,11 +86,6 @@
         appId = "com.usebottles.bottles";
         origin = "flathub";
       }
-      # Steam Proton Manager
-      {
-        appId = "com.vysp3r.ProtonPlus";
-        origin = "flathub";
-      }
       # KTorrent
       {
         appId = "org.kde.ktorrent";
@@ -144,11 +104,6 @@
       # Ente Auth, 2FA app
       {
         appId = "io.ente.auth";
-        origin = "flathub";
-      }
-      # BoxBuddy, graphical distrobox manager
-      {
-        appId = "io.github.dvlv.boxbuddyrs";
         origin = "flathub";
       }
       # Ignition, startup process manager
@@ -189,11 +144,6 @@
       # WiVRn, SteamVR alternative
       {
         appId = "io.github.wivrn.wivrn";
-        origin = "flathub";
-      }
-      # Bootable media creator
-      {
-        appId = "io.gitlab.adhami3310.Impression";
         origin = "flathub";
       }
       # Minecraft Bedrock Launcher
