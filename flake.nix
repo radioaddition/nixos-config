@@ -128,7 +128,7 @@
             };
           };
           modules = [
-            ./base/DEs/gnome.nix
+            ./base/DEs/cosmic.nix
             ./base/gaming.nix
             ./base/networking.nix
             ./base/programs/flatpak.nix

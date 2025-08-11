@@ -88,7 +88,6 @@
 
     jovian.steam = {
       autoStart = true;
-      desktopSession = "gnome";
     };
 
   };
