@@ -114,4 +114,10 @@ in
     virt-viewer
     wormhole-william
   ];
+
+  # Fonts
+  fonts.packages = with pkgs; [
+    adwaita-fonts
+    nerd-fonts
+  ];
 }

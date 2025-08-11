@@ -132,7 +132,7 @@
             ./base/gaming.nix
             ./base/networking.nix
             ./base/programs/flatpak.nix
-            ./base/programs/packages.nix
+            ./base/packages/nix.nix
             ./base/security.nix
             ./base/shells/fish.nix
             ./base/system.nix
