@@ -25,6 +25,7 @@ in
     fastfetch
     fish
     fractal
+    fragments
     fzf
     gcc
     gettext
@@ -40,6 +41,7 @@ in
     hyfetch
     inputs.agenix.packages.x86_64-linux.default
     inputs.neovim.packages.x86_64-linux.default
+    inputs.zen-browser.packages."${system}".default
     iosevka
     just
     lazygit
@@ -73,7 +75,6 @@ in
     wl-clipboard
     wlrctl
     yazi
-    inputs.zen-browser.packages."${system}".default
     zoxide
   ];
 
@@ -89,7 +90,6 @@ in
     direnv
     discover-overlay
     distrobox
-    fragments
     gnome-extension-manager
     gnome-tweaks
     gparted

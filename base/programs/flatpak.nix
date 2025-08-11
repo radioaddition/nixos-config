@@ -45,6 +45,11 @@
         appId = "org.pipewire.Helvum";
         origin = "flathub";
       }
+      # torrhunt
+      {
+        appId = "com.ktechpit.torrhunt";
+        origin = "flathub";
+      }
       #lutris
       {
         appId = "net.lutris.Lutris";
@@ -121,9 +126,9 @@
         appId = "com.vysp3r.ProtonPlus";
         origin = "flathub";
       }
-      # Varia, a GTK+ torrent client
+      # KTorrent
       {
-        appId = "io.github.giantpinkrobots.varia";
+        appId = "org.kde.ktorrent";
         origin = "flathub";
       }
       # Snoop, search through file contents (rather than just names)
