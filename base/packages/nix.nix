@@ -118,6 +118,7 @@ in
   # Fonts
   fonts.packages = with pkgs; [
     adwaita-fonts
-    nerd-fonts
+    nerd-fonts.iosevka
+    nerd-fonts.meslo-lg
   ];
 }
