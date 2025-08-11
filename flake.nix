@@ -131,7 +131,7 @@
             ./base/DEs/cosmic.nix
             ./base/gaming.nix
             ./base/networking.nix
-            ./base/programs/flatpak.nix
+            ./base/packages/flatpak.nix
             ./base/packages/nix.nix
             ./base/security.nix
             ./base/shells/fish.nix
