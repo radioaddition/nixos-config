@@ -83,12 +83,7 @@
       "vsyscall=xonly"
     ];
 
-    # Disable gdm so that jovian autostart will work
-    services.displayManager.gdm.enable = lib.mkForce false;
-
-    jovian.steam = {
-      autoStart = true;
-    };
+    jovian.steam.autoStart = true;
 
   };
 }

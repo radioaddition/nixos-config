@@ -1,10 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   services.xserver.enable = true;
 
   ### Enable the COSMIC Desktop Environment with GDM because cosmic greeter kinda sucks right now
   services = {
-    displayManager.gdm.enable = true;
+    displayManager.cosmic-greeter.enable = true;
     desktopManager.cosmic = {
       enable = true;
     };
@@ -27,6 +27,9 @@
     };
   };
 
-  # Set a DE-dependent variable for gaming mode
-  specialisation.gaming-mode.configuration.jovian.steam.desktopSession = "cosmic";
+  # Set DE-dependent variables for gaming mode
+  specialisation.gaming-mode.configuration = {
+    jovian.steam.desktopSession = "cosmic";
+    services.displayManager.cosmic-greeter.enable = lib.mkForce false;
+  };
 }

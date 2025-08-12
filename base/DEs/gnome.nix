@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   services.xserver.enable = true;
 
@@ -37,8 +37,11 @@
     };
   };
 
-  # Set a DE-dependent variable for gaming mode
-  specialisation.gaming-mode.configuration.jovian.steam.desktopSession = "gnome";
+  # Set DE-dependent variables for gaming mode
+  specialisation.gaming-mode.configuration = {
+    jovian.steam.desktopSession = "gnome";
+    services.displayManager.gdm.enable = lib.mkForce false;
+  };
 
   # GNOME Extensions
   users.users.radioaddition.packages =
