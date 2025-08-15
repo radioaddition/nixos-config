@@ -30,16 +30,6 @@
         appId = "im.dino.Dino";
         origin = "flathub";
       }
-      #onionshare-gui
-      {
-        appId = "org.onionshare.OnionShare";
-        origin = "flathub";
-      }
-      #picard
-      {
-        appId = "org.musicbrainz.Picard";
-        origin = "flathub";
-      }
       #protonmail-bridge
       {
         appId = "ch.protonmail.protonmail-bridge";
@@ -204,11 +194,6 @@
       # GNOME Text Editor
       {
         appId = "org.gnome.TextEditor";
-        origin = "flathub";
-      }
-      # Pika Backup
-      {
-        appId = "org.gnome.World.PikaBackup";
         origin = "flathub";
       }
       # Gnome Keepass client
