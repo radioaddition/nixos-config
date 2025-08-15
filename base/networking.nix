@@ -66,6 +66,12 @@
     fallbackDns = (config.networking.nameservers ++ [ "1.1.1.1" ]);
   };
 
+  # KDE Connect
+  programs.kdeconnect = {
+    enable = true;
+    package = pkgs.valent;
+  };
+
   # Tailscale
   services.tailscale = {
     enable = true;
@@ -75,36 +81,9 @@
   networking.firewall = {
     allowedTCPPorts = [
       25565 # minecraft
-      51413
-      53317
-      65530
-      9052
-      9053
-      9080
     ];
     allowedUDPPorts = [
       25565 # minecraft
-      51413
-      53317
-      65530
-      9052
-      9053
-      9080
-      11000 # nitrox
-    ];
-    allowedTCPPortRanges = [
-      # KDE Connect
-      {
-        from = 1714;
-        to = 1764;
-      }
-    ];
-    allowedUDPPortRanges = [
-      # KDE Connect
-      {
-        from = 1714;
-        to = 1764;
-      }
     ];
     trustedInterfaces = [
       "tailscale0"

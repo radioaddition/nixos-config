@@ -70,6 +70,7 @@ in
     tuba
     up
     usbtop
+    valent
     wget
     wl-clipboard
     wlrctl
