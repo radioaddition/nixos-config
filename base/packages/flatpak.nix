@@ -6,7 +6,7 @@
     uninstallUnmanaged = true;
     update.auto = {
       enable = true;
-      onCalendar = "hourly";
+      onCalendar = "daily";
     };
     remotes = [
       {
@@ -17,12 +17,17 @@
     packages = [
       # Sober, for roblox
       {
-        flatpakref = "https://sober.vinegarhq.org/sober.flatpakref";
-        sha256 = "1pj8y1xhiwgbnhrr3yr3ybpfis9slrl73i0b1lc9q89vhip6ym2l";
+        appId = "org.vinegarhq.Sober";
+        origin = "flathub";
       }
       # torrhunt
       {
         appId = "com.ktechpit.torrhunt";
+        origin = "flathub";
+      }
+      # dino
+      {
+        appId = "im.dino.Dino";
         origin = "flathub";
       }
       #onionshare-gui
