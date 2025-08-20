@@ -104,7 +104,6 @@ in
     polari
     protontricks
     protonvpn-gui
-    ptyxis
     seahorse
     shattered-pixel-dungeon
     ungoogled-chromium

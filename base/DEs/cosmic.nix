@@ -14,6 +14,11 @@
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   environment.cosmic.excludePackages = with pkgs; [
+    cosmic-store
+  ];
+  environment.systemPackages = with pkgs; [
+    quick-webapps
+    cosmic-ext-tweaks
   ];
 
   # Enable GNOME keyring as cosmic doesn't have one yet
