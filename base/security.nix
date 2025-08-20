@@ -35,9 +35,6 @@
   # Restrict Nix access
   nix.settings.allowed-users = [ "radioaddition" ];
 
-  # Disable sudo in favor of run0
-  # security.sudo.enable = false; # disabled while run0 is broken
-
   # Yubikey Pam login
   security.pam.yubico = {
     enable = true;
@@ -94,7 +91,12 @@
   # environment.variables.SCUDO_OPTIONS = "ZeroContents=1";
 
   security = {
-    sudo.execWheelOnly = true;
+    sudo = {
+      # Disable sudo in favor of run0
+      enable = false;
+      # Enable this if I have to enable sudo
+      # execWheelOnly = true;
+    };
 
     lockKernelModules = true;
 
