@@ -24,14 +24,12 @@ in
     eza
     fastfetch
     fish
-    fractal
     fragments
     fzf
     gcc
     gettext
     git
     git-repo
-    glas
     gleam
     glib
     glow
@@ -41,7 +39,6 @@ in
     hyfetch
     inputs.agenix.packages.x86_64-linux.default
     inputs.neovim.packages.x86_64-linux.default
-    iosevka
     just
     lazygit
     libvirt
@@ -70,7 +67,6 @@ in
     tuba
     up
     usbtop
-    valent
     wget
     wl-clipboard
     wlrctl
@@ -90,6 +86,7 @@ in
     direnv
     discover-overlay
     distrobox
+    fractal
     gnome-extension-manager
     gnome-tweaks
     gparted
@@ -111,6 +108,7 @@ in
     seahorse
     shattered-pixel-dungeon
     ungoogled-chromium
+    valent
     virt-manager
     virt-viewer
     wormhole-william

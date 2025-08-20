@@ -9,9 +9,6 @@
   # Enable ROCM support
   nixpkgs.config.rocmSupport = true;
 
-  # Enable lix (temporary)
-  nix.package = pkgs.lix;
-
   # Extend timeout of home-manager service so it doesn't fail
   systemd.services.home-manager-radioaddition.serviceConfig.TimeoutStartSec = lib.mkForce 600;
 

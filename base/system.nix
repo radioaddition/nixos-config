@@ -180,6 +180,9 @@
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
+
+    # Temporarily enable lix this way until builds succeed
+    package = pkgs.lix;
   };
 
   # Enable ADB/Fastboot
