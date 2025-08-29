@@ -23,6 +23,9 @@
     };
   };
 
+  # NTP
+  services.ntp.enable = true;
+
   # iwd
   # networking.wireless.iwd = {
   #   enable = true;
