@@ -23,6 +23,7 @@
   };
   services.xserver.videoDrivers = [ "amdgpu" ];
   hardware.steam-hardware.enable = true;
+  hardware.xpadneo.enable = true;
 
   programs.gamescope.enable = true;
   programs.java.enable = true;
