@@ -19,6 +19,7 @@ in
     btrfs-progs
     busybox
     curl
+    cyme
     deadnix
     exfatprogs
     eza
