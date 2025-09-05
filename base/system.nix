@@ -63,6 +63,7 @@
   # Base system packages not included
   environment.systemPackages = with pkgs; [
     (pkgs.uutils-coreutils.override { prefix = ""; })
+    (pkgs.writeScriptBin "sudo" ''exec run0 "$@"'')
     exfat
     exfatprogs
     git
