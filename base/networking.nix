@@ -11,7 +11,12 @@
   # CaptivePortal logins
   programs.captive-browser = {
     enable = true;
-    interface = "wlan0";
+
+    # iwd
+    # interface = "wlan0";
+
+    # NetworkManager
+    interface = "wlp1s0";
   };
 
   # NetworkManager
