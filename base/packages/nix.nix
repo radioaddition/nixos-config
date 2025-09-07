@@ -61,6 +61,7 @@ in
     redis
     ripgrep
     rsync
+    rustup
     sbctl
     statix
     tealdeer
