@@ -88,6 +88,7 @@ in
     direnv
     discover-overlay
     distrobox
+    equibop
     fractal
     gnome-extension-manager
     gnome-tweaks
