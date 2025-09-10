@@ -38,8 +38,9 @@
     flake = "/home/radioaddition/nixos-config/";
   };
 
-  # envfs (make scripts work)
+  # make external scripts and binaries work
   services.envfs.enable = true;
+  programs.nix-ld.enable = true;
 
   # Swapfile oneshot service
   systemd.services = {
