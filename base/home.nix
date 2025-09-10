@@ -10,8 +10,8 @@
   # home.username = "radioaddition";
   # home.homeDirectory = "/home/radioaddition";
 
-  # lorri
-  services.lorri.enable = true;
+  # nix-direnv
+  programs.direnv.enable = true;
 
   programs.git = {
     enable = true;
