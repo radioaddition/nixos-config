@@ -35,10 +35,11 @@
     };
     jovian = {
       url = "github:jovian-experiments/jovian-nixos";
+      inputs.nixpkgs.follows = "nixpkgs";
       # inputs.nixpkgs.follows = "jovian-ref";
     };
     # In case normal unstable breaks
-    jovian-ref.url = "github:nixos/nixpkgs/8f3e1f807051e32d8c95cd12b9b421623850a34d";
+    # jovian-ref.url = "github:nixos/nixpkgs/8f3e1f807051e32d8c95cd12b9b421623850a34d";
     treefmt.url = "github:numtide/treefmt-nix";
     neovim.url = "https://codeberg.org/radioaddition/neovim/archive/main.tar.gz";
     disko = {
@@ -63,6 +64,10 @@
     };
     programsdb = {
       url = "github:wamserma/flake-programs-sqlite";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    tidaluna = {
+      url = "github:Inrixia/TidaLuna";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
