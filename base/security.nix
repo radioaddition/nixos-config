@@ -80,11 +80,11 @@
   # Disable CUPS
   services.printing.enable = false;
 
-  # Use dbus-broker instead of dbus
+  # Use dbus-broker instead of dbus-daemon
   services.dbus.implementation = "broker";
 
   # copied and modified from hardened.nix profile
-  environment.memoryAllocator.provider = "graphene-hardened-light";
+  environment.memoryAllocator.provider = "graphene-hardened";
 
   # Use if the above causes issues
   # environment.memoryAllocator.provider = "graphene-hardened-light";
