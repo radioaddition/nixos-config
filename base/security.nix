@@ -88,6 +88,7 @@
 
   # Use if the above causes issues
   # environment.memoryAllocator.provider = "graphene-hardened-light";
+  # environment.memoryAllocator.provider = "scudo";
   # environment.variables.SCUDO_OPTIONS = "ZeroContents=1";
 
   security = {

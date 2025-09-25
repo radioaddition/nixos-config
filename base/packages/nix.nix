@@ -40,7 +40,6 @@ in
     hyfetch
     inputs.agenix.packages.x86_64-linux.default
     inputs.neovim.packages.x86_64-linux.default
-    inputs.tidaluna.packages.${system}.default
     just
     lazygit
     libvirt

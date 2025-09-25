@@ -57,8 +57,8 @@
     services.usbguard.enable = lib.mkForce false;
 
     # Switch to a more perfomant secure memory allocator
-    environment.memoryAllocator.provider = lib.mkForce "scudo";
-    environment.variables.SCUDO_OPTIONS = "ZeroContents=1";
+    environment.memoryAllocator.provider = lib.mkForce "graphene-hardened-light";
+    # environment.variables.SCUDO_OPTIONS = "ZeroContents=1";
 
     # Disable kernel hardening in gaming mode for performance
     boot.kernelParams = lib.mkForce [

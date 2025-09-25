@@ -66,10 +66,6 @@
       url = "github:wamserma/flake-programs-sqlite";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    tidaluna = {
-      url = "github:Inrixia/TidaLuna";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =

@@ -127,7 +127,7 @@
             sha256 = "sha256-Gkvi/mtSRqpKyJh6ikrzTEKo3X0ItGq0hRa8wb77zYM=";
           };
           version = "6.16";
-          modDirVersion = "6.16.0";
+          modDirVersion = "6.16.9";
         };
       }
     );
