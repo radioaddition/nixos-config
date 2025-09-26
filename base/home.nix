@@ -11,7 +11,8 @@
   # home.homeDirectory = "/home/radioaddition";
 
   # nix-direnv
-  programs.direnv.enable = true;
+  # programs.direnv.enable = true;
+  services.lorri.enable = true;
 
   programs.git = {
     enable = true;
