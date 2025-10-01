@@ -89,10 +89,11 @@
       starship init fish | source
       enable_transience
       atuin init fish | source
-      direnv hook fish | source
       chezmoi completion fish | source
+      direnv hook fish | source
       just --completions fish | source
       nh completions fish | source
+      zoxide init fish | source
 
       # Misc variables
       set -Ux HOSTNAME $(hostname)
