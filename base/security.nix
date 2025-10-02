@@ -92,11 +92,12 @@
   # environment.variables.SCUDO_OPTIONS = "ZeroContents=1";
 
   security = {
-    sudo = {
       # Disable sudo in favor of run0
-      enable = false;
-      # Enable this if I have to enable sudo
-      # execWheelOnly = true;
+    sudo.enable = false;
+    sudo-rs = {
+      # To use as a temporary sudo if needed
+      # enable = true;
+      execWheelOnly = true;
     };
 
     lockKernelModules = true;
