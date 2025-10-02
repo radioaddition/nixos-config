@@ -26,6 +26,7 @@
     shellAbbrs = {
       clearls = "clear && eza -al -I .git";
       ls = "eza -al -I .git";
+      cd = "z";
       archive = "tar -czvf archive.tar.gz ";
       extract = "tar -xzvf ";
       so = "exec fish";

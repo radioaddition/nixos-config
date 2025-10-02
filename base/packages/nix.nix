@@ -65,6 +65,7 @@ in
     sbctl
     statix
     tealdeer
+    tmux
     topgrade
     tuba
     up
