@@ -72,7 +72,6 @@ in
     usbtop
     wget
     wl-clipboard
-    wlrctl
     yazi
     zoxide
   ];
@@ -94,7 +93,6 @@ in
     gnome-extension-manager
     gnome-tweaks
     gparted
-    guake
     helvum
     impression
     jamesdsp
@@ -103,15 +101,12 @@ in
     mindustry-wayland
     onionshare-gui
     pavucontrol
-    picard
     pika-backup
-    polari
     protontricks
     protonvpn-gui
     seahorse
     shattered-pixel-dungeon
     ungoogled-chromium
-    valent
     virt-manager
     virt-viewer
     wormhole-william
