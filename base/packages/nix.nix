@@ -96,6 +96,7 @@ in
     helvum
     impression
     jamesdsp
+    libreoffice-fresh
     lumafly
     lutris
     mindustry-wayland
