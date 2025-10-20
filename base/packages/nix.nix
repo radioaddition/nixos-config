@@ -17,6 +17,7 @@ in
     bat-extras.batman
     btop
     btrfs-progs
+    brave
     busybox
     curl
     cyme
