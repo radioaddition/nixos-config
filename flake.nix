@@ -5,7 +5,6 @@
     # Base inputs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     stable.url = "github:nixos/nixpkgs/nixos-25.05";
-    oldstable.url = "github:nixos/nixpkgs/nixos-24.11"; # Needed for nix-on-droid
     lix = {
       url = "https://git.lix.systems/lix-project/nixos-module/archive/main.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -24,14 +23,9 @@
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nix-flatpak.url = "github:gmodena/nix-flatpak";
-    llakaLib = {
-      url = "github:/llakala/llakaLib";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     menu = {
       url = "github:/llakala/menu";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.llakaLib.follows = "llakaLib";
     };
     jovian = {
       url = "github:jovian-experiments/jovian-nixos";
@@ -57,10 +51,6 @@
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    nix-on-droid = {
-      url = "github:nix-community/nix-on-droid/release-24.05";
-      inputs.nixpkgs.follows = "oldstable";
     };
     programsdb = {
       url = "github:wamserma/flake-programs-sqlite";
@@ -99,7 +89,9 @@
 
         packages = with nixpkgs.legacyPackages.x86_64-linux; [
           age
+          atuin
           deadnix
+          eza
           fastfetch
           fish
           fzf
@@ -111,6 +103,9 @@
           just
           nh
           sbctl
+          starship
+          yazi
+          zoxide
         ];
       };
 

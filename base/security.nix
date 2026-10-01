@@ -66,7 +66,7 @@
 
   # Enable secure boot
   boot.lanzaboote = {
-    enable = true;
+    enable = false;
     pkiBundle = "/var/lib/sbctl";
   };
 

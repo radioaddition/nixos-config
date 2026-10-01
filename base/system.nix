@@ -120,14 +120,14 @@
 
     # Pin kernel version
     kernelPackages = pkgs.linuxPackagesFor (
-      pkgs.linuxKernel.kernels.linux_6_16.override {
+      pkgs.linuxKernel.kernels.linux_latest.override {
         argsOverride = rec {
           src = pkgs.fetchurl {
             url = "mirror://kernel/linux/kernel/v${lib.versions.major version}.x/linux-${version}.tar.xz";
-            sha256 = "sha256-esjIo88FR2N13qqoXfzuCVqCb/5Ve0N/Q3dPw7ZM5Y0=";
+            sha256 = "sha256-EujVqXPRrXxaXGmILkAisTHtcV23AD/c12Dd+MPlGUE=";
           };
-          version = "6.16.9";
-          modDirVersion = "6.16.9";
+          version = "7.2.8";
+          modDirVersion = "7.2.8";
         };
       }
     );
@@ -203,5 +203,5 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "25.05"; # Did you read the comment?
+  system.stateVersion = "25.11"; # Did you read the comment?
 }
