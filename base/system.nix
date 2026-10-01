@@ -119,18 +119,18 @@
     initrd.systemd.enable = true;
 
     # Pin kernel version
-    kernelPackages = pkgs.linuxPackagesFor (
-      pkgs.linuxKernel.kernels.linux_latest.override {
-        argsOverride = rec {
-          src = pkgs.fetchurl {
-            url = "mirror://kernel/linux/kernel/v${lib.versions.major version}.x/linux-${version}.tar.xz";
-            sha256 = "sha256-EujVqXPRrXxaXGmILkAisTHtcV23AD/c12Dd+MPlGUE=";
-          };
-          version = "7.2.8";
-          modDirVersion = "7.2.8";
-        };
-      }
-    );
+    # kernelPackages = pkgs.linuxPackagesFor (
+    #   pkgs.linuxKernel.kernels.linux_latest.override {
+    #     argsOverride = rec {
+    #       src = pkgs.fetchurl {
+    #         url = "mirror://kernel/linux/kernel/v${lib.versions.major version}.x/linux-${version}.tar.xz";
+    #         sha256 = "sha256-EujVqXPRrXxaXGmILkAisTHtcV23AD/c12Dd+MPlGUE=";
+    #       };
+    #       version = "7.2.8";
+    #       modDirVersion = "7.2.8";
+    #     };
+    #   }
+    # );
   };
 
   hardware.enableAllFirmware = true;
