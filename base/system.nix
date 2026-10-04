@@ -108,7 +108,7 @@
     # Misc bootloader config
     loader = {
       timeout = 0;
-      systemd-boot.enable = if config.boot.lanzaboote.enable then false else true;
+      systemd-boot.enable = false;
       efi.canTouchEfiVariables = true;
     };
     extraModprobeConfig = ''
@@ -119,18 +119,18 @@
     initrd.systemd.enable = true;
 
     # Pin kernel version
-    # kernelPackages = pkgs.linuxPackagesFor (
-    #   pkgs.linuxKernel.kernels.linux_latest.override {
-    #     argsOverride = rec {
-    #       src = pkgs.fetchurl {
-    #         url = "mirror://kernel/linux/kernel/v${lib.versions.major version}.x/linux-${version}.tar.xz";
-    #         sha256 = "sha256-EujVqXPRrXxaXGmILkAisTHtcV23AD/c12Dd+MPlGUE=";
-    #       };
-    #       version = "7.2.8";
-    #       modDirVersion = "7.2.8";
-    #     };
-    #   }
-    # );
+    kernelPackages = pkgs.linuxPackagesFor (
+      pkgs.linuxKernel.kernels.linux_latest.override {
+        argsOverride = rec {
+          src = pkgs.fetchurl {
+            url = "mirror://kernel/linux/kernel/v${lib.versions.major version}.x/linux-${version}.tar.xz";
+            sha256 = "sha256-EujVqXPRrXxaXGmILkAisTHtcV23AD/c12Dd+MPlGUE=";
+          };
+          version = "7.2.8";
+          modDirVersion = "7.2.8";
+        };
+      }
+    );
   };
 
   hardware.enableAllFirmware = true;
@@ -181,17 +181,16 @@
     settings = {
       auto-optimise-store = true;
       warn-dirty = false;
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+
+      # Enable the Lix binary cache
+      substituters = [ "https://afnix-hydra.s3-bulk-web.afnix.fr/" ];
+      trusted-public-keys = [ "afnix:oqt801y+IwJ09XRtNDQYCKb7zuCw9DQXQk8fDWPkwxM=" ];
     };
-    extraOptions = ''
-      experimental-features = nix-command flakes
-    '';
-
-    # Temporarily enable lix this way until builds succeed
-    package = pkgs.lix;
   };
-
-  # Enable ADB/Fastboot
-  programs.adb.enable = true;
 
   # Replace coreutils with uutils-coreutils
 

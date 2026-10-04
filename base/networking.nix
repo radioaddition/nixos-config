@@ -67,11 +67,13 @@
   ];
   services.resolved = {
     enable = true;
-    dnssec = "true";
-    dnsovertls = "true";
-    domains = [ "~." ];
-    #llmnr = "true";
-    fallbackDns = (config.networking.nameservers ++ [ "1.1.1.1" ]);
+    settings.Resolve = {
+      DNSSEC = "true";
+      DNSOverTLS = "true";
+      Domains = [ "~." ];
+      #llmnr = "true";
+      FallbackDns = (config.networking.nameservers ++ [ "1.1.1.1" ]);
+    };
   };
 
   # KDE Connect

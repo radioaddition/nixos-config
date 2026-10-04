@@ -4,10 +4,15 @@
   inputs = {
     # Base inputs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    stable.url = "github:nixos/nixpkgs/nixos-25.05";
+    stable.url = "github:nixos/nixpkgs/nixos-26.05";
     lix = {
+      url = "https://git.lix.systems/lix-project/lix/archive/main.tar.gz";
+      flake = false;
+    };
+    lix-module = {
       url = "https://git.lix.systems/lix-project/nixos-module/archive/main.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.lix.follows = "lix";
     };
     flake-compat = {
       url = "git+https://git.lix.systems/lix-project/flake-compat";
@@ -19,7 +24,6 @@
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.darwin.follows = "";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nix-flatpak.url = "github:gmodena/nix-flatpak";
@@ -44,10 +48,6 @@
       url = "github:feel-co/hjem";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    home-manager = {
-      url = "github:nix-community/home-manager/master";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -61,8 +61,8 @@
   outputs =
     {
       hjem,
-      home-manager,
       lix,
+      lix-module,
       nixos-hardware,
       nixpkgs,
       self,
@@ -138,19 +138,8 @@
             ./init/disko.nix
             ./init/filesystem.nix
             hjem.nixosModules.hjem
-            home-manager.nixosModules.home-manager
-            #lix.nixosModules.default
+            lix-module.nixosModules.default
             nixos-hardware.nixosModules.framework-13-7040-amd
-
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.backupFileExtension = "bak";
-              hm.imports = [
-                ./base/home.nix
-                ./hosts/framework/home.nix
-              ];
-            }
           ];
         };
 
@@ -159,7 +148,6 @@
           specialArgs = { inherit inputs; };
           modules = [
             inputs.disko.nixosModules.disko
-            home-manager.nixosModules.home-manager
             hjem.nixosModules.hjem
             ./base/users.nix
             ./base/aliases.nix
@@ -167,12 +155,6 @@
             ./hosts/installer/hardware-configuration.nix
             ./init/disko.nix
             ./init/filesystem.nix
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.backupFileExtension = "bak";
-              hm.imports = [ ./base/home.nix ];
-            }
           ];
         };
 
@@ -182,56 +164,7 @@
           modules = [
             ./hosts/galith/configuration.nix
             ./hosts/galith/hardware-configuration.nix
-            #	  home-manager.nixosModules.home-manager {
-            #	    home-manager.useGlobalPkgs = true;
-            #	    home-manager.useUserPackages = true;
-            #	    home-manager.users.radioaddition = [ import ./hosts/galith/home.nix ];
-            #	  }
           ];
-        };
-      };
-
-      homeConfigurations = {
-        "aspirem" = home-manager.lib.homeManagerConfiguration {
-          extraSpecialArgs = { inherit inputs; };
-          pkgs = nixpkgs.legacyPackages."x86_64-linux";
-          modules = [ ./hosts/aspirem/home.nix ];
-        };
-
-        "framework" = home-manager.lib.homeManagerConfiguration {
-          extraSpecialArgs = { inherit inputs; };
-          pkgs = nixpkgs.legacyPackages."x86_64-linux";
-          modules = [
-            inputs.nix-flatpak.homeManagerModules.nix-flatpak
-            ./hosts/framework/home.nix
-            ./base/home.nix
-          ];
-        };
-        "oriole" = home-manager.lib.homeManagerConfiguration {
-          extraSpecialArgs = { inherit inputs; };
-          pkgs = nixpkgs.legacyPackages."aarch64-linux";
-          modules = [
-            ./base/home.nix
-            {
-              home = {
-                stateVersion = "24.05";
-                username = "nix-on-droid";
-                homeDirectory = "/data/data/com.termux.nix/files/home/";
-              };
-            }
-          ];
-        };
-
-        "galith" = home-manager.lib.homeManagerConfiguration {
-          extraSpecialArgs = { inherit inputs; };
-          pkgs = nixpkgs.legacyPackages."x86_64-linux";
-          modules = [ ./hosts/galith/home.nix ];
-        };
-
-        "deck" = home-manager.lib.homeManagerConfiguration {
-          extraSpecialArgs = { inherit inputs; };
-          pkgs = nixpkgs.legacyPackages."x86_64-linux";
-          modules = [ ./hosts/deck/home.nix ];
         };
       };
     };

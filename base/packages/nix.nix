@@ -4,14 +4,12 @@ let
   stable = inputs.stable.legacyPackages.${pkgs.system};
 in
 {
-  imports = [
-    ./radicle
-  ];
 
   # System packages
   environment.systemPackages = with pkgs; [
     age
     alejandra
+    android-tools
     atuin
     bat
     bat-extras.batman
@@ -79,7 +77,6 @@ in
 
   # User packages
   users.users.radioaddition.packages = with pkgs; [
-    # Packages
     bottles
     boxbuddy
     cartridges
@@ -97,7 +94,7 @@ in
     helvum
     impression
     jamesdsp
-    libreoffice-fresh
+    libreoffice
     lumafly
     lutris
     mindustry-wayland
@@ -105,7 +102,7 @@ in
     pavucontrol
     pika-backup
     protontricks
-    protonvpn-gui
+    proton-vpn
     seahorse
     shattered-pixel-dungeon
     ungoogled-chromium

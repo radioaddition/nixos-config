@@ -7,9 +7,6 @@
 }:
 {
   # Imports
-  imports = [
-    inputs.lanzaboote.nixosModules.lanzaboote
-  ];
   # Required packages
   environment.systemPackages = with pkgs; [
     socat
@@ -35,12 +32,6 @@
   # Restrict Nix access
   nix.settings.allowed-users = [ "radioaddition" ];
 
-  # Yubikey Pam login
-  security.pam.yubico = {
-    enable = true;
-    mode = "challenge-response";
-    id = [ "27725426" ];
-  };
   # Lock device upon removal
   #services.udev.extraRules = ''
   #    ACTION=="remove",\
@@ -65,17 +56,25 @@
   };
 
   # Enable secure boot
-  boot.lanzaboote = {
-    enable = false;
-    pkiBundle = "/var/lib/sbctl";
+  boot.loader.limine = {
+    enable = true;
+    secureBoot = {
+      enable = true;
+      autoEnrollKeys = {
+        enable = true;
+        extraArgs = [
+          "--firmware-builtin"
+        ];
+      };
+    };
   };
 
   # Enable tpm unlock
-  security.tpm2 = {
-    enable = true;
-    pkcs11.enable = true;
-    tctiEnvironment.enable = true;
-  };
+  # security.tpm2 = {
+  #   enable = true;
+  #   pkcs11.enable = true;
+  #   tctiEnvironment.enable = true;
+  # };
 
   # Disable CUPS
   services.printing.enable = false;
@@ -107,9 +106,6 @@
     allowSimultaneousMultithreading = true;
 
     forcePageTableIsolation = true;
-
-    # This is required by podman to run containers in rootless mode.
-    unprivilegedUsernsClone = config.virtualisation.containers.enable;
 
     virtualisation.flushL1DataCache = "always";
   };
@@ -266,37 +262,39 @@
       "udlfb"
     ];
 
-    # Hide kptrs even for processes with CAP_SYSLOG
-    kernel.sysctl."kernel.kptr_restrict" = lib.mkOverride 500 2;
+    kernel.sysctl = {
+      # Hide kptrs even for processes with CAP_SYSLOG
+      "kernel.kptr_restrict" = lib.mkOverride 500 2;
 
-    # Disable bpf() JIT (to eliminate spray attacks)
-    kernel.sysctl."net.core.bpf_jit_enable" = false;
+      # Disable bpf() JIT (to eliminate spray attacks)
+      "net.core.bpf_jit_enable" = false;
 
-    # Disable ftrace debugging
-    kernel.sysctl."kernel.ftrace_enabled" = false;
+      # Disable ftrace debugging
+      "kernel.ftrace_enabled" = false;
 
-    # Enable strict reverse path filtering (that is, do not attempt to route
-    # packets that "obviously" do not belong to the iface's network; dropped
-    # packets are logged as martians).
-    kernel.sysctl."net.ipv4.conf.all.log_martians" = true;
-    kernel.sysctl."net.ipv4.conf.all.rp_filter" = "1";
-    kernel.sysctl."net.ipv4.conf.default.log_martians" = true;
-    kernel.sysctl."net.ipv4.conf.default.rp_filter" = "1";
+      # Enable strict reverse path filtering (that is, do not attempt to route
+      # packets that "obviously" do not belong to the iface's network; dropped
+      # packets are logged as martians).
+      "net.ipv4.conf.all.log_martians" = true;
+      "net.ipv4.conf.all.rp_filter" = "1";
+      "net.ipv4.conf.default.log_martians" = true;
+      "net.ipv4.conf.default.rp_filter" = "1";
 
-    # Ignore broadcast ICMP (mitigate SMURF)
-    kernel.sysctl."net.ipv4.icmp_echo_ignore_broadcasts" = true;
+      # Ignore broadcast ICMP (mitigate SMURF)
+      "net.ipv4.icmp_echo_ignore_broadcasts" = true;
 
-    # Ignore incoming ICMP redirects (note: default is needed to ensure that the
-    # setting is applied to interfaces added after the sysctls are set)
-    kernel.sysctl."net.ipv4.conf.all.accept_redirects" = false;
-    kernel.sysctl."net.ipv4.conf.all.secure_redirects" = false;
-    kernel.sysctl."net.ipv4.conf.default.accept_redirects" = false;
-    kernel.sysctl."net.ipv4.conf.default.secure_redirects" = false;
-    kernel.sysctl."net.ipv6.conf.all.accept_redirects" = false;
-    kernel.sysctl."net.ipv6.conf.default.accept_redirects" = false;
+      # Ignore incoming ICMP redirects (note: default is needed to ensure that the
+      # setting is applied to interfaces added after the sysctls are set)
+      "net.ipv4.conf.all.accept_redirects" = false;
+      "net.ipv4.conf.all.secure_redirects" = false;
+      "net.ipv4.conf.default.accept_redirects" = false;
+      "net.ipv4.conf.default.secure_redirects" = false;
+      "net.ipv6.conf.all.accept_redirects" = false;
+      "net.ipv6.conf.default.accept_redirects" = false;
 
-    # Ignore outgoing ICMP redirects (this is ipv4 only)
-    kernel.sysctl."net.ipv4.conf.all.send_redirects" = false;
-    kernel.sysctl."net.ipv4.conf.default.send_redirects" = false;
+      # Ignore outgoing ICMP redirects (this is ipv4 only)
+      "net.ipv4.conf.all.send_redirects" = false;
+      "net.ipv4.conf.default.send_redirects" = false;
+    };
   };
 }

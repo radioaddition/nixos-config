@@ -115,6 +115,4 @@
       { appId = "io.github.wivrn.wivrn"; origin = "flathub"; }
     ];
   };
-  # Flatpak requires this functionality
-  security.unprivilegedUsernsClone = config.services.flatpak.enable;
 }

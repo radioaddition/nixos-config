@@ -4,10 +4,4 @@ let
   all-keys = [ agekey framework-ssh ];
 in
 {
-  "base/programs/radicle/radicle.age" = {
-    publicKeys = all-keys;
-    mode = "0550";
-    owner = "radicle";
-    group = "radicle";
-  };
 }

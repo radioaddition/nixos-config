@@ -102,30 +102,4 @@
       set -Ux MANPAGER 'nvim +Man!'
     '';
   };
-
-  hm = {
-    home.sessionPath = [
-      "$HOME/.local/bin"
-      "$HOME/bin"
-      "$HOME/.cargo/bin"
-      "/home/linuxbrew/.linuxbrew/bin"
-      "/home/linuxbrew/.linuxbrew/sbin"
-      "$HOME/.nix-profile/bin"
-    ];
-
-    # Atuin
-    programs.atuin = {
-      enable = true;
-      settings = {
-        update_check = false;
-        filter_mode = "session";
-        workspaces = true;
-        style = "auto";
-        exit_mode = "return-query";
-        ctrl_n_shortcuts = false;
-        enter_accept = true;
-        keymap_mode = "vim-insert";
-      };
-    };
-  };
 }

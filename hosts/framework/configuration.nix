@@ -18,7 +18,7 @@
   # Improve sound quality
   hardware.framework.laptop13.audioEnhancement = {
     enable = true;
-    # Turn base speaker volume up to max before applying this
+    # Turn base speaker volume up to max before setting to true
     hideRawDevice = false;
   };
 }
