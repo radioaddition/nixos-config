@@ -64,6 +64,7 @@
     "2a07:a8c1::#cf76b1.dns.nextdns.io"
     "45.90.30.0#cf76b1.dns.nextdns.io"
     "194.242.2.4"
+    "1.1.1.1"
   ];
   services.resolved = {
     enable = true;

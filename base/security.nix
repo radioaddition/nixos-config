@@ -45,9 +45,7 @@
   # USBGuard
   users.users.radioaddition.packages = [ pkgs.usbguard-notifier ];
   services.usbguard = {
-    # Leave disabled unless I'm travelling as it makes some usb connections (tethering + adb mainly) really finnicky
-    # enable = true;
-    enable = false;
+    enable = true;
     presentControllerPolicy = "apply-policy";
     IPCAllowedUsers = [
       "root"
