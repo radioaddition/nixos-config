@@ -88,7 +88,7 @@
   environment.memoryAllocator.provider = "scudo";
   environment.variables.SCUDO_OPTIONS = "ZeroContents=1";
 
-  # security = {
+  security = {
   #     # Disable sudo in favor of run0
   #   sudo.enable = false;
   #   sudo-rs = {
