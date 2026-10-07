@@ -57,7 +57,7 @@
   boot.loader.limine = {
     enable = true;
     secureBoot = {
-      enable = true;
+      enable = false;
       autoEnrollKeys = {
         enable = true;
         extraArgs = [
