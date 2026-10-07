@@ -81,21 +81,21 @@
   services.dbus.implementation = "broker";
 
   # copied and modified from hardened.nix profile
-  environment.memoryAllocator.provider = "graphene-hardened";
+  # environment.memoryAllocator.provider = "graphene-hardened";
 
   # Use if the above causes issues
   # environment.memoryAllocator.provider = "graphene-hardened-light";
-  # environment.memoryAllocator.provider = "scudo";
-  # environment.variables.SCUDO_OPTIONS = "ZeroContents=1";
+  environment.memoryAllocator.provider = "scudo";
+  environment.variables.SCUDO_OPTIONS = "ZeroContents=1";
 
-  security = {
-      # Disable sudo in favor of run0
-    sudo.enable = false;
-    sudo-rs = {
-      # To use as a temporary sudo if needed
-      # enable = true;
-      execWheelOnly = true;
-    };
+  # security = {
+  #     # Disable sudo in favor of run0
+  #   sudo.enable = false;
+  #   sudo-rs = {
+  #     # To use as a temporary sudo if needed
+  #     # enable = true;
+  #     execWheelOnly = true;
+  #   };
 
     lockKernelModules = true;
 
@@ -103,7 +103,7 @@
 
     allowSimultaneousMultithreading = true;
 
-    forcePageTableIsolation = true;
+    forcePageTableIsolation = false;
 
     virtualisation.flushL1DataCache = "always";
   };
@@ -114,7 +114,7 @@
       "amd_iommu=force_isolation"
       "debugfs=off"
       "init_on_alloc=1"
-      "init_on_free=1"
+      # "init_on_free=1"
       "iommu.passthrough=0"
       "iommu.strict=1"
       "iommu=force"
@@ -129,7 +129,7 @@
       "random.trust_bootloader=off"
       "random.trust_cpu=off"
       "randomize_kstack_offset=on"
-      "slab_nomerge"
+      # "slab_nomerge"
       "spec_store_bypass_disable=auto"
       "spectre_v2=on"
       "vsyscall=none"
@@ -183,7 +183,7 @@
       "cifs"
       "coda"
       "cramfs"
-      "ecryptfs"
+      # "ecryptfs"
       "efs"
       "erofs"
       "exofs"
@@ -212,7 +212,7 @@
       "qnx6"
       "reiserfs"
       "romfs"
-      "squashfs"
+      # "squashfs"
       "sysv"
       "sysv"
       "ubifs"
