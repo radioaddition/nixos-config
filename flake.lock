@@ -269,7 +269,7 @@
         "narHash": "sha256-Ikdf593tWTFMkKhtScxE+t2fV+Myh8n4JeYU/0Xc8H8=",
         "rev": "c5b8d8576206ddce31b86e336476c2f9b8361085",
         "type": "tarball",
-        "url": "https://git.lix.systems/api/v1/repos/lix-project/nixos-module/archive/c5b8d8576206ddce31b86e336476c2f9b8361085.tar.gz?rev=c5b8d8576206ddce31b86e336476c2f9b8361085"
+        "url": "https://git.lix.systems/api/v1/repos/lix-project/nixos-module/archive/c5b8d8576206ddce31b86e336476c2f9b8361085.tar.gz"
       },
       "original": {
         "type": "tarball",
@@ -324,7 +324,7 @@
         "narHash": "sha256-PiOPBVPimgFPJciEm6WkkEzdW3smHjBsS2uyKcbnFXU=",
         "rev": "b959012592fb449fd345874d54822f2a73c5c43f",
         "type": "tarball",
-        "url": "https://codeberg.org/api/v1/repos/RadioAddition/neovim/archive/b959012592fb449fd345874d54822f2a73c5c43f.tar.gz?rev=b959012592fb449fd345874d54822f2a73c5c43f"
+        "url": "https://codeberg.org/api/v1/repos/RadioAddition/neovim/archive/b959012592fb449fd345874d54822f2a73c5c43f.tar.gz"
       },
       "original": {
         "type": "tarball",
