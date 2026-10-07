@@ -60,6 +60,7 @@
 
   outputs =
     {
+      disko,
       hjem,
       lix,
       lix-module,
@@ -137,6 +138,7 @@
             ./hosts/framework/hardware-configuration.nix
             ./init/disko.nix
             ./init/filesystem.nix
+	    disko.nixosModules.disko
             hjem.nixosModules.hjem
             lix-module.nixosModules.default
             nixos-hardware.nixosModules.framework-13-7040-amd
