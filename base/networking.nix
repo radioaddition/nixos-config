@@ -13,17 +13,17 @@
     enable = true;
 
     # iwd
-    # interface = "wlan0";
+    interface = "wlan0";
 
     # NetworkManager
-    interface = "wlp1s0";
+    # interface = "wlp1s0";
   };
 
   # NetworkManager
   networking.networkmanager = {
     enable = true;
     wifi = {
-      # backend = "iwd";
+      backend = "iwd";
       macAddress = "random";
     };
   };
@@ -32,24 +32,24 @@
   services.ntp.enable = true;
 
   # iwd
-  # networking.wireless.iwd = {
-  #   enable = true;
-  #   settings = {
-  #     General = {
-  #       EnableNetworkConfiguration = true;
-  #       # AddressRandomization = "network";
-  #       # AddressRandomizationRange = "full";
-  #       ManagementFrameProtection = "1";
-  #     };
-  #     Network = {
-  #       NameResolvingService = "systemd";
-  #     };
-  #     #Scan = {
-  #     #  DisablePeriodicScan = true;
-  #     #  DisableRoamingScan = true;
-  #     #};
-  #   };
-  # };
+  networking.wireless.iwd = {
+    enable = true;
+    settings = {
+      General = {
+        EnableNetworkConfiguration = true;
+        AddressRandomization = "network";
+        AddressRandomizationRange = "full";
+        ManagementFrameProtection = "1";
+      };
+      Network = {
+        NameResolvingService = "systemd";
+      };
+      #Scan = {
+      #  DisablePeriodicScan = true;
+      #  DisableRoamingScan = true;
+      #};
+    };
+  };
 
   # systemd-networkd
   boot.initrd.systemd.network.enable = true;

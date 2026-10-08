@@ -80,13 +80,15 @@
   # Use dbus-broker instead of dbus-daemon
   services.dbus.implementation = "broker";
 
+  # as of 26.05/11, any of these options break the nix builders & any display servers, so I suppose I'll live with glibc until that's fixed
+
   # copied and modified from hardened.nix profile
   # environment.memoryAllocator.provider = "graphene-hardened";
 
   # Use if the above causes issues
   # environment.memoryAllocator.provider = "graphene-hardened-light";
-  environment.memoryAllocator.provider = "scudo";
-  environment.variables.SCUDO_OPTIONS = "zero_contents=1";
+  # environment.memoryAllocator.provider = "scudo";
+  # environment.variables.SCUDO_OPTIONS = "zero_contents=1";
 
   security = {
   #     # Disable sudo in favor of run0

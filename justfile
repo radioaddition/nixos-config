@@ -40,7 +40,6 @@ install action argument:
     		git push
     	fi
     	sudo nixos-rebuild boot --flake ".#{{ argument }}" --install-bootloader
-    	home-manager switch --flake ".#{{ argument }}"
     else
     	nixos-generate-config --no-filesystems --root /tmp
     	mv /tmp/etc/nixos/hardware-configuration.nix ./hosts/installer/
