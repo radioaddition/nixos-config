@@ -19,8 +19,6 @@
       { appId = "com.usebottles.bottles"; origin = "flathub"; }
       # Dino
       { appId = "im.dino.Dino"; origin = "flathub"; }
-      # Discord client
-      { appId = "io.github.milkshiift.GoofCord"; origin = "flathub"; }
       # Disk usage analyzer
       { appId = "org.gnome.baobab"; origin = "flathub"; }
       # Document viewer
@@ -63,8 +61,6 @@
       { appId = "com.dec05eba.gpu_screen_recorder"; origin = "flathub"; }
       # Gnome Keepass client
       { appId = "org.gnome.World.Secrets"; origin = "flathub"; }
-      # GoodCord
-      { appId = "io.github.milkshiift.GoofCord"; origin = "flathub"; }
       # Ignition, startup process manager
       { appId = "io.github.flattool.Ignition"; origin = "flathub"; }
       # Image Viewer
