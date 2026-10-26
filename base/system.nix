@@ -37,6 +37,12 @@
     flake = "/home/radioaddition/nixos-config/";
   };
 
+  # Enable SSH
+  services.openssh = {
+    enable = lib.mkDefault true;
+    startWhenNeeded = lib.mkDefault true;
+  };
+
   # make external scripts and binaries work
   services.envfs.enable = true;
   programs.nix-ld.enable = true;

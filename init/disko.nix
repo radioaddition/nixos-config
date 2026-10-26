@@ -5,7 +5,7 @@
     disk = {
       main = {
         type = "disk";
-        #device = "/dev/some-disk"; # Make sure to specify this if not using disko-install
+        device = "/dev/mmcblk1"; # Make sure to specify this if not using disko-install
         content = {
           type = "gpt";
           partitions = {
@@ -25,7 +25,10 @@
                 type = "luks";
                 name = "crypted";
                 #passwordFile = "/tmp/passwordfile";
-                settings.allowDiscards = true;
+                settings = {
+                  keyFile = "/tmp/secret.key";
+                  allowDiscards = true;
+                };
                 content = {
                   type = "btrfs";
                   extraArgs = [ "-f" ];

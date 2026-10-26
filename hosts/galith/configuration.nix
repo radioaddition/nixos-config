@@ -12,9 +12,6 @@
 
   networking.hostName = "galith"; # Define your hostname.
 
-
-  # services.openssh.enable = true;
-
   security.acme.acceptTerms = true;
   system.stateVersion = "26.05";
 }
