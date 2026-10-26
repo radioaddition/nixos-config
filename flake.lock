@@ -175,26 +175,6 @@
         "type": "github"
       }
     },
-    "hjem": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1791289048,
-        "narHash": "sha256-JdmZVrzGDRRcOAwsYujnE7f/d1YZ9Xtk4z/1MWmQXxM=",
-        "owner": "feel-co",
-        "repo": "hjem",
-        "rev": "2b155694ce412300f240de06735c93779f9e19a4",
-        "type": "github"
-      },
-      "original": {
-        "owner": "feel-co",
-        "repo": "hjem",
-        "type": "github"
-      }
-    },
     "jovian": {
       "inputs": {
         "nix-github-actions": "nix-github-actions",
@@ -242,11 +222,11 @@
     "lix": {
       "flake": false,
       "locked": {
-        "lastModified": 1791304933,
-        "narHash": "sha256-o5/yN2U0oGo6Cbh3FwSvkLYjm7XyY6ZU8pv+mlmOrMI=",
-        "rev": "a3f7094877ebadc9bf6e1bad74bb04802548c763",
+        "lastModified": 1792808124,
+        "narHash": "sha256-OrvfBi44Z6hOOuw4EpbOi7iLsClgIYgvYFYlcM6EBSw=",
+        "rev": "7229002d4991d0c8c3301cae156d357492c7e246",
         "type": "tarball",
-        "url": "https://git.lix.systems/api/v1/repos/lix-project/lix/archive/a3f7094877ebadc9bf6e1bad74bb04802548c763.tar.gz?rev=a3f7094877ebadc9bf6e1bad74bb04802548c763"
+        "url": "https://git.lix.systems/api/v1/repos/lix-project/lix/archive/7229002d4991d0c8c3301cae156d357492c7e246.tar.gz?rev=7229002d4991d0c8c3301cae156d357492c7e246"
       },
       "original": {
         "type": "tarball",
@@ -3518,7 +3498,6 @@
         "agenix": "agenix",
         "disko": "disko",
         "flake-compat": "flake-compat",
-        "hjem": "hjem",
         "jovian": "jovian",
         "lanzaboote": "lanzaboote",
         "lix": "lix",
