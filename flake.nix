@@ -44,10 +44,6 @@
       url = "github:nix-community/disko/latest";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hjem = {
-      url = "github:feel-co/hjem";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     lanzaboote = {
       url = "github:nix-community/lanzaboote";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -61,7 +57,6 @@
   outputs =
     {
       disko,
-      hjem,
       lix,
       lix-module,
       nixos-hardware,
@@ -139,7 +134,6 @@
             ./init/disko.nix
             ./init/filesystem.nix
             disko.nixosModules.disko
-            hjem.nixosModules.hjem
             lix-module.nixosModules.default
             nixos-hardware.nixosModules.framework-13-7040-amd
           ];
@@ -150,9 +144,7 @@
           specialArgs = { inherit inputs; };
           modules = [
             inputs.disko.nixosModules.disko
-            hjem.nixosModules.hjem
             ./base/users.nix
-            ./base/aliases.nix
             ./hosts/installer/configuration.nix
             ./hosts/installer/hardware-configuration.nix
             ./init/disko.nix
@@ -178,7 +170,6 @@
             ./init/disko.nix
             ./init/filesystem.nix
             disko.nixosModules.disko
-            hjem.nixosModules.hjem
             lix-module.nixosModules.default
             nixos-hardware.nixosModules.framework-13-7040-amd
           ];
