@@ -26,7 +26,7 @@
                 name = "crypted";
                 #passwordFile = "/tmp/passwordfile";
                 settings = {
-                  keyFile = "/tmp/secret.key";
+                  # keyFile = "/tmp/secret.key";
                   allowDiscards = true;
                 };
                 content = {

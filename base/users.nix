@@ -16,7 +16,7 @@
       "wheel"
       "tss"
     ];
-    hashedPassword = "$y$j9T$F4h7o3ioLWalvZUhYzE8b.$2RrSEm8FmoZi3tS4EWGo2g0S0INy/oenfXqWn9yJqJA";
+    hashedPassword = lib.mkDefault "$y$j9T$F4h7o3ioLWalvZUhYzE8b.$2RrSEm8FmoZi3tS4EWGo2g0S0INy/oenfXqWn9yJqJA";
   };
   # Create a separate wheel user
   #  users.users.radioadmin = { # This has to be disabled until I can get building with run0 to work properly
