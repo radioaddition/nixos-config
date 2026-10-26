@@ -12,7 +12,6 @@
     "/home/radioaddition/.ssh/id_ed25519"
   ];
   imports = [
-    ./aliases.nix
     inputs.agenix.nixosModules.default
   ];
 
