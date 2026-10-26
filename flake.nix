@@ -138,7 +138,7 @@
             ./hosts/framework/hardware-configuration.nix
             ./init/disko.nix
             ./init/filesystem.nix
-	    disko.nixosModules.disko
+            disko.nixosModules.disko
             hjem.nixosModules.hjem
             lix-module.nixosModules.default
             nixos-hardware.nixosModules.framework-13-7040-amd
@@ -166,6 +166,21 @@
           modules = [
             ./hosts/galith/configuration.nix
             ./hosts/galith/hardware-configuration.nix
+            ./base/DEs/gnome.nix
+            ./base/gaming.nix
+            ./base/networking.nix
+            ./base/packages/flatpak.nix
+            ./base/packages/nix.nix
+            ./base/security.nix
+            ./base/shells/fish.nix
+            ./base/system.nix
+            ./base/users.nix
+            ./init/disko.nix
+            ./init/filesystem.nix
+            disko.nixosModules.disko
+            hjem.nixosModules.hjem
+            lix-module.nixosModules.default
+            nixos-hardware.nixosModules.framework-13-7040-amd
           ];
         };
       };
