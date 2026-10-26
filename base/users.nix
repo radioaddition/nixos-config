@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 {
   users.mutableUsers = false;
   users.users.radioaddition = {
