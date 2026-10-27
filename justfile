@@ -28,7 +28,7 @@ install action argument:
     #!/usr/bin/env bash
     set -euo pipefail
     # make annoying error shut up
-    sudo mkdir -p /nix/var/nix/profiles/per-user/root/channels
+    $SUDO mkdir -p /nix/var/nix/profiles/per-user/root/channels
     if [ "{{ action }}" == "finish" ]; then
     	echo "This assumes you are on the #installer flake, CD'd into your nix config directory and have the remote authentication set up"
     	nixos-generate-config --no-filesystems --root /tmp
@@ -39,7 +39,7 @@ install action argument:
     		git commit -m "add hardware-configuration.nix for {{ argument }}"
     		git push
     	fi
-    	sudo nixos-rebuild boot --flake ".#{{ argument }}" --install-bootloader
+    	$SUDO nixos-rebuild boot --flake ".#{{ argument }}" --install-bootloader
     else
     	nixos-generate-config --no-filesystems --root /tmp
     	mv /tmp/etc/nixos/hardware-configuration.nix ./hosts/installer/
@@ -47,7 +47,7 @@ install action argument:
     	if [ -d ".git" ]; then
     		git add ./hosts/installer/hardware-configuration.nix
     	fi
-    	sudo disko-install --flake ".#installer" --disk main "{{ argument }}"
+    	$SUDO disko-install --flake ".#installer" --disk main "{{ argument }}"
     fi
 
 alias fmt := format
@@ -64,23 +64,23 @@ setup:
 
 keys := "microsoft"
 setup-secureboot keys:
-    sudo sbctl create-keys
+    $SUDO sbctl create-keys
     nh os boot . -H $(hostname) -a
-    sudo sbctl verify
-    sudo sbctl enroll-keys --{{ keys }}
+    $SUDO sbctl verify
+    $SUDO sbctl enroll-keys --{{ keys }}
 
 test:
     nix eval .#nixosConfigurations.$(hostname).config.system.build.toplevel
 
 # Useful for new installs or kernel changes
 enroll-tpm:
-    -sudo systemd-cryptenroll /dev/disk/by-partlabel/disk-main-luks --wipe-slot=tpm2
-    sudo systemd-cryptenroll --tpm2-device=auto --tpm2-with-pin=yes --tpm2-pcrs="7+14" /dev/disk/by-partlabel/disk-main-luks
+    -$SUDO systemd-cryptenroll /dev/disk/by-partlabel/disk-main-luks --wipe-slot=tpm2
+    $SUDO systemd-cryptenroll --tpm2-device=auto --tpm2-with-pin=yes --tpm2-pcrs="7+14" /dev/disk/by-partlabel/disk-main-luks
 
 # Useful for new installs or kernel changes
 enroll-fido2:
-    -sudo systemd-cryptenroll /dev/disk/by-partlabel/disk-main-luks --wipe-slot=fido2
-    sudo systemd-cryptenroll --fido2-device=auto --fido2-with-client-pin=no --fido2-with-user-presence=yes /dev/disk/by-partlabel/disk-main-luks
+    -$SUDO systemd-cryptenroll /dev/disk/by-partlabel/disk-main-luks --wipe-slot=fido2
+    $SUDO systemd-cryptenroll --fido2-device=auto --fido2-with-client-pin=no --fido2-with-user-presence=yes /dev/disk/by-partlabel/disk-main-luks
 
 # Setup dev environment
 env:
