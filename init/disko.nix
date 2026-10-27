@@ -58,6 +58,9 @@
                     };
                     "swap" = {
                       mountpoint = "/swap";
+                      mountOptions = [
+                        "nodatacow"
+                      ];
                       swap = {
                         swapfile.size = "32G";
                         swapfile.path = "/swapfile";

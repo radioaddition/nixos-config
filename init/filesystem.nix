@@ -1,4 +1,4 @@
-{ ... }:
+{ lib, ... }:
 {
   boot.initrd.luks.devices."crypted" = {
     device = "/dev/disk/by-partlabel/disk-main-luks";
@@ -37,27 +37,28 @@
     options = [
       "subvol=nix"
       "compress=zstd"
+      "nosuid"
     ];
   };
 
-  zramSwap.enable = true;
-  #fileSystems."/swap" = {
-  #  device = "/dev/mapper/crypted";
-  #  fsType = "btrfs";
-  #  options = [
-  #    "subvol=swap"
-  #    "compress=zstd"
-  #    "noexec"
-  #    "nosuid"
-  #  ];
-  #};
-  #swapDevices = [
-  #  {
-  #    device = lib.mkForce "/swap/swapfile";
-  #    label = "swap";
-  #    size = 32768;
-  #  }
-  #];
+  # zramSwap.enable = true;
+  fileSystems."/swap" = {
+   device = "/dev/mapper/crypted";
+   fsType = "btrfs";
+   options = [
+     "subvol=swap"
+     "nodatacow"
+     "noexec"
+     "nosuid"
+   ];
+  };
+  swapDevices = [
+   {
+     device = lib.mkForce "/swap/swapfile";
+     label = "swap";
+     size = 32768;
+   }
+  ];
 
   fileSystems."/boot" = {
     device = "/dev/disk/by-partlabel/disk-main-ESP";
