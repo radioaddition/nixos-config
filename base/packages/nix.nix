@@ -13,9 +13,9 @@ in
     atuin
     bat
     bat-extras.batman
+    brave
     btop
     btrfs-progs
-    brave
     busybox
     curl
     cyme
@@ -23,6 +23,7 @@ in
     exfatprogs
     eza
     fastfetch
+    fetch
     fish
     fragments
     fzf
@@ -36,7 +37,6 @@ in
     gnumake
     gum
     home-manager
-    hyfetch
     inputs.agenix.packages.x86_64-linux.default
     inputs.neovim.packages.x86_64-linux.default
     just
