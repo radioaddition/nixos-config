@@ -91,8 +91,8 @@
   # environment.variables.SCUDO_OPTIONS = "zero_contents=1";
 
   security = {
-  #     # Disable sudo in favor of run0
-  #   sudo.enable = false;
+    # Disable sudo in favor of run0
+    sudo.enable = false;
   #   sudo-rs = {
   #     # To use as a temporary sudo if needed
   #     # enable = true;
@@ -185,7 +185,7 @@
       "cifs"
       "coda"
       "cramfs"
-      # "ecryptfs"
+      "ecryptfs"
       "efs"
       "erofs"
       "exofs"
