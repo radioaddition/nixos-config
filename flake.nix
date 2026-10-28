@@ -81,7 +81,10 @@
         name = "radioaddition";
         meta.description = "devshell for managing this repo";
 
-        NIX_CONFIG = "extra-experimental-features = nix-command flakes";
+        NIX_CONFIG = ''
+          extra-experimental-features = nix-command flakes
+          deprecated-features = broken-string-indentation or-as-identifier
+          '';
 
         packages = with nixpkgs.legacyPackages.x86_64-linux; [
           age

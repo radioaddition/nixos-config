@@ -194,6 +194,9 @@
       substituters = [ "https://afnix-hydra.s3-bulk-web.afnix.fr/" ];
       trusted-public-keys = [ "afnix:oqt801y+IwJ09XRtNDQYCKb7zuCw9DQXQk8fDWPkwxM=" ];
     };
+    extraOptions = ''
+      deprecated-features = broken-string-indentation or-as-identifier rec-set-dynamic-attrs broken-string-escape
+    '';
   };
 
   # Replace coreutils with uutils-coreutils

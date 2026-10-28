@@ -56,8 +56,11 @@
   # Enable secure boot
   boot.loader.limine = {
     enable = true;
+    maxGenerations = 5;
+    efiInstallAsRemovable = true;
     secureBoot = {
-      enable = false;
+      enable = true;
+      autoGenerateKeys = true;
       autoEnrollKeys = {
         enable = true;
         extraArgs = [
