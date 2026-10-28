@@ -21,6 +21,7 @@
     };
 
     # Extra inputs
+    deploy-rs.url = "github:serokell/deploy-rs";
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -56,7 +57,9 @@
 
   outputs =
     {
+      deploy-rs,
       disko,
+      lix,
       lix-module,
       nixos-hardware,
       nixpkgs,
@@ -66,15 +69,25 @@
       ...
     }@inputs:
     let
-      eachSystem = f: nixpkgs.lib.genAttrs (import systems) (system: f nixpkgs.legacyPackages.${system});
+      pkgs = import nixpkgs { inherit system; };
+      system = "x86_64-linux";
+      eachSystem = f: nixpkgs.lib.genAttrs (import systems) (system: f nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system});
       treefmtEval = eachSystem (pkgs: treefmt.lib.evalModule pkgs ./treefmt.nix);
+      deployPkgs = import nixpkgs {
+      inherit system;
+      overlays = [
+        deploy-rs.overlays.default
+        (self: super: { deploy-rs = { inherit (pkgs) deploy-rs; lib = super.deploy-rs.lib; }; })
+      ];
+    };
+
     in
     {
       # Formatting
       formatter = eachSystem (pkgs: treefmtEval.${pkgs.stdenv.hostPlatform.system}.config.build.wrapper);
-      checks = eachSystem (pkgs: {
-        formatting = treefmtEval.${pkgs.stdenv.hostPlatform.system}.config.build.check self;
-      });
+      # checks = eachSystem (pkgs: {
+      #   formatting = treefmtEval.${pkgs.stdenv.hostPlatform.system}.config.build.check self;
+      # });
 
       devShells.x86_64-linux.default = nixpkgs.legacyPackages.x86_64-linux.mkShellNoCC {
         name = "radioaddition";
@@ -83,7 +96,7 @@
         NIX_CONFIG = ''
           extra-experimental-features = nix-command flakes
           deprecated-features = broken-string-indentation or-as-identifier
-          '';
+        '';
 
         packages = with nixpkgs.legacyPackages.x86_64-linux; [
           age
@@ -106,6 +119,19 @@
           zoxide
         ];
       };
+
+      deploy.nodes = {
+        galith = {
+          hostname = "galith.dory-gondola.ts.net";
+          profiles.system = {
+            user = "root";
+            sshUser = "radioaddition";
+            path = deployPkgs.deploy-rs.lib.activate.nixos self.nixosConfigurations.galith;
+          };
+        };
+      };
+      deploy.sudo = "run0 -i";
+      checks = builtins.mapAttrs (_system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
 
       nixosConfigurations = {
         framework = nixpkgs.lib.nixosSystem {
