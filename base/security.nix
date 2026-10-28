@@ -1,8 +1,6 @@
 {
-  config,
   pkgs,
   lib,
-  inputs,
   ...
 }:
 {
@@ -96,11 +94,11 @@
   security = {
     # Disable sudo in favor of run0
     sudo.enable = false;
-  #   sudo-rs = {
-  #     # To use as a temporary sudo if needed
-  #     # enable = true;
-  #     execWheelOnly = true;
-  #   };
+    #   sudo-rs = {
+    #     # To use as a temporary sudo if needed
+    #     # enable = true;
+    #     execWheelOnly = true;
+    #   };
 
     lockKernelModules = true;
 

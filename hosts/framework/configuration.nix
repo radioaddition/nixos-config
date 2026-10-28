@@ -2,7 +2,8 @@
   lib,
   pkgs,
   ...
-}:{
+}:
+{
   # Define system hostname
   networking.hostName = "framework";
 
@@ -20,7 +21,6 @@
       driver = pkgs.libfprint-2-tod1-goodix;
     };
   };
-
 
   # Improve sound quality
   hardware.framework.laptop13.audioEnhancement = {

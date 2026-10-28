@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, ... }:
 {
   # in case of git.sr.ht outage
   #manual.html.enable = false;

@@ -1,7 +1,6 @@
 { pkgs, inputs, ... }:
 let
   menu = inputs.menu.legacyPackages.${pkgs.system};
-  stable = inputs.stable.legacyPackages.${pkgs.system};
 in
 {
 

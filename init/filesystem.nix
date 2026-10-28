@@ -43,21 +43,21 @@
 
   # zramSwap.enable = true;
   fileSystems."/swap" = {
-   device = "/dev/mapper/crypted";
-   fsType = "btrfs";
-   options = [
-     "subvol=swap"
-     "nodatacow"
-     "noexec"
-     "nosuid"
-   ];
+    device = "/dev/mapper/crypted";
+    fsType = "btrfs";
+    options = [
+      "subvol=swap"
+      "nodatacow"
+      "noexec"
+      "nosuid"
+    ];
   };
   swapDevices = [
-   {
-     device = lib.mkForce "/swap/swapfile";
-     label = "swap";
-     size = 32768;
-   }
+    {
+      device = lib.mkForce "/swap/swapfile";
+      label = "swap";
+      size = 32768;
+    }
   ];
 
   fileSystems."/boot" = {

@@ -57,7 +57,6 @@
   outputs =
     {
       disko,
-      lix,
       lix-module,
       nixos-hardware,
       nixpkgs,

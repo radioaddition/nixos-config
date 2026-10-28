@@ -1,5 +1,4 @@
-
-{ pkgs, ... }:
+{ ... }:
 {
   services.nextdns = {
     enable = true;
