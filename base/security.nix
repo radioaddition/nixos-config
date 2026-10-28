@@ -29,6 +29,7 @@
 
   # Restrict Nix access
   nix.settings.allowed-users = [ "radioaddition" ];
+  nix.settings.trusted-users = [ "radioaddition" ];
 
   # Lock device upon removal
   #services.udev.extraRules = ''
