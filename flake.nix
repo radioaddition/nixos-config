@@ -26,6 +26,10 @@
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     nix-flatpak.url = "github:gmodena/nix-flatpak";
     menu = {
@@ -64,6 +68,7 @@
       nixos-hardware,
       nixpkgs,
       self,
+      sops-nix,
       systems,
       treefmt,
       ...
@@ -164,6 +169,7 @@
             disko.nixosModules.disko
             lix-module.nixosModules.default
             nixos-hardware.nixosModules.framework-13-7040-amd
+            sops-nix.nixosModules.sops
           ];
         };
 
@@ -172,6 +178,7 @@
           specialArgs = { inherit inputs; };
           modules = [
             disko.nixosModules.disko
+            sops-nix.nixosModules.sops
             ./base/users.nix
             ./hosts/installer/configuration.nix
             ./hosts/installer/hardware-configuration.nix
@@ -200,6 +207,7 @@
             disko.nixosModules.disko
             lix-module.nixosModules.default
             nixos-hardware.nixosModules.framework-13-7040-amd
+            sops-nix.nixosModules.sops
           ];
         };
       };
