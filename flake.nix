@@ -171,7 +171,7 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs; };
           modules = [
-            inputs.disko.nixosModules.disko
+            disko.nixosModules.disko
             ./base/users.nix
             ./hosts/installer/configuration.nix
             ./hosts/installer/hardware-configuration.nix
