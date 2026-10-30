@@ -95,7 +95,7 @@
 
         NIX_CONFIG = ''
           extra-experimental-features = nix-command flakes
-          deprecated-features = broken-string-indentation or-as-identifier
+          deprecated-features = broken-string-indentation or-as-identifier rec-set-dynamic-attrs
         '';
 
         packages = with nixpkgs.legacyPackages.x86_64-linux; [
