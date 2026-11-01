@@ -67,6 +67,14 @@
     MANPAGER = "nvim +Man!";
   };
 
+  # System-wide automatic per-directory shell environments
+  programs.direnv = {
+    enable = true;
+    silent = false;
+    nix-direnv.enable = true;
+    loadInNixShell = true;
+  };
+
   # Base system packages not included
   environment.systemPackages = with pkgs; [
     (pkgs.uutils-coreutils.override { prefix = ""; })

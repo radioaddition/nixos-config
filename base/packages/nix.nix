@@ -82,7 +82,6 @@ in
     chezmoi
     collision
     dconf-editor
-    direnv
     discover-overlay
     distrobox
     equibop
