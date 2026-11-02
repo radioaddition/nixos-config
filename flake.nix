@@ -23,7 +23,7 @@
     # Extra inputs
     deploy-rs.url = "github:serokell/deploy-rs";
     agenix = {
-      url = "github:ryantm/agenix";
+      url = "github:yaxitech/ragenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
