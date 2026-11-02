@@ -23,7 +23,7 @@
     # Extra inputs
     deploy-rs.url = "github:serokell/deploy-rs";
     agenix = {
-      url = "github:yaxitech/ragenix";
+      url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
@@ -68,20 +68,22 @@
       treefmt,
       ...
     }@inputs:
+
     let
-      pkgs = import nixpkgs { inherit system; };
+      pkgs = import nixpkgs {
+        inherit system;
+        overlays = [
+          deploy-rs.overlays.default
+          (self: super: { deploy-rs = { inherit (pkgs) deploy-rs; lib = super.deploy-rs.lib; }; })
+        ];
+      };
+      legpkgs = nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system};
       system = "x86_64-linux";
       eachSystem = f: nixpkgs.lib.genAttrs (import systems) (system: f nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system});
       treefmtEval = eachSystem (pkgs: treefmt.lib.evalModule pkgs ./treefmt.nix);
-      deployPkgs = import nixpkgs {
-      inherit system;
-      overlays = [
-        deploy-rs.overlays.default
-        (self: super: { deploy-rs = { inherit (pkgs) deploy-rs; lib = super.deploy-rs.lib; }; })
-      ];
-    };
-
+      menu = inputs.menu.legacyPackages.${pkgs.stdenv.hostPlatform.system};
     in
+
     {
       # Formatting
       formatter = eachSystem (pkgs: treefmtEval.${pkgs.stdenv.hostPlatform.system}.config.build.wrapper);
@@ -97,9 +99,15 @@
           extra-experimental-features = nix-command flakes
           deprecated-features = broken-string-indentation or-as-identifier rec-set-dynamic-attrs
         '';
+        # AGENIX_RULES = "${builtins.toPath ./.}secrets/agenix-rules.nix";
+        shellHook = ''
+          export AGENIX_RULES="$(git rev-parse --show-toplevel)/secrets/agenix-rules.nix"
+        '';
 
-        packages = with nixpkgs.legacyPackages.x86_64-linux; [
+        # The `with` statement will be ignored for explicitly defined packages (i.e. any inputs.something packages)
+        packages = with legpkgs; [
           age
+          inputs.agenix.packages.x86_64-linux.default
           atuin
           deadnix
           eza
@@ -110,6 +118,9 @@
           glow
           gum
           inputs.disko.packages.x86_64-linux.default
+          menu.rbld
+          menu.unify
+          menu.fuiska
           inputs.neovim.packages.x86_64-linux.default
           just
           nh
@@ -126,7 +137,7 @@
           profiles.system = {
             user = "root";
             sshUser = "radioaddition";
-            path = deployPkgs.deploy-rs.lib.activate.nixos self.nixosConfigurations.galith;
+            path = pkgs.deploy-rs.lib.activate.nixos self.nixosConfigurations.galith;
           };
         };
       };
@@ -186,10 +197,7 @@
           modules = [
             ./hosts/galith/configuration.nix
             ./hosts/galith/hardware-configuration.nix
-            ./base/DEs/gnome.nix
-            ./base/gaming.nix
             ./base/networking.nix
-            ./base/packages/flatpak.nix
             ./base/packages/nix.nix
             ./base/security.nix
             ./base/shells/fish.nix
@@ -198,6 +206,7 @@
             ./init/disko.nix
             ./init/filesystem.nix
             disko.nixosModules.disko
+            inputs.agenix.nixosModules.default
             lix-module.nixosModules.default
             nixos-hardware.nixosModules.framework-13-7040-amd
           ];
