@@ -9,7 +9,7 @@ let
 in
 {
   "nextcloud-pwd.age" = {
-    publicKeys = [ radioaddition_framework framework ];
+    publicKeys = users ++ systems;
     armor = true;
   };
 }
