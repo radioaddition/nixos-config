@@ -4,7 +4,7 @@
 {
   services.caddy = {
     enable = true;
-    virtualHosts."${config.networking.hostname}.dory-gondala.ts.net:443".extraConfig = ''
+    virtualHosts."${config.networking.hostName}.dory-gondala.ts.net:443".extraConfig = ''
       reverse_proxy /nextcloud/* localhost:8080
     '';
     # virtualHosts."${config.networking.hostname}.dory-gondala.ts.net:80".extraConfig = ''
