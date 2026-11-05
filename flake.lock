@@ -132,24 +132,6 @@
         "systems": "systems_2"
       },
       "locked": {
-        "lastModified": 1731533236,
-        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
-      }
-    },
-    "flake-utils_2": {
-      "inputs": {
-        "systems": "systems_3"
-      },
-      "locked": {
         "lastModified": 1791914995,
         "narHash": "sha256-Zf/xfQEAasnwnmEfHqW/4hjDE/s44yn2hD4RuVIZRjA=",
         "owner": "numtide",
@@ -160,21 +142,6 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
-        "type": "github"
-      }
-    },
-    "flakey-profile": {
-      "locked": {
-        "lastModified": 1712898590,
-        "narHash": "sha256-FhGIEU93VHAChKEXx905TSiPZKga69bWl1VB37FK//I=",
-        "owner": "lf-",
-        "repo": "flakey-profile",
-        "rev": "243c903fd8eadc0f63d205665a92d4df91d42d9d",
-        "type": "github"
-      },
-      "original": {
-        "owner": "lf-",
-        "repo": "flakey-profile",
         "type": "github"
       }
     },
@@ -268,43 +235,6 @@
         "type": "github"
       }
     },
-    "lix": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1793552467,
-        "narHash": "sha256-OQx+1Lmgb0svLV6GhTjLzdQTc3/30bMKmrPC5VTubDc=",
-        "rev": "e236f40699ca7b5be48740da80dc4881e177f4f0",
-        "type": "tarball",
-        "url": "https://git.lix.systems/api/v1/repos/lix-project/lix/archive/e236f40699ca7b5be48740da80dc4881e177f4f0.tar.gz?rev=e236f40699ca7b5be48740da80dc4881e177f4f0"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://git.lix.systems/lix-project/lix/archive/main.tar.gz"
-      }
-    },
-    "lix-module": {
-      "inputs": {
-        "flake-utils": "flake-utils",
-        "flakey-profile": "flakey-profile",
-        "lix": [
-          "lix"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1791014283,
-        "narHash": "sha256-7KBL8PF28zweSpAAb62Dxo1oznqGUiXLu4807aAFw4s=",
-        "rev": "9311ca94aac0ff3378ab4eea887284d11de94158",
-        "type": "tarball",
-        "url": "https://git.lix.systems/api/v1/repos/lix-project/nixos-module/archive/9311ca94aac0ff3378ab4eea887284d11de94158.tar.gz?rev=9311ca94aac0ff3378ab4eea887284d11de94158"
-      },
-      "original": {
-        "type": "tarball",
-        "url": "https://git.lix.systems/lix-project/nixos-module/archive/main.tar.gz"
-      }
-    },
     "luvit-meta": {
       "flake": false,
       "locked": {
@@ -343,7 +273,7 @@
     },
     "neovim": {
       "inputs": {
-        "flake-utils": "flake-utils_2",
+        "flake-utils": "flake-utils",
         "gen-luarc": "gen-luarc",
         "nixpkgs": "nixpkgs_3",
         "reticle-nvim": "reticle-nvim"
@@ -579,8 +509,6 @@
         "disko": "disko",
         "flake-compat": "flake-compat_2",
         "jovian": "jovian",
-        "lix": "lix",
-        "lix-module": "lix-module",
         "menu": "menu",
         "neovim": "neovim",
         "nix-flatpak": "nix-flatpak",
@@ -588,7 +516,7 @@
         "nixpkgs": "nixpkgs_5",
         "programsdb": "programsdb",
         "stable": "stable",
-        "systems": "systems_4",
+        "systems": "systems_3",
         "treefmt": "treefmt"
       }
     },
@@ -639,21 +567,6 @@
       }
     },
     "systems_3": {
-      "locked": {
-        "lastModified": 1681028828,
-        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
-        "owner": "nix-systems",
-        "repo": "default",
-        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-systems",
-        "repo": "default",
-        "type": "github"
-      }
-    },
-    "systems_4": {
       "locked": {
         "lastModified": 1791244623,
         "narHash": "sha256-uuanbkFk8a313Zfrxdcz8Us/yQtaxNnKJtX8v0ZPpd8=",

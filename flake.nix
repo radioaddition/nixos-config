@@ -5,15 +5,15 @@
     # Base inputs
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     stable.url = "github:nixos/nixpkgs/nixos-26.05";
-    lix = {
-      url = "https://git.lix.systems/lix-project/lix/archive/main.tar.gz";
-      flake = false;
-    };
-    lix-module = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/main.tar.gz";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.lix.follows = "lix";
-    };
+    # lix = {
+    #   url = "https://git.lix.systems/lix-project/lix/archive/main.tar.gz";
+    #   flake = false;
+    # };
+    # lix-module = {
+    #   url = "https://git.lix.systems/lix-project/nixos-module/archive/main.tar.gz";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    #   # inputs.lix.follows = "lix";
+    # };
     flake-compat = {
       url = "git+https://git.lix.systems/lix-project/flake-compat";
       # Optional, this repo's flake.nix just imports their default.nix, so this skips a step
@@ -55,8 +55,8 @@
     {
       deploy-rs,
       disko,
-      lix,
-      lix-module,
+      # lix,
+      # lix-module,
       nixos-hardware,
       nixpkgs,
       self,
@@ -76,7 +76,15 @@
               lib = super.deploy-rs.lib;
             };
           })
+          (final: prev: {
+            inherit (prev.lixPackageSets.stable)
+              nixpkgs-review
+              nix-eval-jobs
+              nix-fast-build
+              colmena;
+          })
         ];
+        nix.package = pkgs.lixPackageSets.stable.lix;
       };
       legpkgs = nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system};
       system = "x86_64-linux";
@@ -178,7 +186,7 @@
             ./init/disko.nix
             ./init/filesystem.nix
             disko.nixosModules.disko
-            lix-module.nixosModules.default
+            # lix-module.nixosModules.default
             nixos-hardware.nixosModules.framework-13-7040-amd
           ];
         };
@@ -215,7 +223,7 @@
             ./services/tailscale.nix
             disko.nixosModules.disko
             inputs.agenix.nixosModules.default
-            lix-module.nixosModules.default
+            # lix-module.nixosModules.default
             nixos-hardware.nixosModules.framework-13-7040-amd
           ];
         };
