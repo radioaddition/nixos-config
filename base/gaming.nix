@@ -30,6 +30,10 @@
   environment.systemPackages = with pkgs; [
     mangohud
     protonplus
+    cartridges
+    lumafly
+    mindustry-wayland
+    shattered-pixel-dungeon
     adwsteamgtk
   ];
 

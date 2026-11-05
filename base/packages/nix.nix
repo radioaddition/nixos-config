@@ -78,7 +78,6 @@ in
   users.users.radioaddition.packages = with pkgs; [
     bottles
     boxbuddy
-    cartridges
     chezmoi
     collision
     dconf-editor
@@ -93,16 +92,12 @@ in
     impression
     jamesdsp
     libreoffice
-    lumafly
-    lutris
-    mindustry-wayland
     onionshare-gui
     pavucontrol
     pika-backup
     protontricks
     proton-vpn
     seahorse
-    shattered-pixel-dungeon
     ungoogled-chromium
     virt-manager
     virt-viewer
