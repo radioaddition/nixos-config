@@ -44,6 +44,7 @@
     (with pkgs.gnomeExtensions; [
       alphabetical-app-grid
       appindicator
+      appindicator-hider
       blur-my-shell
       caffeine
       dash-to-dock
@@ -53,12 +54,9 @@
       pop-shell
       quick-settings-audio-devices-renamer
       reboottouefi
-      reorder-workspaces
-      search-light
       tailscale-qs
-      wifi-qrcode
-      wiggle
-      window-title-is-back
+      tasks-in-panel
+      wiggly
       xwayland-indicator
       zen
     ])

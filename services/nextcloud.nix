@@ -21,7 +21,6 @@
     # webserver = "caddy";
     package = pkgs.nextcloud35;
     hostName = "${config.networking.hostName}.dory-gondala.ts.net";
-    config.adminpassFile = config.age.secrets.nextcloud-pwd.path;
     config.dbtype = "mysql";
     database.createLocally = true;
     settings = let
