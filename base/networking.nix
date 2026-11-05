@@ -5,7 +5,7 @@
   #- networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # faster boot
-  systemd.network.wait-online.enable = false; 
+  systemd.network.wait-online.enable = false;
   boot.initrd.systemd.network.wait-online.enable = false;
 
   # CaptivePortal logins

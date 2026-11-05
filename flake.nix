@@ -70,12 +70,21 @@
         inherit system;
         overlays = [
           deploy-rs.overlays.default
-          (self: super: { deploy-rs = { inherit (pkgs) deploy-rs; lib = super.deploy-rs.lib; }; })
+          (self: super: {
+            deploy-rs = {
+              inherit (pkgs) deploy-rs;
+              lib = super.deploy-rs.lib;
+            };
+          })
         ];
       };
       legpkgs = nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system};
       system = "x86_64-linux";
-      eachSystem = f: nixpkgs.lib.genAttrs (import systems) (system: f nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system});
+      eachSystem =
+        f:
+        nixpkgs.lib.genAttrs (import systems) (
+          system: f nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}
+        );
       treefmtEval = eachSystem (pkgs: treefmt.lib.evalModule pkgs ./treefmt.nix);
       menu = inputs.menu.legacyPackages.${pkgs.stdenv.hostPlatform.system};
     in

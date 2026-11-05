@@ -1,6 +1,7 @@
 {
   config,
-  ... }:
+  ...
+}:
 {
   services.caddy = {
     enable = true;
