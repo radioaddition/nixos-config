@@ -1,32 +1,33 @@
 { pkgs, inputs, ... }:
 let
-  menu = inputs.menu.legacyPackages.${pkgs.system};
+  menu = inputs.menu.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+  unstable = inputs.unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system};
 in
 {
 
   # System packages
   environment.systemPackages = with pkgs; [
-    age
+    unstable.age
     alejandra
     android-tools
     atuin
     bat
     bat-extras.batman
-    brave
+    unstable.brave
     btop
     btrfs-progs
-    busybox
-    curl
+    unstable.busybox
+    unstable.curl
     cyme
     deadnix
     exfatprogs
     eza
     fastfetch
-    fetch
+    unstable.fetch
     fish
     fragments
     fzf
-    gcc
+    unstable.gcc
     gettext
     git
     git-repo
@@ -88,7 +89,7 @@ in
     gnome-extension-manager
     gnome-tweaks
     gparted
-    helvum
+    crosspipe
     impression
     jamesdsp
     libreoffice
@@ -98,16 +99,18 @@ in
     protontricks
     proton-vpn
     seahorse
-    ungoogled-chromium
+    unstable.ungoogled-chromium
     virt-manager
     virt-viewer
     wormhole-william
   ];
 
   # Fonts
-  fonts.packages = with pkgs; [
+  fonts.packages = (with pkgs; [
     adwaita-fonts
-    nerd-fonts.iosevka
-    nerd-fonts.meslo-lg
-  ];
+  # Nerd fonts
+  ]) ++ (with pkgs.nerd-fonts; [
+    iosevka
+    meslo-lg
+  ]);
 }

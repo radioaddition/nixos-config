@@ -3,8 +3,8 @@
 
   inputs = {
     # Base inputs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    stable.url = "github:nixos/nixpkgs/nixos-26.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
+    unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     # lix = {
     #   url = "https://git.lix.systems/lix-project/lix/archive/main.tar.gz";
     #   flake = false;

@@ -25,6 +25,7 @@
     package = pkgs.nextcloud35;
     hostName = "${config.networking.hostName}.dory-gondala.ts.net";
     config.dbtype = "mysql";
+    config.adminpassFile = config.age.secrets.nextcloud-pwd.path;
     database.createLocally = true;
     settings =
       let
@@ -61,17 +62,15 @@
       );
     };
   };
-  # config.adminpassFile = config.age.secrets.nextcloud-pwd.path;
-  # use nextcloud-occ user:add <username> and nextcloud-occ group:adduser admin <username>.
-  systemd.services.nextcloud-custom-config = {
-    path = [
-      config.services.nextcloud.occ
-    ];
-    script = ''
-      nextcloud-occ user:add nextadmin
-      nextcloud-occ group:adduser admin nextadmin
-    '';
-    after = [ "nextcloud-setup.service" ];
-    wantedBy = [ "multi-user.target" ];
-  };
+  # systemd.services.nextcloud-custom-config = {
+  #   path = [
+  #     config.services.nextcloud.occ
+  #   ];
+  #   script = ''
+  #     nextcloud-occ user:add nextadmin
+  #     nextcloud-occ group:adduser admin nextadmin
+  #   '';
+  #   after = [ "nextcloud-setup.service" ];
+  #   wantedBy = [ "multi-user.target" ];
+  # };
 }

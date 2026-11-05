@@ -1,4 +1,8 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, inputs, ... }:
+let
+  unstable = inputs.unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+  unstable-ext = inputs.unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system}.gnomeExtensions;
+in
 {
   services.xserver.enable = true;
 
@@ -44,7 +48,7 @@
     (with pkgs.gnomeExtensions; [
       alphabetical-app-grid
       appindicator
-      appindicator-hider
+      unstable-ext.appindicator-hider
       blur-my-shell
       caffeine
       dash-to-dock
