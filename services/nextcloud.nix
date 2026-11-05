@@ -55,7 +55,7 @@
         in
         {
           url = "https://github.com/j-suchy/nextcloud-cage/releases/download/v${version}/cage-${version}.tar.gz";
-          hash = "sha256-Xr1SRSmXo2r8yOGuoMyoXhD0oPVm/0/ISHlmNZpJYsg=";
+          hash = "sha256-Judc4NG8zK2NI9DYoQ7BK9gBaV6QLob3kyKMId6X63Y";
           license = "agpl3Only";
         }
       );
