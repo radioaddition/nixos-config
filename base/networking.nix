@@ -4,52 +4,26 @@
   #- networking.proxy.default = "http://user:password@proxy:port/";
   #- networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  # environment.systemPackages = with pkgs; [
-  #   impala # a tui for iwd
-  # ];
+  # faster boot
+  systemd.network.wait-online.enable = false; 
+  boot.initrd.systemd.network.wait-online.enable = false;
 
   # CaptivePortal logins
   programs.captive-browser = {
     enable = true;
 
-    # iwd
-    interface = "wlan0";
-
     # NetworkManager
-    # interface = "wlp1s0";
+    interface = "wlp1s0";
   };
 
   # NetworkManager
   networking.networkmanager = {
     enable = true;
-    wifi = {
-      backend = "iwd";
-      macAddress = "random";
-    };
+    wifi.macAddress = "random";
   };
 
   # NTP
   services.ntp.enable = true;
-
-  # iwd
-  networking.wireless.iwd = {
-    enable = true;
-    settings = {
-      General = {
-        EnableNetworkConfiguration = true;
-        AddressRandomization = "network";
-        AddressRandomizationRange = "full";
-        ManagementFrameProtection = "1";
-      };
-      Network = {
-        NameResolvingService = "systemd";
-      };
-      #Scan = {
-      #  DisablePeriodicScan = true;
-      #  DisableRoamingScan = true;
-      #};
-    };
-  };
 
   # systemd-networkd
   boot.initrd.systemd.network.enable = true;
@@ -80,24 +54,21 @@
   # KDE Connect
   programs.kdeconnect = {
     enable = true;
-    package = pkgs.valent;
+    # package = pkgs.valent;
   };
 
-  # Tailscale
-  services.tailscale = {
-    enable = true;
-  };
-
-  # Open ports in the firewall.
+  # Configure the firewall.
+  networking.nftables.enable = true;
   networking.firewall = {
     allowedTCPPorts = [
       25565 # minecraft
     ];
     allowedUDPPorts = [
       25565 # minecraft
+      config.services.tailscale.port
     ];
     trustedInterfaces = [
-      "tailscale0"
+      config.services.tailscale.interfaceName
       "virbr0"
     ];
   };
