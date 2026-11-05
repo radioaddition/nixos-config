@@ -201,6 +201,9 @@
             ./base/users.nix
             ./init/disko.nix
             ./init/filesystem.nix
+            ./services/caddy.nix
+            ./services/nextcloud.nix
+            ./services/tailscale.nix
             disko.nixosModules.disko
             inputs.agenix.nixosModules.default
             lix-module.nixosModules.default
