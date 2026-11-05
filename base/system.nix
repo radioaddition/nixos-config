@@ -6,13 +6,17 @@
 }:
 {
 
+  imports = [
+    inputs.agenix.nixosModules.default
+  ];
+
   age.identityPaths = [
     "/home/radioaddition/.ssh/key.age"
     "/home/radioaddition/.ssh/id_ed25519"
   ];
-  imports = [
-    inputs.agenix.nixosModules.default
-  ];
+  age.secrets = {
+    nextcloud-pwd.file = ../secrets/nextcloud-pwd.age;
+  };
 
   # Auto Updates
   system.autoUpgrade = {
@@ -157,7 +161,12 @@
     podman = {
       enable = true;
       dockerCompat = true;
+      dockerSocket.enable = true;
+      autoPrune.enable = true;
       defaultNetwork.settings.dns_enabled = true;
+    };
+    oci-containers = {
+      backend = "podman";
     };
   };
 
