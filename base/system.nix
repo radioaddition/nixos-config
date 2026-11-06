@@ -130,7 +130,7 @@
     '';
 
     # Use default kernel temporarily so I don't have to build it locally
-    kernelPackages = pkgs.linuxKernel.kernels.linux_default;
+    kernelPackages = pkgs.linuxPackagesFor pkgs.linuxKernel.kernels.linux_xanmod_stable;
     # Pin kernel version
     # kernelPackages = pkgs.linuxPackagesFor (
     #   pkgs.linuxKernel.kernels.linux_latest.override {
