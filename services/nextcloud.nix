@@ -50,13 +50,13 @@
     extraAppsEnable = true;
     extraApps = {
       inherit (config.services.nextcloud.package.packages.apps) contacts calendar tasks;
-      cage = pkgs.fetchNextcloudApp (
+      e2ee = pkgs.fetchNextcloudApp (
         let
-          version = "0.2.1";
+          version = "2.6.0";
         in
         {
-          url = "https://github.com/j-suchy/nextcloud-cage/releases/download/v${version}/cage-${version}.tar.gz";
-          hash = "sha256-Judc4NG8zK2NI9DYoQ7BK9gBaV6QLob3kyKMId6X63Y";
+          url = "https://github.com/nextcloud/end_to_end_encryption/archive/refs/tags/v${version}.tar.gz";
+          hash = "sha256-7VpJ1hR7uEV+APL/AMqGzLj4jm+xo48P4w2z65dg3KA=";
           license = "agpl3Only";
         }
       );
