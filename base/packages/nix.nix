@@ -5,6 +5,10 @@ let
 in
 {
 
+  # Imports (packages that are installed via programs.package get their own file as they'll have extra configuration
+  imports = [
+    ./tmux.nix
+  ];
   # System packages
   environment.systemPackages = with pkgs; [
     unstable.age
@@ -64,7 +68,6 @@ in
     sbctl
     statix
     tealdeer
-    tmux
     topgrade
     tuba
     up
