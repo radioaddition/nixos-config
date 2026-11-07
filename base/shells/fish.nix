@@ -99,6 +99,12 @@
       set -Ux HOSTNAME $(hostname)
       set -Ux FLAKE $HOME/NixOS-Config
       set -Ux MANPAGER 'nvim +Man!'
+
+      # Launch tmux by default
+      if status is-interactive
+      and not set -q TMUX
+        exec tmux
+      end
     '';
   };
 }
