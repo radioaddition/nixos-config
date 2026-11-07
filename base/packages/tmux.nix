@@ -8,7 +8,7 @@
 {
   programs.tmux = {
     enable = true;
-    package = inputs.unstable.legacyPackages.${pkgs.stdenv.hostPlatform}.tmux;
+    package = inputs.unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system}.tmux;
     terminal = "tmux-256color";
     escapeTime = 10;
     clock24 = true;
