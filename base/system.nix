@@ -69,7 +69,7 @@
     EDITOR = "nvim";
     DBX_CONTAINER_MANAGER = "podman";
     MANPAGER = "nvim +Man!";
-    AGENIX_RULES = "${builtins.toPath ../.}/secrets/agenix-rules.nix"
+    AGENIX_RULES = "${builtins.toPath ../.}/secrets/agenix-rules.nix";
   };
 
   # System-wide automatic per-directory shell environments
