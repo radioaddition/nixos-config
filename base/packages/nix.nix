@@ -10,7 +10,7 @@ in
     unstable.age
     alejandra
     android-tools
-    atuin
+    unstable.atuin
     bat
     bat-extras.batman
     unstable.brave
