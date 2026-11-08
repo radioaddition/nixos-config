@@ -17,7 +17,6 @@ in
     unstable.atuin
     bat
     bat-extras.batman
-    unstable.brave
     btop
     btrfs-progs
     unstable.busybox
