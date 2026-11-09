@@ -69,13 +69,6 @@
       pkgs = import nixpkgs {
         inherit system;
         overlays = [
-          deploy-rs.overlays.default
-          (self: super: {
-            deploy-rs = {
-              inherit (pkgs) deploy-rs;
-              lib = super.deploy-rs.lib;
-            };
-          })
           (final: prev: {
             inherit (prev.lixPackageSets.stable)
               nixpkgs-review
@@ -150,7 +143,7 @@
           profiles.system = {
             user = "root";
             sshUser = "radioaddition";
-            path = pkgs.deploy-rs.lib.activate.nixos self.nixosConfigurations.galith;
+            path = deploy-rs.lib.${pkgs.stdenv.hostPlatform.system}.activate.nixos self.nixosConfigurations.galith;
           };
         };
       };
