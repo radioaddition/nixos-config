@@ -79,6 +79,19 @@
         ];
         nix.package = pkgs.lixPackageSets.stable.lix;
       };
+      unstable = import inputs.unstable {
+        inherit system;
+        overlays = [
+          (final: prev: {
+            inherit (prev.lixPackageSets.stable)
+              nixpkgs-review
+              nix-eval-jobs
+              nix-fast-build
+              colmena;
+          })
+        ];
+        nix.package = pkgs.lixPackageSets.stable.lix;
+      };
       legpkgs = nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system};
       system = "x86_64-linux";
       eachSystem =
@@ -114,7 +127,7 @@
         packages = with legpkgs; [
           age
           inputs.agenix.packages.x86_64-linux.default
-          atuin
+          unstable.atuin
           deadnix
           eza
           fastfetch
