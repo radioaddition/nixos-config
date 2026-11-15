@@ -133,6 +133,7 @@
           inputs.agenix.packages.x86_64-linux.default
           unstable.atuin
           deadnix
+          deploy-rs.packages.${pkgs.stdenv.hostPlatform.system}.default
           eza
           fastfetch
           fish
@@ -231,6 +232,7 @@
             ./services/caddy.nix
             ./services/nextcloud.nix
             ./services/tailscale.nix
+            ./services/minecraft.nix
             disko.nixosModules.disko
             inputs.agenix.nixosModules.default
             # lix-module.nixosModules.default
