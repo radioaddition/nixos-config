@@ -19,6 +19,11 @@
     }
   ];
 
+  age.secrets.nextcloud-pwd = {
+    file = ../secrets/nextcloud-pwd.age;
+    owner = "nextcloud";
+    group = "nextcloud";
+  };
   services.nextcloud = {
     enable = true;
     # webserver = "caddy";
@@ -29,7 +34,7 @@
     database.createLocally = true;
     settings =
       let
-        prot = "https";
+        prot = "http";
         host = "127.0.0.1";
         dir = "/nextcloud";
       in
