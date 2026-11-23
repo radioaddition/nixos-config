@@ -236,7 +236,6 @@
             disko.nixosModules.disko
             inputs.agenix.nixosModules.default
             # lix-module.nixosModules.default
-            nixos-hardware.nixosModules.framework-13-7040-amd
           ];
         };
       };

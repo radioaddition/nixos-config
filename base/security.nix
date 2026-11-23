@@ -97,7 +97,7 @@
     sudo.enable = false;
     sudo-rs = {
       # To use as a temporary sudo if needed
-      # enable = true;
+      enable = true;
       execWheelOnly = true;
     };
 
