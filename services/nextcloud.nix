@@ -82,8 +82,8 @@
           version = "2.6.0";
         in
         {
-          url = "https://github.com/nextcloud/end_to_end_encryption/archive/refs/tags/v${version}.tar.gz";
-          hash = "sha256-7VpJ1hR7uEV+APL/AMqGzLj4jm+xo48P4w2z65dg3KA=";
+          url = "https://github.com/nextcloud-releases/end_to_end_encryption/releases/download/v${version}/end_to_end_encryption-v${version}.tar.gz";
+          hash = "sha256-KhnWOHWc83763LJEMVCJxDm6IYOomLqQam4v3VSm+X0=";
           license = "agpl3Only";
         }
       );
