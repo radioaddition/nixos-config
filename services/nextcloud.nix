@@ -6,11 +6,11 @@
 {
 
   # use caddy as webserver
-  # imports = [
-  # "${fetchTarball {
-  #   url = "https://github.com/onny/nixos-nextcloud-testumgebung/archive/fa6f062830b4bc3cedb9694c1dbf01d5fdf775ac.tar.gz";
-  #   sha256 = "0gzd0276b8da3ykapgqks2zhsqdv4jjvbv97dsxg0hgrhb74z0fs";}}/nextcloud-extras.nix"
-  # ];
+  imports = [
+  "${fetchTarball {
+    url = "https://github.com/onny/nixos-nextcloud-testumgebung/archive/fa6f062830b4bc3cedb9694c1dbf01d5fdf775ac.tar.gz";
+    sha256 = "0gzd0276b8da3ykapgqks2zhsqdv4jjvbv97dsxg0hgrhb74z0fs";}}/nextcloud-extras.nix"
+  ];
 
   services.nginx.virtualHosts."${config.services.nextcloud.hostName}".listen = [
     {
@@ -26,15 +26,19 @@
   };
   services.nextcloud = {
     enable = true;
-    # webserver = "caddy";
+    configureRedis = true;
+    webserver = "caddy";
     package = pkgs.nextcloud35;
-    hostName = "${config.networking.hostName}.dory-gondala.ts.net";
-    config.dbtype = "mysql";
-    config.adminpassFile = config.age.secrets.nextcloud-pwd.path;
+    hostName = "${config.networking.hostName}";
+    config = {
+      dbtype = "mysql";
+      adminuser = "nextcloud";
+      adminpassFile = "${config.age.secrets.nextcloud-pwd.path}";
+    };
     database.createLocally = true;
     settings =
       let
-        prot = "http";
+        prot = "https";
         host = "127.0.0.1";
         dir = "/nextcloud";
       in
@@ -49,6 +53,18 @@
         overwritewebroot = dir;
         overwrite.cli.url = "${prot}://${host}${dir}/";
         htaccess.RewriteBase = dir;
+        trusted_domains = [
+          "localhost"
+          "127.0.0.1"
+          "galith"
+          "galith.dory-gondola.ts.net"
+        ];
+        trusted_proxies = [
+          "localhost"
+          "127.0.0.1"
+          "galith"
+          "galith.dory-gondola.ts.net"
+        ];
       };
     notify_push.enable = true;
     appstoreEnable = true;
