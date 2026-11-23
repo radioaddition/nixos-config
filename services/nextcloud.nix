@@ -19,6 +19,12 @@
     }
   ];
 
+  users.users.nextcloud = {
+    isSystemUser = true;
+    extraGroups = [
+      "nextcloud"
+    ];
+  };
   age.secrets.nextcloud-pwd = {
     file = ../secrets/nextcloud-pwd.age;
     owner = "nextcloud";
