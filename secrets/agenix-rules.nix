@@ -1,4 +1,5 @@
 let
+  master = "age1ywe7vjgqzrsd863c0084vv2kxxgcn7e6ceuaywz9gzd85xwuu32qqpdat4";
   radioaddition_framework = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL0idNvgGiucWgup/mP78zyC23uFjYq0evcWdjGQUaBH";
   radioaddition_galith = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILI6jSq53F/3hEmSs+oq9L4TwOo1PrDMAgcA1uo1CCV/";
   users = [
@@ -15,7 +16,7 @@ let
 in
 {
   "nextcloud-pwd.age" = {
-    publicKeys = users ++ systems;
+    publicKeys = [ master ] ++ users ++ systems;
     armor = true;
   };
 }
