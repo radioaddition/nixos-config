@@ -62,6 +62,7 @@
   networking.firewall = {
     allowedTCPPorts = [
       25565 # minecraft
+      config.services.tailscale.port
     ];
     allowedUDPPorts = [
       25565 # minecraft
