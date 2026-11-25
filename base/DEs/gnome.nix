@@ -37,12 +37,6 @@ in
     };
   };
 
-  # Set DE-dependent variables for gaming mode
-  specialisation.gaming-mode.configuration = {
-    jovian.steam.desktopSession = "gnome";
-    services.displayManager.gdm.enable = lib.mkForce false;
-  };
-
   # GNOME Extensions
   users.users.radioaddition.packages =
     (with pkgs.gnomeExtensions; [

@@ -31,10 +31,4 @@
       variant = "";
     };
   };
-
-  # Set DE-dependent variables for gaming mode
-  specialisation.gaming-mode.configuration = {
-    jovian.steam.desktopSession = "cosmic";
-    services.displayManager.cosmic-greeter.enable = lib.mkForce false;
-  };
 }

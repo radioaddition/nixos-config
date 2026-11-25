@@ -28,4 +28,11 @@
     # Turn base speaker volume up to max before setting to true
     hideRawDevice = false;
   };
+
+  # Set host-specific variables for gaming mode
+  specialisation.gaming-mode.configuration = {
+    jovian.steam.desktopSession = "gnome";
+    services.displayManager.gdm.enable = lib.mkForce false;
+  };
+
 }
