@@ -16,7 +16,7 @@
   services.nginx.virtualHosts."${config.services.nextcloud.hostName}".listen = [
     {
       addr = "127.0.0.1";
-      port = 8080;
+      port = 8080; # NOT an exposed port
     }
   ];
 
@@ -48,8 +48,8 @@
     database.createLocally = true;
     settings =
       let
-        prot = "http";
-        host = "localhost";
+        prot = "https";
+        host = "127.0.0.1";
         dir = "/nextcloud";
       in
       {

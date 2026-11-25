@@ -146,6 +146,7 @@
           menu.unify
           menu.fuiska
           inputs.neovim.packages.x86_64-linux.default
+          nix-output-monitor
           just
           nh
           sbctl
@@ -160,7 +161,8 @@
           hostname = "galith.dory-gondola.ts.net";
           profiles.system = {
             user = "root";
-            sshUser = "radioaddition";
+            sshUser = "root";
+            # remoteBuild = true;
             path = deploy-rs.lib.${pkgs.stdenv.hostPlatform.system}.activate.nixos self.nixosConfigurations.galith;
           };
         };
