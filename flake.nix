@@ -120,8 +120,8 @@
 
         NIX_CONFIG = ''
           extra-experimental-features = nix-command flakes
-          deprecated-features = broken-string-indentation or-as-identifier rec-set-dynamic-attrs
         '';
+          # deprecated-features = broken-string-indentation or-as-identifier rec-set-dynamic-attrs
         # AGENIX_RULES = "${builtins.toPath ./.}secrets/agenix-rules.nix";
         shellHook = ''
           export AGENIX_RULES="$(git rev-parse --show-toplevel)/secrets/agenix-rules.nix"

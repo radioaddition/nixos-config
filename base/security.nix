@@ -8,7 +8,7 @@
   # Required packages
   environment.systemPackages = with pkgs; [
     socat
-    tpm2-tools
+    # tpm2-tools
   ];
 
   # AppArmor
@@ -29,7 +29,7 @@
 
   # Restrict Nix access
   nix.settings.allowed-users = [ "radioaddition" ];
-  nix.settings.trusted-users = [ "radioaddition" ];
+  # nix.settings.trusted-users = [ "radioaddition" ];
 
   # Lock device upon removal
   #services.udev.extraRules = ''
@@ -272,7 +272,7 @@
       "net.core.bpf_jit_enable" = false;
 
       # Disable ftrace debugging
-      "kernel.ftrace_enabled" = false;
+      # "kernel.ftrace_enabled" = false;
 
       # Enable strict reverse path filtering (that is, do not attempt to route
       # packets that "obviously" do not belong to the iface's network; dropped
