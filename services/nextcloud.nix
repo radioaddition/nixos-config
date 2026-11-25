@@ -49,7 +49,7 @@
     settings =
       let
         prot = "https";
-        host = "127.0.0.1";
+        host = "${config.services.nextcloud.hostName}";
         dir = "/nextcloud";
       in
       {
